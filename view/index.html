@@ -2,30 +2,299 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Sunland Student Site</title>
-
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+        integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+        integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous" />
+    <link rel="stylesheet" href="./assets/css/styleIndex.css" />
+    <title>Sunland</title>
 </head>
 
-<body>
-    <h1>Test hello SFO</h1>
-
-
-    <!-- Bootstrap -->
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+<body data-spy="scroll" data-target="#main-nav" id="home">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top" id="main-nav">
+        <div class="container">
+            <a href="index.html" class="navbar-brand">Sunland</a>
+            <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a href="#home-section" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#explore-head-section" class="nav-link">Creativity</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#create-head-section" class="nav-link">Confidence</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#share-head-section" class="nav-link">Teamwork</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <header id="home-section">
+        <div class="dark-overlay">
+            <div class="home-inner container">
+                <div class="row">
+                    <div class="col-lg-8 d-none d-lg-block">
+                        <h1 class="display-4">
+                            Best School in the World!
+                        </h1>
+                        <div class="d-flex">
+                            <div class="p-4 align-self-start">
+                                <i class="fas fa-check fa-2x"></i>
+                            </div>
+                            <div class="p-4 align-self-end">
+                                Enroll your children and watch them grow!
+                            </div>
+                        </div>
+                        <div class="d-flex">
+                            <div class="p-4 align-self-start">
+                                <i class="fas fa-check fa-2x"></i>
+                            </div>
+                            <div class="p-4 align-self-end">
+                                Watch them become more creative, confident, collaborative!
+                            </div>
+                        </div>
+                        <div class="d-flex">
+                            <div class="p-4 align-self-start">
+                                <i class="fas fa-check fa-2x"></i>
+                            </div>
+                            <div class="p-4 align-self-end">
+                                Your kids will impress you every day what they learned in
+                                Sunland!
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card bg-primary text-center card-form">
+                            <div class="card-body">
+                                <h3>Sign up to find out more</h3>
+                                <p>Please register</p>
+                                <form>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control form-control-lg"
+                                            placeholder="Username" />
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="email" class="form-control form-control-lg" placeholder="Email" />
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" class="form-control form-control-lg"
+                                            placeholder="Password" />
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" class="form-control form-control-lg"
+                                            placeholder="Confirm Password" />
+                                    </div>
+                                    <input type="submit" value="Submit" class="btn btn-outline-light btn-block" />
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <section id="explore-head-section">
+        <div class="container">
+            <div class="row">
+                <div class="col text-center py-5">
+                    <h1 class="display-4">Creativity</h1>
+                    <p class="lead">
+                        Creativity doesn't wait for that perfect moment. It fashions its
+                        own perfect moments out of ordinary ones.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="explore-section" class="bg-light text-muted py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <img src="./assets/images/EscuelaSierraNevadaSunland-04.png" alt=""
+                        class="img-fluid mb-3 rounded-circle" />
+                </div>
+                <div class="col-md-6">
+                    <h3>Creativity & Music</h3>
+                    <p>
+                        One of the best ways to explore the creative side of your child is
+                        through music. Research shows that children exposed to music at an
+                        early age are more creative and intelligent through the rest of
+                        their lives.
+                    </p>
+                    <div class="d-flex">
+                        <div class="p-4 align-self-start">
+                            <i class="fas fa-check fa-2x"></i>
+                        </div>
+                        <div class="p-4 align-self-end">
+                            Line 170
+                        </div>
+                    </div>
+                    <div class="d-flex">
+                        <div class="p-4 align-self-start">
+                            <i class="fas fa-check fa-2x"></i>
+                        </div>
+                        <div class="p-4 align-self-end">
+                            Line 180
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="create-head-section" class="bg-primary">
+        <div class="container">
+            <div class="row">
+                <div class="col text-center py-5">
+                    <h1 class="display-4">Confidence</h1>
+                    <p class="lead">
+                        Line 193
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="create-section" class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 order-2">
+                    <img src="./assets/images/sunland.png" alt="" class="img-fluid mb-3 rounded-circle" />
+                </div>
+                <div class="col-md-6 order-1">
+                    <h3>Confidence & Success</h3>
+                    <p>
+                        Line 215
+                    </p>
+                    <div class="d-flex">
+                        <div class="p-4 align-self-start">
+                            <i class="fas fa-check fa-2x"></i>
+                        </div>
+                        <div class="p-4 align-self-end">
+                            Line 222
+                        </div>
+                    </div>
+                    <div class="d-flex">
+                        <div class="p-4 align-self-start">
+                            <i class="fas fa-check fa-2x"></i>
+                        </div>
+                        <div class="p-4 align-self-end">
+                            Line 230
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="share-head-section" class="bg-primary">
+        <div class="container">
+            <div class="row">
+                <div class="col text-center py-5">
+                    <h1 class="display-4">Teamwork</h1>
+                    <p class="lead">
+                        Line239
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="share-section" class="bg-light text-muted py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <img src="./assets/images/EscuelaSierraNevadaSunland-02.png" alt=""
+                        class="img-fluid mb-3 rounded-circle" />
+                </div>
+                <div class="col-md-6">
+                    <h3>Teamwork</h3>
+                    <p>
+                        page 265
+                    </p>
+                    <div class="d-flex">
+                        <div class="p-4 align-self-start">
+                            <i class="fas fa-check fa-2x"></i>
+                        </div>
+                        <div class="p-4 align-self-end">
+                            page 272
+                        </div>
+                    </div>
+                    <div class="d-flex">
+                        <div class="p-4 align-self-start">
+                            <i class="fas fa-check fa-2x"></i>
+                        </div>
+                        <div class="p-4 align-self-end">
+                            page 280
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="modal fade text-dark" id="contactModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Contact Us</h5>
+                    <button class="close" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Your Email</label>
+                            <input type="email" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Your Message</label>
+                            <textarea class="form-control"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary btn-block">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
         crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+        integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
         crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-        crossorigin="anonymous"></script>
+    <script>
+        $("#year").text(new Date().getFullYear());
+        $("body").scrollspy({ target: "#main-nav" });
+        $("#main-nav a").on("click", function (event) {
+            if (this.hash !== "") {
+                event.preventDefault();
+                const hash = this.hash;
+                $("html, body").animate(
+                    {
+                        scrollTop: $(hash).offset().top
+                    },
+                    800,
+                    function () {
+                        window.location.hash = hash;
+                    }
+                );
+            }
+        });
+    </script>
 </body>
 
 </html>
