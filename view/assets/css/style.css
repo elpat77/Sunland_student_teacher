@@ -24,9 +24,17 @@ body {
 
 .form-signin {
   width: 100%;
-  max-width: 330px;
+  max-width: 350px;
   padding: 15px;
   margin: auto;
+}
+
+.logo {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  max-width: 380px;
 }
 
 .form-signin .checkbox {
@@ -52,7 +60,6 @@ body {
 }
 
 .form-signin input[type="password"] {
-  margin-bottom: 10px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
@@ -62,6 +69,8 @@ body {
     color: white
 }
 
-#signIn{
-    font-family: 'Niramit', sans-serif;
+#signIn, #newUser, #forgotPassword{
+  font-family: 'Niramit', sans-serif;
+  font-size: x-large;
 }
+
