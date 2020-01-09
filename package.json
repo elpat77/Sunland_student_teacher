@@ -16,7 +16,8 @@
     "mysql": "^2.17.1",
     "mysql2": "^2.1.0",
     "nodemon": "^2.0.2",
-    "sequelize": "^5.21.3"
+    "sequelize": "^5.21.3",
+    "sequelize-cli": "^5.5.1"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.12.0"
