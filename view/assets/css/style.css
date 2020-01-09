@@ -9,12 +9,9 @@ body {
 }
 
 body {
-  display: -ms-flexbox;
   display: flex;
   -ms-flex-align: center;
   align-items: center;
-  padding-top: 40px;
-  padding-bottom: 40px;
   background: url(../images/Background.png);
   background-position: center;
   background-repeat: no-repeat;
@@ -73,4 +70,6 @@ body {
   font-family: 'Niramit', sans-serif;
   font-size: x-large;
 }
+
+
 

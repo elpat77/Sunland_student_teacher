@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Sunland Parent Site</title>
+    <title>Sunland Parent</title>
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
@@ -15,16 +15,13 @@
 
 <body>
     <div class="container">
-        <div class="row justify-content-md-center mt-5">
+        <div class="row justify-content-md-center">
             <div class="col-md-8 col-sm-12">
-                <div class = "logo">
-                <img class="mb-4 logo" src="../view/assets/images/EscuelaSierraNevadaSunland-04.png">
+                <div class="logo">
+                    <img class="logo mb-4" src="../view/assets/images/EscuelaSierraNevadaSunland-04.png">
                 </div>
 
                 <form class="form-signin">
-                   
-                    <!-- <h1 class="h3 mb-3 font-weight-normal text-center" id="pleaseSign">Sign In</h1> -->
-
                     <label for="inputEmail" class="sr-only">Email address</label>
                     <div class="input-group-prepend">
                         <div class="input-group-text">
@@ -35,20 +32,22 @@
                     </div>
 
                     <label for="inputPassword" class="sr-only">Password</label>
-                    <div class="input-group-prepend">
+                    <div class="input-group-prepend mt-2">
                         <div class="input-group-text">
                             <i class="fa fa-unlock"></i>
                         </div>
-                        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required
-                            autofocus>
+                        <input type="password" id="inputPassword" class="form-control" placeholder="Password">
+                    </div>
+                    <div class="signIn text-center">
+                        <button class="btn btn-lg btn-secondary mt-3 px-5" type="submit" id="signIn">Sign
+                            in</button>
                     </div>
 
-                    <div class="checkbox mt-3 mb-3 text-center" id="remember">
+                    <div class="checkbox mt-2 text-center" id="remember">
                         <label>
                             <input type="checkbox" value="remember-me"> Remember me
                         </label>
                     </div>
-                    <button class="btn btn-lg btn-secondary btn-block" type="submit" id="signIn">Sign in</button>
 
                     <div class="homeSubMenu">
                         <div class="row justify-content-center mt-3">
@@ -60,17 +59,17 @@
                             <a href="#new-user" id="newUser"> New user</a>
                         </div>
                     </div>
-           
+
                     <p class="mt-3 text-muted text-center">&copy; Sunland School of Arts 2017</p>
-             
+
 
                 </form>
             </div>
 
-        </div>   
-        
+        </div>
+
     </div>
-    
+
     <!-- Bootstrap -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
