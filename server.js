@@ -6,7 +6,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static('./view'));
 
-const htmlRoutes = require('./controllers/routes/htmlRoutes');
+const htmlRoutes = require('./controllers/client/htmlRoutes');
 app.use('/', htmlRoutes);
 
 app.listen(PORT, () => {
