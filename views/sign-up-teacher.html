@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Student Sign-Up</title>
+    <title>Teacher Sign-Up</title>
     <!----------------Boot strap CSS----------------------->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- User CSS -->
-    <link rel="stylesheet" href="./assets/css/styleSignUpStudent.css">
+    <link rel="stylesheet" href="./assets/css/styleSignUpTeacher.css">
 </head>
 
 <body>
@@ -35,12 +35,12 @@
                         <form class="needs-validation" novalidate>
                             <div class="form-row">
                                 <div class="col-md-6 mb-3">
-                                    <label for="studentEmail">Email Address</label>
+                                    <label for="teacherEmail">Email Address</label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="inputGroupPrepend">@</span>
                                         </div>
-                                        <input type="text" class="form-control" id="studentEmail"
+                                        <input type="text" class="form-control" id="teacherEmail"
                                             aria-describedby="inputGroupPrepend" required>
                                         <div class="invalid-feedback">
                                             Please enter a valid email address
@@ -48,12 +48,12 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <label for="studentPassword">Password</label>
+                                    <label for="teacherPassword">Password</label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="inputGroupPrepend">#</span>
                                         </div>
-                                        <input type="text" class="form-control" id="studentPassword"
+                                        <input type="text" class="form-control" id="teacherPassword"
                                             aria-describedby="inputGroupPrepend" required>
                                         <div class="invalid-feedback">
                                             Please enter valid password
@@ -63,15 +63,15 @@
                             </div>
                             <div class="form-row">
                                 <div class="col-md-6 mb-3">
-                                    <label for="studentFirstName">First name</label>
-                                    <input type="text" class="form-control" id="studentFirstName" required>
+                                    <label for="teacherFirstName">First name</label>
+                                    <input type="text" class="form-control" id="teacherFirstName" required>
                                     <div class="invalid-feedback">
                                         Please enter your First Name
                                     </div>
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <label for="studentLastName">Last name</label>
-                                    <input type="text" class="form-control" id="studentLastName" required>
+                                    <label for="teacherLastName">Last name</label>
+                                    <input type="text" class="form-control" id="teachertLastName" required>
                                     <div class="invalid-feedback">
                                         Please enter your Last Name
                                     </div>
@@ -80,11 +80,11 @@
                             </div>
                             <div class="form-row">
                                 <div class="col-md-5 mb-3">
-                                    <label for="studentDiscipline">Artistic Discipline</label>
-                                    <select class="custom-select" id="studentDiscipline" required>
+                                    <label for="teacherClass">Class Name</label>
+                                    <select class="custom-select" id="teacherClass" required>
                                         <option selected disabled value="">Choose...</option>
-                                        <option value="D1">Dance</option>
-                                        <option value="D2">Music</option>
+                                        <option value="D1">Math</option>
+                                        <option value="D2">Chemistry</option>
                                         <option value="D3">Theater</option>
                                     </select>
                                     <div class="invalid-feedback">
@@ -92,8 +92,8 @@
                                     </div>
                                 </div>
                                 <div class="col-md-4 mb-3">
-                                    <label for="studentGroup">Group</label>
-                                    <select class="custom-select" id="studentGroup" required>
+                                    <label for="teacherGroup">Group</label>
+                                    <select class="custom-select" id="teacherGroup" required>
                                         <option selected disabled value="">Choose...</option>
                                         <option value="G1">4th</option>
                                         <option value="G2">5th </option>
@@ -104,8 +104,8 @@
                                     </div>
                                 </div>
                                 <div class="col-md-3 mb-3">
-                                    <label for="studentSection">Section</label>
-                                    <select class="custom-select" id="studentSection" required>
+                                    <label for="teacherSection">Section</label>
+                                    <select class="custom-select" id="teacherSection" required>
                                         <option selected disabled value="">Choose...</option>
                                         <option value="S1">A</option>
                                         <option value="S2">B </option>
