@@ -35,19 +35,6 @@
                         <form class="needs-validation" novalidate>
                             <div class="form-row">
                                 <div class="col-md-6 mb-3">
-                                    <label for="studentId">Student ID</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="inputGroupPrepend">#</span>
-                                        </div>
-                                        <input type="text" class="form-control" id="studentId"
-                                            aria-describedby="inputGroupPrepend" required>
-                                        <div class="invalid-feedback">
-                                            Please enter Student ID
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 mb-3">
                                     <label for="studentEmail">Email Address</label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
@@ -57,6 +44,19 @@
                                             aria-describedby="inputGroupPrepend" required>
                                         <div class="invalid-feedback">
                                             Please enter a valid email address
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="studentId">Password</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="inputGroupPrepend">#</span>
+                                        </div>
+                                        <input type="text" class="form-control" id="studentPassword"
+                                            aria-describedby="inputGroupPrepend" required>
+                                        <div class="invalid-feedback">
+                                            Please enter valid password
                                         </div>
                                     </div>
                                 </div>
@@ -83,7 +83,9 @@
                                     <label for="studentDiscipline">Artistic Discipline</label>
                                     <select class="custom-select" id="studentDiscipline" required>
                                         <option selected disabled value="">Choose...</option>
-                                        <option>...</option>
+                                        <option value="D1">Dance</option>
+                                        <option value="D2">Music</option>
+                                        <option value="D3">Theater</option>
                                     </select>
                                     <div class="invalid-feedback">
                                         Please select an artistic discipline
@@ -93,17 +95,21 @@
                                     <label for="studentGroup">Group</label>
                                     <select class="custom-select" id="studentGroup" required>
                                         <option selected disabled value="">Choose...</option>
-                                        <option>...</option>
+                                        <option value="G1">4th</option>
+                                        <option value="G2">5th </option>
+                                        <option value="G3">6th</option>
                                     </select>
                                     <div class="invalid-feedback">
                                         Please select a group
                                     </div>
                                 </div>
                                 <div class="col-md-3 mb-3">
-                                    <label for="studentGrade">Grade</label>
-                                    <select class="custom-select" id="studentGrade" required>
+                                    <label for="studentSection">Section</label>
+                                    <select class="custom-select" id="studentSection" required>
                                         <option selected disabled value="">Choose...</option>
-                                        <option>...</option>
+                                        <option value="S1">A</option>
+                                        <option value="S2">B </option>
+                                        <option value="S3">C</option>
                                     </select>
                                     <div class="invalid-feedback">
                                         Please select a grade
