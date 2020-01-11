@@ -10,7 +10,7 @@ $(document).ready(function () {
         appId: "1:925381223070:web:58169103c20e0917c4518f"
     };
 
-    //initialize firebase app for student
+    //initialize firebase app for teacher
     firebase.initializeApp(firebaseConfig);
 
     const auth = firebase.auth();
