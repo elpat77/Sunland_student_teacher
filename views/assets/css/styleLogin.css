@@ -61,15 +61,15 @@ body {
   border-top-right-radius: 0;
 }
 
-#remember, #pleaseSign{
+#remember, #pleaseSign, #newUser, #forgotPassword{
     font-family: 'Niramit', sans-serif;
     color: white
 }
 
 #signIn, #newUser, #forgotPassword{
-  font-family: 'Niramit', sans-serif;
   font-size: x-large;
 }
+
 
 
 
