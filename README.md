@@ -1,9 +1,11 @@
 # Sunland School of Arts <br> Student - Teacher communication application
 
 # Group Members
-Jennifer Ni
-Patricio Aguilar
-Chin Kuay
+- Jennifer Ni
+- Patricio Aguilar
+- Chin Kuay
+
+---
 
 # Overview
 Sunland School has asked us to help them improve a major problem they have: Better Communication between them and the students/parents.
