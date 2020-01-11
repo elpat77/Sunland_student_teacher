@@ -16,6 +16,11 @@ $(document).ready(function () {
     const auth = firebase.auth();
     const db = firebase.database();
 
+    $('#signUpbtn').on('click', function (e) {
+        e.preventDefault();
+        auth.createUserWithEmailAndPassword().then();
+    });
+
     $('#logInbtn').on('click', function (e) {
         e.preventDefault();
         let em = $('#logInEmail').val();
