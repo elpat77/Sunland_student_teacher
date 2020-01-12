@@ -55,14 +55,15 @@ $(document).ready(function () {
                     firstName: firstName,
                     lastName: lastName,
                     classTopic: classTopic,
-                    group: group
+                    group: group,
+                    status: 'Student'
                 });
             });
         }
     });
     //--------------------------------------------------------------------------------
 
-
+    //Validation ---------------------------------------------------------------------
     $('#studentEmail').on('click', function () {
         $('#emailVal').hide();
     });
@@ -80,6 +81,7 @@ $(document).ready(function () {
         $('#groupVal').hide();
         $('#gradeVal').hide();
     });
+    //--------------------------------------------------------------------------------
 
     $('#logInbtn').on('click', function (e) {
         e.preventDefault();
