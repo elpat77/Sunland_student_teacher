@@ -16,9 +16,69 @@ $(document).ready(function () {
     const auth = firebase.auth();
     const db = firebase.database();
 
+    //Creating Account -------------------------------------------------------------
     $('#signUpbtn').on('click', function (e) {
         e.preventDefault();
-        auth.createUserWithEmailAndPassword().then();
+
+        let email = $('#studentEmail').val();
+        let password = $('#studentPassword').val();
+        let firstName = $('#studentFirstName').val();
+        let lastName = $('#studentLastName').val();
+        let classTopic = $('#studentDiscipline').val();
+        let group = $('#studentGroup').val() + $('#studentSection').val();
+        if (email === '') {
+            $('#emailVal').show();
+        }
+        if (password === '') {
+            $('#passwordVal').show();
+        }
+        if (firstName === '') {
+            $('#firstNameVal').show();
+        }
+        if (lastName === '') {
+            $('#lastNameVal').show();
+        }
+        if (classTopic === null) {
+            $('#classTopicVal').show();
+        }
+        if ($('#studentGroup').val() === null) {
+            $('#groupVal').show();
+        }
+        if ($('#studentSection').val() === null) {
+            $('#gradeVal').show();
+        }
+        if (email != '' && password != '' && firstName != '' && lastName != '' && classTopic != null & group != 0) {
+            auth.createUserWithEmailAndPassword(email, password).then(cred => {
+                let uid = auth.currentUser.uid;
+                db.ref(uid).set({
+                    email: email,
+                    firstName: firstName,
+                    lastName: lastName,
+                    classTopic: classTopic,
+                    group: group
+                });
+            });
+        }
+    });
+    //--------------------------------------------------------------------------------
+
+
+    $('#studentEmail').on('click', function () {
+        $('#emailVal').hide();
+    });
+    $('#studentPassword').on('click', function () {
+        $('#passwordVal').hide();
+    });
+    $('#studentFirstName').on('click', function () {
+        $('#firstNameVal').hide();
+    });
+    $('#studentLastName').on('click', function () {
+        $('#lastNameVal').hide();
+    });
+    $('#studentDiscipline, #studentGroup, #studentSection').on('click', function () {
+        $('#classTopicVal').hide();
+        $('#groupVal').hide();
+        $('#gradeVal').hide();
     });
 
     $('#logInbtn').on('click', function (e) {
