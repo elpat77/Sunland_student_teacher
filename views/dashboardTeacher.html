@@ -24,69 +24,99 @@
 
 </head>
 <header>
-    <div class="container col-3">
-        <div class="row">
-            <div class="logo mt-3">
-                <img class="logo mb-2" src="./assets/images/EscuelaSierraNevadaSunland-04.png">
-            </div>
-        </div>
 
-    </div>
 </header>
 
 <body>
-    <div class="welcome">
-        <h1>Welcome <span id="name">holder</span></h1>
-    </div>
-    <div class="row ml-3 mt-3">
-        <div class="col-3">
-            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                <a class="nav-link active" id="v-pills-teacherDashboard-tab" data-toggle="pill"
-                    href="#v-pills-teacherDashboard" role="tab">Dashboard</a>
-                <a class="nav-link" id="v-pills-teacherCalendar-tab" data-toggle="pill" href="#v-pills-teacherCalendar"
-                    role="tab">Calendar</a>
-                <a class="nav-link" id="v-pills-teacherCourses-tab" data-toggle="pill" href="#v-pills-teacherCourses"
-                    role="tab">My
-                    Courses</a>
-
+    <div class="wrapper">
+        <!-- Sidebar Holder -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <div class="container">
+                    <div class="row">
+                        <div class="logo mt-3">
+                            <img class="logo mb-2" src="./assets/images/EscuelaSierraNevadaSunland-04.png">
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="col-9">
+
+            <ul class="nav flex-column nav-pills list-unstyled components" id="v-pills-tab" role="tablist"
+                aria-orientation="vertical">
+                <div class="componentHeader">
+                    <h3>Teacher Dashboard</h3>
+                </div>
+                <li><a class="nav-link" id="v-pills-teacherDashboard-tab" data-toggle="pill"
+                        href="#v-pills-teacherDashboard" role="tab">Dashboard</a></li>
+                <li><a class="nav-link" id="v-pills-teacherCalendar-tab" data-toggle="pill"
+                        href="#v-pills-teacherCalendar" role="tab">Calendar</a></li>
+                <li><a class="nav-link" id="v-pills-teacherCourses-tab" data-toggle="pill"
+                        href="#v-pills-teacherCourses" role="tab">My
+                        Courses</a></li>
+            </ul>
+
+
+            <ul class="list-unstyled CTAs">
+                <li>
+                    <a href="../views/index.html" class="logOut">Log Out</a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Page Content Holder -->
+        <div id="content">
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <button type="button" id="sidebarCollapse" class="navbar-btn">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fas fa-align-justify"></i>
+                    </button>
+                </div>
+            </nav>
+
             <div class="tab-content" id="v-pills-tabContent">
                 <div class="tab-pane fade show active" id="v-pills-teacherDashboard" role="tabpanel">
+                    <h2>The dashboard info will be displayed here</h2>
                     <div class="card-columns">
                         <div class="container">
-                            <div class="card bg-primary text-white text-center p-3">
+                            <div class="card bg-secondary text-white text-center p-3">
                                 <div class="card-body">
                                     <h5 class="card-title">Subject 1</h5>
                                     <p class="card-text">This is a description of subject 1.</p>
                                 </div>
                             </div>
-                            <div class="card bg-primary text-white text-center p-3">
+                            <div class="card bg-secondary text-white text-center p-3">
                                 <div class="card-body">
                                     <h5 class="card-title">Subject 4</h5>
                                     <p class="card-text">This is a description of subject 2.</p>
                                 </div>
                             </div>
-                            <div class="card bg-primary text-white text-center p-3">
+                            <div class="card bg-secondary text-white text-center p-3">
                                 <div class="card-body">
                                     <h5 class="card-title">Subject 2</h5>
                                     <p class="card-text">This is a description of subject</p>
                                 </div>
                             </div>
-                            <div class="card bg-primary text-white text-center p-3">
+                            <div class="card bg-secondary text-white text-center p-3">
                                 <div class="card-body">
                                     <h5 class="card-title">Subject 5</h5>
                                     <p class="card-text">This is a description of subject</p>
                                 </div>
                             </div>
-                            <div class="card bg-primary text-white text-center p-3">
+                            <div class="card bg-secondary text-white text-center p-3">
                                 <div class="card-body">
                                     <h5 class="card-title">Subject 3</h5>
                                     <p class="card-text">This is a description of subject</p>
                                 </div>
                             </div>
-                            <div class="card bg-primary text-white text-center p-3">
+                            <div class="card bg-secondary text-white text-center p-3">
                                 <div class="card-body">
                                     <h5 class="card-title">Subject 6</h5>
                                     <p class="card-text">This is a description of subject</p>
@@ -96,15 +126,64 @@
                     </div>
                 </div>
                 <div class="tab-pane fade" id="v-pills-teacherCalendar" role="tabpanel">
-                    hello </div>
+                    <h2>The calendar will be displayed here</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                        labore et
+                        dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                        aliquip
+                        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+                        dolore eu
+                        fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+                        deserunt mollit anim id est laborum.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                        labore et
+                        dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                        aliquip
+                        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+                        dolore eu
+                        fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+                        deserunt mollit anim id est laborum.</p>
+
+                    <div class="line"></div>
+                    <h2>We can add some text if needed</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                        labore et
+                        dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                        aliquip
+                        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+                        dolore eu
+                        fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+                        deserunt mollit anim id est laborum.</p>
+
+                    <div class="line"></div>
+                </div>
                 <div class="tab-pane fade" id="v-pills-teacherCourses" role="tabpanel">
-                    hello</div>
+                    <h2>My Courses will be displayed here</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                        labore et
+                        dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                        aliquip
+                        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+                        dolore eu
+                        fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+                        deserunt mollit anim id est laborum.</p>
+
+                    <div class="line"></div>
+
+                    <h3>We can add some text if needed</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                        labore et
+                        dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                        aliquip
+                        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+                        dolore eu
+                        fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+                        deserunt mollit anim id est laborum.</p>
+                </div>
             </div>
         </div>
     </div>
 
-
-    </div>
 
     <!-- JQuery -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
@@ -126,6 +205,16 @@
     <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-database.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-auth.js"></script>
+
+    <!-- script for collapsing menu -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+                $(this).toggleClass('active');
+            });
+        });
+    </script>
 </body>
 
 
