@@ -42,7 +42,7 @@
                                         </div>
                                         <input type="text" class="form-control" id="teacherEmail"
                                             aria-describedby="inputGroupPrepend" required>
-                                        <div class="invalid-feedback">
+                                        <div class="invalid-feedback" id="emailVal">
                                             Please enter a valid email address
                                         </div>
                                     </div>
@@ -55,7 +55,7 @@
                                         </div>
                                         <input type="text" class="form-control" id="teacherPassword"
                                             aria-describedby="inputGroupPrepend" required>
-                                        <div class="invalid-feedback">
+                                        <div class="invalid-feedback" id="passwordVal">
                                             Please enter valid password
                                         </div>
                                     </div>
@@ -65,28 +65,24 @@
                                 <div class="col-md-6 mb-3">
                                     <label for="teacherFirstName">First name</label>
                                     <input type="text" class="form-control" id="teacherFirstName" required>
-                                    <div class="invalid-feedback">
+                                    <div class="invalid-feedback" id="firstNameVal">
                                         Please enter your First Name
                                     </div>
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="teacherLastName">Last name</label>
-                                    <input type="text" class="form-control" id="teachertLastName" required>
-                                    <div class="invalid-feedback">
+                                    <input type="text" class="form-control" id="teacherLastName" required>
+                                    <div class="invalid-feedback" id="lastNameVal">
                                         Please enter your Last Name
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
                             </div>
-                            <button class="btn btn-primary" type="submit">Submit form</button>
+                            <button class="btn btn-primary" id="signUpbtn" type="submit">Submit form</button>
                         </form>
                     </div>
                 </div>
-
-
-
-
 
             </div>
         </div>
@@ -95,6 +91,14 @@
     <!-- JQuery -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+    <!--Javascript-->
+    <script src="./assets/javascript/teacher.js"></script>
+
+    <!--Firebase-->
+    <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-auth.js"></script>
 
     <!--------------JS from Bootstrap------------------------->
 
@@ -107,23 +111,23 @@
 
     <!-- JavaScript for disabling form submissions if there are invalid fields -->
     <script>
-        (function () {
-            'use strict';
-            window.addEventListener('load', function () {
-                // Fetch all the forms we want to apply custom Bootstrap validation styles to
-                var forms = document.getElementsByClassName('needs-validation');
-                // Loop over them and prevent submission
-                var validation = Array.prototype.filter.call(forms, function (form) {
-                    form.addEventListener('submit', function (event) {
-                        if (form.checkValidity() === false) {
-                            event.preventDefault();
-                            event.stopPropagation();
-                        }
-                        form.classList.add('was-validated');
-                    }, false);
-                });
-            }, false);
-        })();
+        // (function () {
+        //     'use strict';
+        //     window.addEventListener('load', function () {
+        //         // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        //         var forms = document.getElementsByClassName('needs-validation');
+        //         // Loop over them and prevent submission
+        //         var validation = Array.prototype.filter.call(forms, function (form) {
+        //             form.addEventListener('submit', function (event) {
+        //                 if (form.checkValidity() === false) {
+        //                     event.preventDefault();
+        //                     event.stopPropagation();
+        //                 }
+        //                 form.classList.add('was-validated');
+        //             }, false);
+        //         });
+        //     }, false);
+        // })();
     </script>
 
 

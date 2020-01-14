@@ -20,12 +20,11 @@ $(document).ready(function () {
     $('#signUpbtn').on('click', function (e) {
         e.preventDefault();
 
-        let email = $('#studentEmail').val();
-        let password = $('#studentPassword').val();
-        let firstName = $('#studentFirstName').val();
-        let lastName = $('#studentLastName').val();
-        let classTopic = $('#studentDiscipline').val();
-        let group = $('#studentGroup').val() + $('#studentSection').val();
+        let email = $('#teacherEmail').val();
+        let password = $('#teacherPassword').val();
+        let firstName = $('#teacherFirstName').val();
+        let lastName = $('#teacherLastName').val();
+
         if (email === '') {
             $('#emailVal').show();
         }
@@ -38,60 +37,64 @@ $(document).ready(function () {
         if (lastName === '') {
             $('#lastNameVal').show();
         }
-        if (classTopic === null) {
-            $('#classTopicVal').show();
-        }
-        if ($('#studentGroup').val() === null) {
-            $('#groupVal').show();
-        }
-        if ($('#studentSection').val() === null) {
-            $('#gradeVal').show();
-        }
-        if (email != '' && password != '' && firstName != '' && lastName != '' && classTopic != null & group != 0) {
+
+        if (email != '' && password != '' && firstName != '' && lastName != '') {
             auth.createUserWithEmailAndPassword(email, password).then(cred => {
                 let uid = auth.currentUser.uid;
                 db.ref(uid).set({
                     email: email,
                     firstName: firstName,
                     lastName: lastName,
-                    classTopic: classTopic,
-                    group: group,
                     status: 'Teacher'
                 });
+                window.location.href = '/login-teacher';
             });
         }
     });
     //--------------------------------------------------------------------------------
 
     //Validation ---------------------------------------------------------------------
-    $('#studentEmail').on('click', function () {
+    $('#teacherEmail').on('click', function () {
         $('#emailVal').hide();
     });
-    $('#studentPassword').on('click', function () {
+    $('#teacherPassword').on('click', function () {
         $('#passwordVal').hide();
     });
-    $('#studentFirstName').on('click', function () {
+    $('#teacherFirstName').on('click', function () {
         $('#firstNameVal').hide();
     });
-    $('#studentLastName').on('click', function () {
+    $('#teacherLastName').on('click', function () {
         $('#lastNameVal').hide();
     });
-    $('#studentDiscipline, #studentGroup, #studentSection').on('click', function () {
-        $('#classTopicVal').hide();
-        $('#groupVal').hide();
-        $('#gradeVal').hide();
-    });
+
     //--------------------------------------------------------------------------------
 
-    $('#logInbtn').on('click', function (e) {
+    //Log in -------------------------------------------------------------------------
+    $('#signIn').on('click', function (e) {
         e.preventDefault();
         let em = $('#logInEmail').val();
         let pw = $('#logInPassword').val();
 
         auth.signInWithEmailAndPassword(em, pw).catch(err => {
             console.log(err.message);
-            alert('Password or email is incorrect');
+        }).then(res => {
+            window.location.href = '/dashboard-teacher';
         });
     });
+    //--------------------------------------------------------------------------------
+
+    auth.onAuthStateChanged(user => {
+        let name;
+        if (user) {
+            let uid = auth.currentUser.uid;
+            console.log(uid);
+            db.ref(uid).on('value', snap => {
+                let name = snap.val().firstName;
+                $('#name').text(name);
+
+            });
+        }
+    });
+
 
 });
