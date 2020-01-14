@@ -58,6 +58,7 @@ $(document).ready(function () {
                     group: group,
                     status: 'Student'
                 });
+                window.location.href = '/login-student';
             });
         }
     });

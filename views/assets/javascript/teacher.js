@@ -24,7 +24,6 @@ $(document).ready(function () {
         let password = $('#teacherPassword').val();
         let firstName = $('#teacherFirstName').val();
         let lastName = $('#teacherLastName').val();
-        console.log(lastName);
 
         if (email === '') {
             $('#emailVal').show();
@@ -48,8 +47,8 @@ $(document).ready(function () {
                     lastName: lastName,
                     status: 'Teacher'
                 });
+                window.location.href = '/login-teacher';
             });
-            window.location.href = '/login-teacher';
         }
     });
     //--------------------------------------------------------------------------------
@@ -70,15 +69,32 @@ $(document).ready(function () {
 
     //--------------------------------------------------------------------------------
 
-    $('#logInbtn').on('click', function (e) {
+    //Log in -------------------------------------------------------------------------
+    $('#signIn').on('click', function (e) {
         e.preventDefault();
         let em = $('#logInEmail').val();
         let pw = $('#logInPassword').val();
 
         auth.signInWithEmailAndPassword(em, pw).catch(err => {
             console.log(err.message);
-            alert('Password or email is incorrect');
+        }).then(res => {
+            window.location.href = '/dashboard-teacher';
         });
     });
+    //--------------------------------------------------------------------------------
+
+    auth.onAuthStateChanged(user => {
+        let name;
+        if (user) {
+            let uid = auth.currentUser.uid;
+            console.log(uid);
+            db.ref(uid).on('value', snap => {
+                let name = snap.val().firstName;
+                $('#name').text(name);
+
+            });
+        }
+    });
+
 
 });
