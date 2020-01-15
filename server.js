@@ -9,6 +9,8 @@ app.use(express.static('./views'));
 const htmlRoutes = require('./controllers/client/htmlRoutes');
 app.use('/', htmlRoutes);
 
-app.listen(PORT, () => {
-    console.log(`Listening on http://localhost:${PORT}`);
+db.sequelize.sync().then(() => {
+    app.listen(PORT, () => {
+        console.log(`Listening on http://localhost:${PORT}`);
+    });
 });
