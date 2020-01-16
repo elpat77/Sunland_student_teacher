@@ -7,6 +7,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static('./views'));
 
+const teacherRoutes = require('./controllers/api/teacherRoutes');
+app.use('/teacherRoutes', teacherRoutes);
+
 const htmlRoutes = require('./controllers/client/htmlRoutes');
 app.use('/', htmlRoutes);
 
