@@ -89,6 +89,7 @@ $(document).ready(function () {
             console.log(uid);
             db.ref(uid).on('value', snap => {
                 let name = snap.val().firstName;
+                console.log(name);
                 $('#name').text(name);
             });
         }

@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-    const Teacher = sequelize.define("Teacher", {
+    const Students = sequelize.define('Students', {
         name: DataTypes.STRING,
         email: DataTypes.STRING,
         picture: {
@@ -9,11 +9,11 @@ module.exports = (sequelize, DataTypes) => {
         password: DataTypes.STRING
     });
 
-    Teacher.associate = models => {
-        Teacher.hasMany(models.Classes, {
+    Students.associate = models => {
+        Students.belongsTo(models.Classes, {
             onDelete: 'cascade'
         });
     }
 
-    return Teacher;
+    return Students;
 }
