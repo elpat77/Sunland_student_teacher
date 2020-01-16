@@ -84,14 +84,12 @@ $(document).ready(function () {
     //--------------------------------------------------------------------------------
 
     auth.onAuthStateChanged(user => {
-        let name;
         if (user) {
             let uid = auth.currentUser.uid;
             console.log(uid);
             db.ref(uid).on('value', snap => {
                 let name = snap.val().firstName;
                 $('#name').text(name);
-
             });
         }
     });
