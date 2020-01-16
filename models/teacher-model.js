@@ -8,14 +8,14 @@ module.exports = (sequelize, DataTypes) => {
         }
     });
 
-    Teacher.associate = model => {
-        Teacher.hasMany(model.Classes, {
+    Teacher.associate = models => {
+        Teacher.hasMany(models.Classes, {
             onDelete: 'cascade'
         });
     }
 
-    Teacher.associate = model => {
-        Teacher.hasMany(model.Assignments, {
+    Teacher.associate = models => {
+        Teacher.hasMany(models.Announcements, {
             onDelete: 'cascade'
         });
     }
