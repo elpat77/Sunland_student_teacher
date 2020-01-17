@@ -40,39 +40,25 @@
                     </div>
                 </div>
             </div>
+            <div>
+                <ul class="nav flex-column nav-pills list-unstyled components" id="v-pills-tab" role="tablist">
+                    <div class="componentHeader">
+                        <h3>Dashboard Menu</h3>
+                    </div>
 
-            <ul class="nav flex-column nav-pills list-unstyled components" id="v-pills-tab" role="tablist"
-                aria-orientation="vertical">
-                <div class="componentHeader">
-                    <h3>Dashboard Menu</h3>
-                </div>
-                <li><a class="nav-link" id="v-pills-teacherOverview-tab" data-toggle="pill"
-                        href="#v-pills-teacherOverview" role="tab">Overview</a></li>
-                <li><a class="nav-link" id="v-pills-teacherCalendar-tab" data-toggle="pill"
-                        href="#v-pills-teacherCalendar" role="tab">Calendar</a></li>
-                <li><a class="nav-link" id="v-pills-teacherCourses-tab" data-toggle="pill"
-                        href="#v-pills-teacherCourses" role="tab">My
-                        Courses</a></li>
-                <li><a class="nav-link" id="v-pills-teacherTutorials-tab" data-toggle="pill"
-                        href="#v-pills-teacherTutorials" role="tab">Tutorials</a></li>
-            </ul>
-
+                    <li><a class="nav-link" id="v-pills-teacherOverview-tab" data-toggle="pill"
+                            href="#v-pills-teacherOverview" role="tab">Overview</a></li>
+                    <li><a class="nav-link" id="v-pills-teacherCalendar-tab" data-toggle="pill"
+                            href="#v-pills-teacherCalendar" role="tab">Calendar</a></li>
+                    <!-- <li><a class="nav-link" id="v-pills-teacherTutorials-tab" data-toggle="pill"
+                            href="#v-pills-teacherTutorials" role="tab">Tutorials</a></li> -->
+                    <li><a class="nav-link" id="v-pills-teacherCourses-tab" data-toggle="pill"
+                            href="#v-pills-teacherCourses" role="tab">My Courses</a></li>
+                </ul>
+            </div>
 
             <ul class="list-unstyled CTAs">
                 <div class="text-center">
-
-                    <!-- <h2>Chat with Sunland</h2> -->
-                    <button class="chat-button mb-3" onclick="openForm()">Live Chat!</button>
-                    <div class="chat-popup" id="myForm">
-                        <form action="/action_page.php" class="form-container">
-                            <h3>Sunland Chat</h3>
-                            <label for="msg"><b>Message</b></label>
-                            <textarea placeholder="Type message.." name="msg" required></textarea>
-                            <button type="submit" class="btn">Send</button>
-                            <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
-                        </form>
-                    </div>
-                    <!-- log-out  -->
                     <a href="../views/index.html">
                         <button class="btn px-5" type="submit" id="logOut">Log
                             Out</button>
@@ -164,14 +150,6 @@
                         dolore eu
                         fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
                         deserunt mollit anim id est laborum.</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                        labore et
-                        dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                        aliquip
-                        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                        dolore eu
-                        fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                        deserunt mollit anim id est laborum.</p>
                     <div class="line"></div>
                     <h2>We can add some text if needed</h2>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
@@ -184,95 +162,71 @@
                         deserunt mollit anim id est laborum.</p>
                 </div>
                 <div class="tab-pane fade" id="v-pills-teacherCourses" role="tabpanel">
-                    <h2>My Courses will be displayed here</h2>
+                    <h2>All the courses will be displayed here</h2>
                     <div class="line"></div>
                     <div class="card-columns">
                         <div class="container">
                             <div class="card text-white bg-primary mb-3 text-center">
-                                <div class="card-header">Music</div>
+                                <div class="card-header">Math</div>
                                 <div class="card-body">
-                                    <h5 class="card-title">Music Theory 101</h5>
+                                    <h5 class="card-title">Basic Details regarding this course</h5>
                                     <p class="card-text text-dark">Lorem ipsum dolor sit amet consectetur
                                         adipisicing
                                         elit.
                                         Incidunt, dignissimos!</p>
-                                </div>
-                            </div>
-
-                            <div class="card text-white bg-success mb-3 text-center">
-                                <div class="card-header">Mathematics</div>
-                                <div class="card-body">
-                                    <h5 class="card-title">Mathematics 101</h5>
-                                    <p class="card-text text-dark">Lorem ipsum dolor sit amet consectetur
-                                        adipisicing
-                                        elit.
-                                        Quaerat
-                                        delectus et laudantium
-                                        in, tenetur nobis qui animi culpa voluptatem autem?</p>
+                                    <a class="btn" id="btnCourses" href="../views/classInfo.html">Class
+                                        Info</a>
                                 </div>
                             </div>
 
                             <div class="card text-white bg-danger mb-3 text-center">
-                                <div class="card-header">Sports</div>
+                                <div class="card-header">Science</div>
                                 <div class="card-body">
-                                    <h5 class="card-title">Soccer</h5>
+                                    <h5 class="card-title">Basic Details regarding this course</h5>
                                     <p class="card-text text-dark">Lorem ipsum dolor sit amet consectetur
                                         adipisicing
                                         elit.
-                                        Corrupti dolore veritatis cum nobis quidem debitis.</p>
+                                        Incidunt, dignissimos!</p>
+
+                                    <a class="btn" id="btnCourses" href="../views/classInfo.html">Class
+                                        Info</a>
                                 </div>
+
                             </div>
 
-                            <div class="card text-white bg-warning mb-3 text-center">
-                                <div class="card-header">Science</div>
+                            <div class="card text-white bg-success mb-3 text-center">
+                                <div class="card-header">English</div>
                                 <div class="card-body">
-                                    <h5 class="card-title">Science 201</h5>
-                                    <p class="card-text text-dark">Lorem ipsum dolor sit amet,
-                                        consectetur adipisicing elit. Nam dolores nisi in?</p>
-                                </div>
-                            </div>
-
-                            <div class="card text-white bg-info mb-3 text-center">
-                                <div class="card-header">Singing</div>
-                                <div class="card-body">
-                                    <h5 class="card-title">Singing 202</h5>
+                                    <h5 class="card-title">Basic Details regarding this course</h5>
                                     <p class="card-text text-dark">Lorem ipsum dolor sit amet consectetur
                                         adipisicing
-                                        elit. Facere
-                                        ad
-                                        asperiores officiis
-                                        placeat obcaecati nihil sint provident,
-                                        corrupti et architecto pariatur corporis nisi dicta quibusdam. Lorem ipsum dolor
-                                        sit amet consectetur
-                                        adipisicing
-                                        elit. Facere
-                                        ad
-                                        asperiores officiis
-                                        placeat obcaecati nihil sint provident,
-                                        corrupti et architecto pariatur corporis nisi dicta quibusdam.</p>
+                                        elit.
+                                        Incidunt, dignissimos!</p>
+                                    <a class="btn" id="btnCourses" href="../views/classInfo.html">Class
+                                        Info</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="tab-pane fade" id="v-pills-teacherTutorials" role="tabpanel">
+                <!-- <div class="tab-pane fade" id="v-pills-teacherTutorials" role="tabpanel">
                     <h3>Tutorials</h3>
                     <div class="line"></div>
                     <h1>Sunland Videos</h1>
-                    <h3>Git Hub</h3>
-                    <video class="tutorial_video" id="basic-html" src="./assets/videos/basic-html.mp4" controls
+                    <h3>Git Hub</h3> -->
+                <!-- <video class="tutorial_video" id="basic-html" src="./assets/videos/basic-html.mp4" controls
                         width="300">
                     </video>
                     <br><br>
                     <h3>Basic HTML</h3>
                     <video class="tutorial_video" id="basics" src="./assets/videos/github-basics.mp4" controls
                         width="300">
-                    </video>
-                </div>
-
+                    </video> -->
             </div>
+
         </div>
+    </div>
 
     </div>
 
@@ -307,18 +261,6 @@
             });
         });
     </script>
-
-    <!-- script for chat -->
-    <script>
-        function openForm() {
-            document.getElementById("myForm").style.display = "block";
-        }
-
-        function closeForm() {
-            document.getElementById("myForm").style.display = "none";
-        }
-    </script>
-
 
 </body>
 
