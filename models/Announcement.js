@@ -9,5 +9,11 @@ module.exports = (sequelize, DataTypes) => {
         }
     });
 
+    Announcements.associate = models => {
+        Announcements.belongsTo(models.Classes, {
+            onDelete: 'cascade'
+        });
+    }
+
     return Announcements;
 }
