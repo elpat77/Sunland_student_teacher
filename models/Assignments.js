@@ -22,12 +22,16 @@ module.exports = (sequelize, DataTypes) => {
         turnedIn: {
             type: DataTypes.BOOLEAN,
             defaultValue: false
-        }
+        },
+        grade: DataTypes.STRING
     });
 
     Assignments.associate = models => {
         Assignments.belongsTo(models.Classes, {
-            onDelete: 'cascade'
+            foreignKey: 'classesId'
+        });
+        Assignments.belongsTo(models.Grades, {
+            foreignKey: 'gradesId'
         });
     }
 
