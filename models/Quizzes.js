@@ -13,4 +13,6 @@ module.exports = (sequelize, DataTypes) => {
             }
         });
     }
+
+    return Quizzes;
 }
