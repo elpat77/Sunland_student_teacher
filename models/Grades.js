@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
         Grades.hasMany(models.Tests, {
             onDelete: 'cascade'
         });
-        Grades.hasMany(modes.Quizzes, {
+        Grades.hasMany(models.Quizzes, {
             onDelete: 'cascade'
         });
     }

@@ -10,11 +10,12 @@ router.get('/', (req, res) => {
     });
 });
 
-router.post('/', (req, res) => {
+router.post('/:id', (req, res) => {
     db.Classes.create({
         subject: req.body.subject,
         section: req.body.section,
-        teacher: req.body.teacher
+        teacher: req.body.teacher,
+        TeacherId: req.params.id,
     }).then(result => {
         res.json(result);
     });
