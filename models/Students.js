@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.BLOB('long'),
             allowNull: true
         },
-        password: DataTypes.STRING
+        password: DataTypes.STRING,
     });
 
     Students.associate = models => {
@@ -14,12 +14,6 @@ module.exports = (sequelize, DataTypes) => {
             onDelete: 'cascade'
         });
     }
-
-    // Students.associate = models => {
-    //     Students.hasMany(models.Classes, {
-    //         onDelete: 'cascade'
-    //     });
-    // }
 
     return Students;
 }

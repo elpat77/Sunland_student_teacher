@@ -9,17 +9,10 @@ module.exports = (sequelize, DataTypes) => {
         Classes.belongsTo(models.Teacher, {
             foreignKey: 'teacherId'
         });
-        // Classes.belongsTo(models.Students, {
-        //     foreignKey: 'studentId'
-        // });
     }
 
     Classes.associate = models => {
         Classes.hasMany(models.Announcements, {
-            onDelete: 'cascade'
-        });
-
-        Classes.hasMany(models.Assignments, {
             onDelete: 'cascade'
         });
 
