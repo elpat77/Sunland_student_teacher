@@ -9,6 +9,9 @@ module.exports = (sequelize, DataTypes) => {
         Classes.belongsTo(models.Teacher, {
             foreignKey: 'teacherId'
         });
+        Classes.belongsTo(models.ClassInfo, {
+            foreignKey: 'classInfo'
+        });
     }
 
     Classes.associate = models => {
