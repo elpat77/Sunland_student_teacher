@@ -13,6 +13,9 @@ app.use('/teacherRoutes', teacherRoutes);
 const classesRoutes = require('./controllers/api/classesRoutes');
 app.use('/classesRoutes', classesRoutes);
 
+const announcementRoutes = require('./controllers/api/announcementRoutes');
+app.use('/annoucementRoutes', announcementRoutes);
+
 const htmlRoutes = require('./controllers/client/htmlRoutes');
 app.use('/', htmlRoutes);
 
