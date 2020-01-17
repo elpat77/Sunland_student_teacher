@@ -25,5 +25,11 @@ module.exports = (sequelize, DataTypes) => {
         }
     });
 
+    Assignments.associate = models => {
+        Assignments.belongsTo(models.Classes, {
+            onDelete: 'cascade'
+        });
+    }
+
     return Assignments;
 }

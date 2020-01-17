@@ -7,34 +7,27 @@ module.exports = (sequelize, DataTypes) => {
 
     Classes.associate = models => {
         Classes.belongsTo(models.Teacher, {
-            foreignKey: 'teacher_id',
-            targetKey: 'teacher_id',
-            as: 'Teacher'
+            foreignKey: 'teacherId'
         });
-        Classes.belongsTo(models.Students, {
-            foreignKey: 'student_id',
-            targetKey: 'student_id',
-            as: 'Students'
-        });
-    }
-
-    Classes.associate = models => {
-        Classes.hasMany(models.Students, {
-            onDelete: 'cascade'
-        });
+        // Classes.belongsTo(models.Students, {
+        //     foreignKey: 'studentId'
+        // });
     }
 
     Classes.associate = models => {
         Classes.hasMany(models.Announcements, {
             onDelete: 'cascade'
         });
-    }
 
-    Classes.associate = models => {
         Classes.hasMany(models.Assignments, {
             onDelete: 'cascade'
         });
+
+        Classes.hasMany(models.Students, {
+            onDelete: 'cascade'
+        });
     }
+
 
     return Classes;
 }

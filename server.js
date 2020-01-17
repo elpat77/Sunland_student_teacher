@@ -10,6 +10,9 @@ app.use(express.static('./views'));
 const teacherRoutes = require('./controllers/api/teacherRoutes');
 app.use('/teacherRoutes', teacherRoutes);
 
+const classesRoutes = require('./controllers/api/classesRoutes');
+app.use('/classesRoutes', classesRoutes);
+
 const htmlRoutes = require('./controllers/client/htmlRoutes');
 app.use('/', htmlRoutes);
 
