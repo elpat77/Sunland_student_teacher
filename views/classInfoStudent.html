@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- User CSS -->
-    <link rel="stylesheet" href="./assets/css/styleDashboardTeacher.css">
+    <link rel="stylesheet" href="./assets/css/styleDashboardStudent.css">
 
 </head>
 <header>
@@ -54,6 +54,7 @@
                         <button class="btn px-5" type="submit" id="logOut">Log
                             Out</button>
                     </a>
+
                 </div>
 
             </ul>
@@ -92,72 +93,84 @@
                     <div class="line"></div>
                     <div class="card-columns">
                         <div class="container">
-                            <div class="card text-white bg-primary mb-3 text-center">
+
+                            <div class="card text-white mb-3 text-center">
                                 <div class="card-header">Downloadable files</div>
                                 <div class="card-body">
-                                    <h5 class="card-title">Upload any class materilas here</h5>
-                                    <p class="card-text text-dark">Add a button on this box with functionality for the
-                                        teacher to upload a file. We should also include a place to enter details about
-                                        the file such as a name. Once uploaded the files and name should be displayed
-                                        here in a list form.</p>
-                                </div>
-                            </div>
-
-                            <div class="card text-white bg-success mb-3 text-center">
-                                <div class="card-header">Tutorials</div>
-                                <div class="card-body">
-                                    <h5 class="card-title">Upload any class tutorials here</h5>
-                                    <p class="card-text text-dark">Add a button or text box on this box with
-                                        functionality for the teacher to enter the vimeop URL. We should also include a
-                                        place to enter details about the file such as a name. Once uploaded the links
-                                        and names should be displayed in a list form.</p>
-                                </div>
-                            </div>
-
-                            <div class="card text-white bg-danger mb-3 text-center">
-                                <div class="card-header">Class Overview</div>
-                                <div class="card-body">
-                                    <h5 class="card-title">A summary or class syllabus </h5>
-                                    <p class="card-text text-dark">Add a button or text box on this box with
-                                        functionality for the teacher to enter the upload the class syllabus text or pdf
-                                        file. We should also include a place to enter details about the file such as a
-                                        name. Once uploaded the file and names should be displayed.</p>
-                                </div>
-                            </div>
-
-                            <div class="card text-white bg-warning mb-3 text-center">
-                                <div class="card-header">Announcements</div>
-                                <div class="card-body">
-                                    <h5 class="card-title">Any announcements should be entered here</h5>
-                                    <p class="card-text text-dark">Create a form for the teacher to add an anouncemt.
-                                        Let's keep it simple, fileds on the form should include: Date, Announcement
-                                        header, Announcement Details</p>
-                                </div>
-                            </div>
-
-                            <div class="card text-white bg-info mb-3 text-center">
-                                <div class="card-header">Students</div>
-                                <div class="card-body">
-                                    <h5 class="card-title">This will be a list with all the students that belong to that
-                                        class. It will be dinamically displayed by Jen. The names should be clickable
-                                        and will take us to a student information page. We can worry about this box
-                                        later. </h5>
-                                    <p class="card-text text-dark">
-                                        <ul class="list-unstyled" id="studentList">
-                                            <li>
-                                                <a href="#studentName">Jennifer</a>
-                                            </li>
-                                            <li>
-                                                <a href="#studentName">Patricio</a>
-                                            </li>
-                                            <li>
-                                                <a href="#studentName">Chin </a>
-                                            </li>
-                                        </ul>
-
+                                    <h5 class="card-title">Files available for download</h5>
+                                    <p class="card-text text-dark studentDownload">Files uploaded by the professor
+                                        should be visible
+                                        here. We should display a file name, the fike and option to downlad it.
                                     </p>
                                 </div>
                             </div>
+
+                            <div class="card text-white mb-3 text-center">
+                                <div class="card-header">Class Details</div>
+                                <div class="card-body">
+                                    <h5 class="card-title">Overview of the class </h5>
+                                    <p class="card-text text-dark studentGrade">This is where the class grade will be
+                                        displayed
+                                    </p>
+
+
+                                </div>
+                            </div>
+
+                            <div class="card text-white mb-3 text-center">
+                                <div class="card-header">Tutorials</div>
+                                <div class="card-body">
+                                    <h5 class="card-title">The following tutorials are available for this course:</h5>
+                                    <div class="line"></div>
+                                    <h3 class="tutorialHeader">CS - GitHub</h3>
+                                    <iframe src="https://player.vimeo.com/video/385163300" frameborder="0"
+                                        allow="autoplay; fullscreen" allowfullscreen></iframe>
+
+                                    <br><br>
+                                    <h3 class="tutorialHeader">CS - Python</h3>
+                                    <iframe src="https://player.vimeo.com/video/385203691" frameborder="0"
+                                        allow="autoplay; fullscreen" allowfullscreen></iframe>
+                                    <br><br>
+                                    <h3 class="tutorialHeader">Music Theory</h3>
+                                    <iframe src="https://player.vimeo.com/video/385200253" frameborder="0"
+                                        allow="autoplay; fullscreen" allowfullscreen></iframe>
+                                    <br><br>
+
+                                </div>
+                            </div>
+
+                            <div class="card text-white mb-3 text-center">
+                                <div class="card-header">Class Syllabus</div>
+                                <div class="card-body">
+                                    <h5 class="card-title">Uploaded class syllabus </h5>
+                                    <p class="card-text text-dark studentSyllabus">The class syllabus uploaded by the
+                                        proffesor will be
+                                        available for download
+                                        here.</p>
+                                </div>
+                            </div>
+
+                            <div class="card text-white  mb-3 text-center">
+                                <div class="card-header">Announcements</div>
+                                <div class="card-body">
+                                    <h5 class="card-title">Any announcements should be entered here</h5>
+                                    <p class="card-text text-dark studentAnnouncement">Announcemets uploaded by the
+                                        proffesor will be
+                                        available here</p>
+                                </div>
+                            </div>
+
+
+                            <div class="card text-white mb-3 text-center">
+                                <div class="card-header">Assignments/Homeworks</div>
+                                <div class="card-body">
+                                    <h5 class="card-title">This is where the student submits homeworks </h5>
+                                    <p class="card-text text-dark studentAssignment">This will be a place where the
+                                        student can upload
+                                        assignments. We would need an upload button and a name for the file.</p>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                     <div class="container" data-toggle="collapse" id="setup">
@@ -165,8 +178,7 @@
                             <div class="col-sm-12 text-center">
 
 
-                                <a class="btn btn-primary" id="btnBackTeacherDash"
-                                    href="../views/dashboardTeacher.html">Back
+                                <a class="btn mt-3" id="btnBackStudentDash" href="../views/dashboardStudent.html">Back
                                     to
                                     my dashboard</a>
                             </div>

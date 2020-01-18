@@ -70,6 +70,13 @@ body {
   font-size: x-large;
 }
 
+#signIn{
+  background:rgb(99, 209, 172);
+  color: #fff;
+  padding: .5rem 1rem;
+  font-size: 1.25rem;
+}
+
 
 
 

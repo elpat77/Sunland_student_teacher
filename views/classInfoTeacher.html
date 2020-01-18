@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sunland Teacher Dashboard</title>
+
+    <!----------------Boot strap CSS----------------------->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+
+    <!-- Added some google fonts-->
+    <link
+        href="https://fonts.googleapis.com/css?family=Asap+Condensed|Barlow+Condensed|Courgette|Fresca|Niconne|Niramit|Sawarabi+Mincho&display=swap"
+        rel="stylesheet">
+
+    <!-- Added font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- User CSS -->
+    <link rel="stylesheet" href="./assets/css/styleDashboardTeacher.css">
+
+</head>
+<header>
+
+</header>
+
+<body>
+    <div class="wrapper">
+        <!-- Sidebar Holder -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <div class="container">
+                    <div class="row">
+                        <div class="logo mt-3">
+                            <img class="logo mb-2" src="./assets/images/EscuelaSierraNevadaSunland-04.png">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <ul class="nav flex-column nav-pills list-unstyled components" id="v-pills-tab" role="tablist">
+                    <div class="componentHeader">
+                        <h3>Class Information</h3>
+                    </div>
+                </ul>
+            </div>
+
+            <ul class="list-unstyled CTAs">
+                <div class="text-center">
+                    <a href="../views/index.html">
+                        <button class="btn px-5" type="submit" id="logOut">Log
+                            Out</button>
+                    </a>
+                </div>
+
+            </ul>
+        </nav>
+
+        <!-- Page Content Holder -->
+        <div id="content">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <button type="button" id="sidebarCollapse" class="navbar-btn">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fas fa-align-justify"></i>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item inactive">
+                                <div class="welcome ml-3">
+                                    <h1>Welcome <span id="name">holder</span></h1>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </nav>
+            <div class="tab-content" id="v-pills-tabContent">
+
+                <div class="tab-pane fade show active" id="v-pills-courseInfo" role="tabpanel">
+                    <h2>Class Information will be displayed here</h2>
+                    <div class="line"></div>
+                    <div class="card-columns">
+                        <div class="container">
+                            <div class="card text-white  mb-3 text-center">
+                                <div class="card-header">Downloadable files</div>
+                                <div class="card-body">
+                                    <h5 class="card-title">Upload any class materilas here</h5>
+                                    <p class="card-text text-dark">Add a button on this box with functionality for the
+                                        teacher to upload a file. We should also include a place to enter details about
+                                        the file such as a name. Once uploaded the files and name should be displayed
+                                        here in a list form.</p>
+                                </div>
+                            </div>
+
+                            <div class="card text-white s mb-3 text-center">
+                                <div class="card-header">Tutorials</div>
+                                <div class="card-body">
+                                    <h5 class="card-title">Upload any class tutorials here</h5>
+                                    <p class="card-text text-dark">Add a button or text box on this box with
+                                        functionality for the teacher to enter the vimeop URL. We should also include a
+                                        place to enter details about the file such as a name. Once uploaded the links
+                                        and names should be displayed in a list form.</p>
+                                </div>
+                            </div>
+
+                            <div class="card text-white  mb-3 text-center">
+                                <div class="card-header">Class Overview</div>
+                                <div class="card-body">
+                                    <h5 class="card-title">A summary or class syllabus </h5>
+                                    <p class="card-text text-dark">Add a button or text box on this box with
+                                        functionality for the teacher to enter the upload the class syllabus text or pdf
+                                        file. We should also include a place to enter details about the file such as a
+                                        name. Once uploaded the file and names should be displayed.</p>
+                                </div>
+                            </div>
+
+                            <div class="card text-white mb-3 text-center">
+                                <div class="card-header">Announcements</div>
+                                <div class="card-body">
+                                    <h5 class="card-title">Any announcements should be entered here</h5>
+                                    <p class="card-text text-dark">Create a form for the teacher to add an anouncemt.
+                                        Let's keep it simple, fileds on the form should include: Date, Announcement
+                                        header, Announcement Details</p>
+                                </div>
+                            </div>
+
+                            <div class="card text-white mb-3 text-center">
+                                <div class="card-header">Students</div>
+                                <div class="card-body">
+                                    <h5 class="card-title">This will be a list with all the students that belong to that
+                                        class. It will be dinamically displayed by Jen. The names should be clickable
+                                        and will take us to a student information page. We can worry about this box
+                                        later. </h5>
+                                    <p class="card-text text-dark">
+                                        <ul class="list-unstyled" id="studentList">
+                                            <li>
+                                                <a href="#studentName">Jennifer</a>
+                                            </li>
+                                            <li>
+                                                <a href="#studentName">Patricio</a>
+                                            </li>
+                                            <li>
+                                                <a href="#studentName">Chin </a>
+                                            </li>
+                                        </ul>
+
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container" data-toggle="collapse" id="setup">
+                        <div class="row mt-3">
+                            <div class="col-sm-12 text-center">
+
+
+                                <a class="btn mt-3" id="btnBackTeacherDash" href="../views/dashboardTeacher.html">Back
+                                    to
+                                    my dashboard</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+    <!--Javascript-->
+    <script src="./assets/javascript/teacher.js"></script>
+
+    <!--------------JS from Bootstrap------------------------->
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+
+    <!--firebase-->
+    <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-auth.js"></script>
+
+    <!-- script for collapsing menu -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+                $(this).toggleClass('active');
+            });
+        });
+    </script>
+
+    <!-- script for chat -->
+    <!-- <script>
+        function openForm() {
+            document.getElementById("myForm").style.display = "block";
+        }
+
+        function closeForm() {
+            document.getElementById("myForm").style.display = "none";
+        }
+    </script> -->
+
+
+</body>
+
+
+</html>
