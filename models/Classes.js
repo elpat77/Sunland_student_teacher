@@ -12,6 +12,10 @@ module.exports = (sequelize, DataTypes) => {
             }
         });
 
+        Classes.hasMany(models.Assignments, {
+            onDelete: 'cascade'
+        });
+
         Classes.hasMany(models.Announcements, {
             onDelete: 'cascade'
         });
@@ -19,12 +23,7 @@ module.exports = (sequelize, DataTypes) => {
         Classes.hasMany(models.Students, {
             onDelete: 'cascade'
         });
-
-        Classes.hasMany(models.Assignments, {
-            onDelete: 'cascade'
-        });
     }
-
 
     return Classes;
 }
