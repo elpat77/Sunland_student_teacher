@@ -1,4 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
+    const moment = require('moment');
     const Assignments = sequelize.define('Assignments', {
         title: DataTypes.STRING,
         dueDate: {
@@ -9,14 +10,14 @@ module.exports = (sequelize, DataTypes) => {
         },
         timeDue: {
             type: DataTypes.TIME,
-            get: function () {
-                let time = this.getDataValue('CreateTime');
-                if (moment(time, moment.ISO_8601, true).isValid()) {
-                    return moment(this.getDataValue('CreateTime')).format('HH:mm:ss');
-                } else {
-                    return time;
-                }
-            }
+            // get: function () {
+            //     let time = this.getDataValue('CreateTime');
+            //     if (moment(time, moment.ISO_8601, true).isValid()) {
+            //         return moment(this.getDataValue('CreateTime')).format('HH:mm:ss');
+            //     } else {
+            //         return time;
+            //     }
+            // }
         },
         description: DataTypes.TEXT,
         turnedIn: {

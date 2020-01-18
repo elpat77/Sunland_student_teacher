@@ -16,6 +16,11 @@ module.exports = (sequelize, DataTypes) => {
         Grades.hasMany(models.Quizzes, {
             onDelete: 'cascade'
         });
+        Grades.belongsTo(models.Students, {
+            foreignKey: {
+                allowNull: false
+            }
+        });
     }
 
     return Grades;
