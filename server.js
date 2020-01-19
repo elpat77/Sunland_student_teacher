@@ -31,6 +31,9 @@ app.use('/classInfoRoutes', classInfoRoutes);
 const quizzesRoutes = require('./controllers/api/quizzesRoutes');
 app.use('/quizzesRoutes', quizzesRoutes);
 
+const testsRoutes = require('./controllers/api/testsRoutes');
+app.use('/testsRoutes', testsRoutes);
+
 const htmlRoutes = require('./controllers/client/htmlRoutes');
 app.use('/', htmlRoutes);
 
