@@ -1,8 +1,8 @@
 module.exports = (sequelize, DataTypes) => {
     const Grades = sequelize.define('Grades', {
         finalGrade: DataTypes.STRING,
-        quiezzesPercent: DataTypes.INTEGER,
-        assingmentsPercent: DataTypes.INTEGER,
+        quizzesPercent: DataTypes.INTEGER,
+        assignmentsPercent: DataTypes.INTEGER,
         testPercent: DataTypes.INTEGER
     });
 
