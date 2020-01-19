@@ -3,17 +3,18 @@ const router = express.Router();
 const db = require('../../models');
 
 router.get('/', (req, res) => {
-    db.ClassInfo.findAll({}).then(classInfoDb => {
-        res.json(classInfoDb);
+    db.Quizzes.findAll({}).then(quizzesDb => {
+        res.json(quizzesDb);
     });
 });
 
 router.post('/:id', (req, res) => {
-    db.ClassInfo.create({
+    db.Quizzes.create({
         name: req.body.name,
-        section: req.body.section,
-        teacher: req.body.teacher,
-        StudentId: req.params.id
+        totalPoints: req.body.totalPoints,
+        scored: req.body.scored,
+        grade: req.body.grade,
+        GradeId: req.params.id
     }).then(result => {
         res.json(result);
     });

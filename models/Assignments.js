@@ -28,11 +28,10 @@ module.exports = (sequelize, DataTypes) => {
     });
 
     Assignments.associate = models => {
-        Assignments.belongsTo(models.Classes, {
-            foreignKey: 'classesId'
-        });
         Assignments.belongsTo(models.Grades, {
-            foreignKey: 'gradesId'
+            foreignKey: {
+                allowNull: false
+            }
         });
     }
 
