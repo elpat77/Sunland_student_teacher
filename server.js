@@ -22,6 +22,9 @@ app.use('/assignmentsRoutes', assignmentsRoutes);
 const gradesRoutes = require('./controllers/api/gradesRoutes');
 app.use('/gradesRoutes', gradesRoutes);
 
+const studentsRoutes = require('./controllers/api/studentsRoutes');
+app.use('/studentsRoutes', studentsRoutes);
+
 const htmlRoutes = require('./controllers/client/htmlRoutes');
 app.use('/', htmlRoutes);
 
