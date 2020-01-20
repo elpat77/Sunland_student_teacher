@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const bcrypt = require('bcrypt');
 const db = require('../../models');
 
 router.get('/', (req, res) => {
@@ -10,7 +11,7 @@ router.get('/', (req, res) => {
     });
 });
 
-router.post('/', (req, res) => {
+router.post('/register', (req, res) => {
     db.Teacher.create({
         name: req.body.name,
         email: req.body.email,
@@ -19,6 +20,16 @@ router.post('/', (req, res) => {
     }).then(result => {
         res.json(result);
     });
+
+
+
+    //async
+    // const hashedPassword = await bcrypt.hash(req.body.password, 10);
+    // try { } catch {
+    //     res.redirect('/register');}
 });
+
+
+
 
 module.exports = router;

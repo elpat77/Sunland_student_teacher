@@ -1,21 +1,4 @@
 $(document).ready(function () {
-    //firebase, auth key will be hiden in heroku later
-    var firebaseConfig = {
-        apiKey: "AIzaSyBqtfQOYZ0LdNr3eapaUN7S0Fj5zfOjN0g",
-        authDomain: "sunland-e54f0.firebaseapp.com",
-        databaseURL: "https://sunland-e54f0.firebaseio.com",
-        projectId: "sunland-e54f0",
-        storageBucket: "sunland-e54f0.appspot.com",
-        messagingSenderId: "925381223070",
-        appId: "1:925381223070:web:58169103c20e0917c4518f"
-    };
-
-    //initialize firebase app for teacher
-    firebase.initializeApp(firebaseConfig);
-
-    const auth = firebase.auth();
-    const db = firebase.database();
-
     //Creating Account -------------------------------------------------------------
     $('#signUpbtn').on('click', function (e) {
         e.preventDefault();
@@ -39,16 +22,6 @@ $(document).ready(function () {
         }
 
         if (email != '' && password != '' && firstName != '' && lastName != '') {
-            auth.createUserWithEmailAndPassword(email, password).then(cred => {
-                let uid = auth.currentUser.uid;
-                db.ref(uid).set({
-                    email: email,
-                    firstName: firstName,
-                    lastName: lastName,
-                    status: 'Teacher'
-                });
-                window.location.href = '/login-teacher';
-            });
         }
     });
     //--------------------------------------------------------------------------------

@@ -14,7 +14,7 @@ router.get('/login-student', (req, res) => {
     res.sendFile(path.join(__dirname, '../../views/loginStudent.html'));
 });
 
-router.get('/login-teacher', (req, res) => {
+router.get('/login', (req, res) => {
     res.sendFile(path.join(__dirname, '../../views/loginTeacher.html'));
 });
 
