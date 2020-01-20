@@ -1,4 +1,5 @@
 $(document).ready(function () {
+
     //Creating Account -------------------------------------------------------------
     $('#signUpbtn').on('click', function (e) {
         e.preventDefault();
@@ -7,6 +8,7 @@ $(document).ready(function () {
         let password = $('#teacherPassword').val();
         let firstName = $('#teacherFirstName').val();
         let lastName = $('#teacherLastName').val();
+        let fullName = firstName + ' ' + lastName;
 
         if (email === '') {
             $('#emailVal').show();
@@ -22,6 +24,19 @@ $(document).ready(function () {
         }
 
         if (email != '' && password != '' && firstName != '' && lastName != '') {
+            $.ajax({
+                method: 'POST',
+                url: '/teacherRoutes',
+                data: {
+                    name: fullName,
+                    email: email,
+                    password: password,
+                    picture: null
+                }
+            }).then(res => {
+                console.log(res);
+            });
+            window.location.href = '/teacherlogin'
         }
     });
     //--------------------------------------------------------------------------------
@@ -47,26 +62,46 @@ $(document).ready(function () {
         e.preventDefault();
         let em = $('#logInEmail').val();
         let pw = $('#logInPassword').val();
-
-        auth.signInWithEmailAndPassword(em, pw).catch(err => {
-            console.log(err.message);
-        }).then(res => {
-            window.location.href = '/dashboard-teacher';
+        login(res => {
+            console.log(res);
         });
-    });
-    //--------------------------------------------------------------------------------
 
-    auth.onAuthStateChanged(user => {
-        if (user) {
-            let uid = auth.currentUser.uid;
-            console.log(uid);
-            db.ref(uid).on('value', snap => {
-                let name = snap.val().firstName;
-                console.log(name);
-                $('#name').text(name);
+        function login(cb) {
+            $.ajax({
+                method: 'GET',
+                url: '/teacherRoutes',
+            }).then(result => {
+                let success = false;
+                let id = 0;
+
+                for (let i = 0; i < result.length; i++) {
+                    if (result[i].email === em && result[i].password === pw) {
+                        success = true;
+                        id = i;
+                        i = result.length;
+                    } else {
+                        console.log('not it');
+                    }
+                }
+                console.log(result[id].id);
+                if (success === true) {
+                    cb(result);
+                    window.location.assign(`/dashboard-teacher?${result[id].id}`);
+                } else {
+                    alert('sorry, wrong password or email');
+                }
             });
+
         }
+
+        $('#logOut').on('click', function (e) {
+            e.preventDefault();
+            console.log('clicked');
+        });
+
     });
+
+    //--------------------------------------------------------------------------------
 
 
 });

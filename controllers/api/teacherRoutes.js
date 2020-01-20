@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
     });
 });
 
-router.post('/register', (req, res) => {
+router.post('/', (req, res) => {
     db.Teacher.create({
         name: req.body.name,
         email: req.body.email,
