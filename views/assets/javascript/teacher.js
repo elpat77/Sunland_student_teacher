@@ -62,46 +62,51 @@ $(document).ready(function () {
         e.preventDefault();
         let em = $('#logInEmail').val();
         let pw = $('#logInPassword').val();
-        login(res => {
-            console.log(res);
-        });
+        login(result => {
+            console.log(result);
+            let success = false;
+            let id = 0;
 
-        function login(cb) {
-            $.ajax({
-                method: 'GET',
-                url: '/teacherRoutes',
-            }).then(result => {
-                let success = false;
-                let id = 0;
-
-                for (let i = 0; i < result.length; i++) {
-                    if (result[i].email === em && result[i].password === pw) {
-                        success = true;
-                        id = i;
-                        i = result.length;
-                    } else {
-                        console.log('not it');
-                    }
-                }
-                console.log(result[id].id);
-                if (success === true) {
-                    cb(result);
-                    window.location.assign(`/dashboard-teacher?${result[id].id}`);
+            for (let i = 0; i < result.length; i++) {
+                if (result[i].email === em && result[i].password === pw) {
+                    success = true;
+                    id = i;
+                    i = result.length;
                 } else {
-                    alert('sorry, wrong password or email');
+                    console.log('not it');
                 }
-            });
-
-        }
-
-        $('#logOut').on('click', function (e) {
-            e.preventDefault();
-            console.log('clicked');
+            }
+            console.log(result[id].id);
+            if (success === true) {
+                window.location.assign(`/dashboard-teacher?TeacherId${result[id].id}`);
+            } else {
+                alert('sorry, wrong password or email');
+            }
         });
 
     });
-
     //--------------------------------------------------------------------------------
+
+    window.onload = function () {
+        console.log('hello');
+        const urlQuerries = new URLSearchParams(window.location.search);
+        console.log(urlQuerries);
+
+    }
+
+    $('#logOut').on('click', function (e) {
+        e.preventDefault();
+        console.log('clicked');
+    });
+
+    function login(cb) {
+        $.ajax({
+            method: 'GET',
+            url: '/teacherRoutes',
+        }).then(result => {
+            cb(result);
+        });
+    }
 
 
 });
