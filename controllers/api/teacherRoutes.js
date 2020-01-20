@@ -11,6 +11,16 @@ router.get('/', (req, res) => {
     });
 });
 
+router.get('/dashboard-teacher/:id', (req, res) => {
+    db.Teacher.findAll({
+        where: {
+            id: req.params.id
+        }
+    }).then(result => {
+        res.json(result);
+    });
+});
+
 router.post('/', (req, res) => {
     db.Teacher.create({
         name: req.body.name,

@@ -78,7 +78,7 @@ $(document).ready(function () {
             }
             console.log(result[id].id);
             if (success === true) {
-                window.location.assign(`/dashboard-teacher?TeacherId${result[id].id}`);
+                window.location.assign(`/dashboard-teacher?location=dashboard&TeacherId=${result[id].id}`);
             } else {
                 alert('sorry, wrong password or email');
             }
@@ -88,10 +88,18 @@ $(document).ready(function () {
     //--------------------------------------------------------------------------------
 
     window.onload = function () {
-        console.log('hello');
         const urlQuerries = new URLSearchParams(window.location.search);
-        console.log(urlQuerries);
+        const teacherId = urlQuerries.get('TeacherId');
+        if (urlQuerries.get('location') == 'dashboard') {
+            $.ajax({
+                method: 'GET',
+                url: `/teacherRoutes/dashboard-teacher/${teacherId}`
+            }).then(res => {
+                console.log(res);
+                $('#name').text(res[0].name);
+            });
 
+        }
     }
 
     $('#logOut').on('click', function (e) {
