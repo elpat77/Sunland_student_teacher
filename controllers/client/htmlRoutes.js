@@ -14,11 +14,11 @@ router.get('/login-student', (req, res) => {
     res.sendFile(path.join(__dirname, '../../views/loginStudent.html'));
 });
 
-router.get('/login', (req, res) => {
+router.get('/teacherlogin', (req, res) => {
     res.sendFile(path.join(__dirname, '../../views/loginTeacher.html'));
 });
 
-router.get('/sign-up-teacher', (req, res) => {
+router.get('/teacherRegister', (req, res) => {
     res.sendFile(path.join(__dirname, '../../views/sign-up-teacher.html'));
 });
 

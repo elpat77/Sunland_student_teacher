@@ -7,9 +7,6 @@ const app = express();
 const PORT = process.env.PORT || 8000;
 const db = require('./models');
 
-const flash = require('express-flash');
-const session = require('express-session');
-
 const passport = require('passport');
 const initializePassport = require('./passport-config');
 initializePassport(passport, email => {
@@ -21,14 +18,6 @@ initializePassport(passport, email => {
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static('./views'));
-app.use(flash);
-app.use(session({
-    secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: false
-}));
-app.use(passport.initialize());
-app.use(passport.session());
 
 const teacherRoutes = require('./controllers/api/teacherRoutes');
 app.use('/teacherRoutes', teacherRoutes);
@@ -65,11 +54,11 @@ app.delete('/logout', (req, res) => {
     res.redirect('/');
 });
 
-app.post('/login', passport.authenticate('local', {
-    successRedirect: '/',
-    failureRedirect: '/login',
-    failureFlash: true
-}));
+// app.post('/login', passport.authenticate('local', {
+//     successRedirect: '/',
+//     failureRedirect: '/',
+//     //failureFlash: true
+// }));
 
 function checkAuthenicated(req, res, next) {
     if (req.isAuthenticated()) {
