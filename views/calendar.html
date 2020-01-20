@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <!-- Added some google fonts-->
+    <!-- <link
+        href="https://fonts.googleapis.com/css?family=Asap+Condensed|Barlow+Condensed|Courgette|Fresca|Niconne|Niramit|Sawarabi+Mincho&display=swap"
+        rel="stylesheet"> -->
+    <!-- Added bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+    <!-- Added font awesome -->
+    <link href='https://use.fontawesome.com/releases/v5.0.6/css/all.css' rel='stylesheet'>
+
+    <!-- User CSS
+    <link rel="stylesheet" href="./style.css"> -->
+
+    <!-- CALENDAR -->
+    <link href='./Fullcalendar/fullcalendar-4.3.1/packages/core/main.css' rel='stylesheet' />
+    <link href='./Fullcalendar/fullcalendar-4.3.1/packages/daygrid/main.css' rel='stylesheet' />
+    <link href='./Fullcalendar/fullcalendar-4.3.1/packages/timegrid/main.css' rel='stylesheet' />
+    <link href='./Fullcalendar/fullcalendar-4.3.1/packages/list/main.css' rel='stylesheet' />
+    <link href='./Fullcalendar/fullcalendar-4.3.1/packages/bootstrap/main.css' rel='stylesheet' />
+
+
+
+    <script src='./Fullcalendar/fullcalendar-4.3.1/packages/core/main.js'></script>
+    <script src='./Fullcalendar/fullcalendar-4.3.1/packages/interaction/main.js'></script>
+    <script src='./Fullcalendar/fullcalendar-4.3.1/packages/daygrid/main.js'></script>
+    <script src='./Fullcalendar/fullcalendar-4.3.1/packages/timegrid/main.js'></script>
+    <script src='./Fullcalendar/fullcalendar-4.3.1/packages/bootstrap/main.js'></script>
+    <script src='./Fullcalendar/fullcalendar-4.3.1/packages/list/main.js'></script>
+    <script src='./Fullcalendar/fullcalendar-4.3.1/packages/moment/main.js'></script>
+
+
+
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var Calendar = FullCalendar.Calendar;
+            var Draggable = FullCalendarInteraction.Draggable
+
+            /* initialize the external events
+            -----------------------------------------------------------------*/
+
+            var containerEl = document.getElementById('external-events-list');
+            var eventEls = Array.prototype.slice.call(
+                containerEl.querySelectorAll('.fc-event')
+            );
+            eventEls.forEach(function (eventEl) {
+                new Draggable(eventEl, {
+                    eventData: {
+                        title: eventEl.innerText.trim(),
+
+                    },
+
+                });
+            });
+
+            /* initialize the calendar
+            -----------------------------------------------------------------*/
+
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                plugins: ['bootstrap', 'interaction', 'dayGrid', 'timeGrid', 'list'],
+                themeSystem: 'bootstrap',
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek',
+
+                },
+                events: [
+                    {
+                        title: 'New Event',
+                        start: '2020-01-29T10:30:00',
+                        end: '2020-01-29T11:30:00',
+                        extendedProps: {
+                            department: 'BioChemistry'
+                        },
+                        description: 'Lecture'
+                    }],
+                footer: {
+                    center: 'addEventButton',
+                },
+                editable: true,
+                droppable: true, // this allows things to be dropped onto the calendar
+                drop: function (arg) {
+                    // is the "remove after drop" checkbox checked?
+                    if (document.getElementById('drop-remove').checked) {
+                        // if so, remove the element from the "Draggable Events" list
+                        arg.draggedEl.parentNode.removeChild(arg.draggedEl);
+                    }
+                },
+                eventClick: function (arg) {
+                    if (confirm('delete event?')) {
+                        arg.event.remove()
+                    }
+                },
+
+                // eventClick: function (calEvent, jsEvent) {
+                //     var title = prompt('Event Title:', calEvent.title, {
+                //         buttons: {
+                //             Ok: true,
+                //             Cancel: false
+                //         }
+                //     });
+
+                //     if (title) {
+                //         calEvent.title = title;
+                //         ('#calendar').fullCalendar('updateEvent', calEvent);
+                //     }
+                // },
+
+                customButtons: {
+                    addEventButton: {
+                        text: 'Add New Event',
+                        click: function () {
+                            var dateStr = prompt('Enter a date in YYYY-MM-DD format');
+                            var date = new Date(dateStr + 'T00:00:00'); // will be in local time
+
+                            if (!isNaN(date.valueOf())) { // valid?
+                                calendar.addEvent({
+                                    title: "new event",
+                                    start: date,
+                                    allDay: true,
+                                    editable: true
+                                });
+                                alert('Event added. Now, update your database...');
+                            } else {
+                                alert('Invalid date.');
+                            }
+                        }
+                    }
+                }
+
+            });
+            calendar.render();
+
+        });
+
+    </script>
+</head>
+
+<body>
+    <div id='wrap'>
+
+        <div id='external-events'>
+            <h4>Draggable Events</h4>
+
+            <div id='external-events-list'>
+                <div class='fc-event p-2 mb-2 text-center homeworkEvent bg-primary'>Homework Due </div>
+                <div class='fc-event p-2 mb-2 text-center tripEvent bg-secondary'>Field Trip</div>
+                <div class='fc-event p-2 mb-2 text-center finalEvent bg-success'>Final Exam</div>
+                <div class='fc-event p-2 mb-2 text-center vacationEvent bg-danger'>Vacation</div>
+                <div class='fc-event p-2 mb-2 text-center holidayEvent bg-info'>Holiday</div>
+            </div>
+
+            <p>
+                <input type='checkbox' id='drop-remove' />
+                <label for='drop-remove'>remove after drop</label>
+            </p>
+        </div>
+
+        <div id='calendar'></div>
+
+        <div style='clear:both'></div>
+
+    </div>
+
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+    <!--Javascript-->
+    <!-- <script src="./app.js"></script> -->
+
+    <!--------------JS from Bootstrap------------------------->
+
+    <!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script> -->
+
+    <!--firebase-->
+    <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-auth.js"></script>
+</body>
+
+</html>
