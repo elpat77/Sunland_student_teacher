@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+​
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sunland Admin Dashboard</title>
+    ​
+    <!----------------Boot strap CSS----------------------->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+    ​
+    <!-- Added some google fonts-->
+    <link
+        href="https://fonts.googleapis.com/css?family=Asap+Condensed|Barlow+Condensed|Courgette|Fresca|Niconne|Niramit|Sawarabi+Mincho&display=swap"
+        rel="stylesheet">
+    ​
+    <!-- Added font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    ​
+    <!-- User CSS -->
+    <link rel="stylesheet" href="./assets/css/styleDashboardAdmin.css">
+    ​
+</head>
+<header>
+    ​
+</header>
+​
+
+<body>
+    <div class="wrapper">
+        <!-- Sidebar Holder -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <div class="container">
+                    <div class="row">
+                        <div class="logo mt-3">
+                            <img class="logo mb-2" src="./assets/images/EscuelaSierraNevadaSunland-04.png">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <ul class="nav flex-column nav-pills list-unstyled components" id="v-pills-tab" role="tablist">
+                    <div class="componentHeader">
+                        <h3>admin Dashboard</h3>
+                    </div>
+                    ​
+                    <li><a class="nav-link" id="v-pills-adminCreateTeacher-tab" data-toggle="pill"
+                            href="#v-pills-adminCreateTeacher" role="tab">Add a new Teacher</a></li>
+                    <li><a class="nav-link calendarDiv" id="v-pills-adminCreateStudent-tab" data-toggle="pill"
+                            href="#v-pills-adminCreateStudent" role="tab">Add a new Student</a></li>
+                    <li><a class="nav-link" id="v-pills-adminCreateClass-tab" data-toggle="pill"
+                            href="#v-pills-adminCreateClass" role="tab">Create a new Class</a></li>
+                </ul>
+            </div>
+            ​
+            <ul class="list-unstyled CTAs">
+                <div class="text-center">
+                    <a href="./index.html">
+                        <button class="btn px-5" type="submit" id="logOut">Log
+                            Out</button>
+                    </a>
+                </div>
+                ​
+            </ul>
+        </nav>
+        ​
+        <!-- Page Content Holder -->
+        <div id="content">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <button type="button" id="sidebarCollapse" class="navbar-btn">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fas fa-align-justify"></i>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item inactive">
+                                <div class="welcome ml-3">
+                                    <h1 id="welcome">Welcome <span id="name">holder</span></h1>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    ​
+                </div>
+            </nav>
+            ​
+            ​
+            <div class="tab-content" id="v-pills-tabContent">
+                <div class="tab-pane fade show active" id="v-pills-adminCreateTeacher" role="tabpanel">
+                    <h2>Add a New Class</h2>
+                    <div class="line"></div>
+                    <div class="col-sm-10">
+                        <div class="card">
+                            <h5 class="card-header">Please complete this form</h5>
+                            <div class="card-body">
+                                <form class="needs-validation" novalidate>
+                                    <div class="form-row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="newTeacherEmail">New Teacher Email Address</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="inputGroupPrepend">@</span>
+                                                </div>
+                                                <input type="text" class="form-control" id="newTeacherEmail"
+                                                    aria-describedby="inputGroupPrepend" required>
+                                                <div class="invalid-feedback" id="emailVal">
+                                                    Please enter a valid teacher email address
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    ​
+                                    <div class="form-group">
+                                    </div>
+                                    <button class="btn btn-primary" id="signUpbtn" type="submit">Submit</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                ​
+                <div class="tab-pane fade active" id="v-pills-adminCreateStudent" role="tabpanel">
+                    <h2>Add a New Class</h2>
+                    <div class="line"></div>
+                    <div class="col-sm-10">
+                        <div class="card">
+                            <h5 class="card-header">Please complete this form</h5>
+                            <div class="card-body">
+                                <form class="needs-validation" novalidate>
+                                    <div class="form-row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="newStudentEmail">New Student Email Address</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="inputGroupPrepend">@</span>
+                                                </div>
+                                                <input type="text" class="form-control" id="newStudentEmail"
+                                                    aria-describedby="inputGroupPrepend" required>
+                                                <div class="invalid-feedback" id="emailVal">
+                                                    Please enter a valid student address
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    ​
+                                    <div class="form-group">
+                                    </div>
+                                    <button class="btn btn-primary" id="signUpbtn" type="submit">Submit</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                ​
+                <div class="tab-pane fade active" id="v-pills-adminCreateClass" role="tabpanel">
+                    <h2>Add a New Class</h2>
+                    <div class="line"></div>
+                    <div class="col-sm-10">
+                        <div class="card">
+                            <h5 class="card-header">Please complete this form</h5>
+                            <div class="card-body">
+                                <form class="needs-validation" novalidate>
+                                    ​
+                                    <div class="form-row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="newClassDescription">Class description</label>
+                                            <input type="text" class="form-control" id="newClassDescription" required>
+                                            <div class="invalid-feedback" id="classDescriptionVal">
+                                                Please enter class Subject
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="newClassTeacher">Class Teacher</label>
+                                            <input type="text" class="form-control" id="newClassTeacher" required>
+                                            <div class="invalid-feedback" id="classTeacherVal">
+                                                Please enter your Last Name
+                                            </div>
+                                        </div>
+                                        ​
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="newClassLocation">Class location</label>
+                                            <input type="text" class="form-control" id="newClassLocation" required>
+                                            <div class="invalid-feedback" id="classLocationVal">
+                                                Please enter class Location
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="newClassTime">Class Times</label>
+                                            <input type="text" class="form-control" id="newClassTime" required>
+                                            <div class="invalid-feedback" id="classTimeVal">
+                                                Please enter class times
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-md-5 mb-3">
+                                            <label for="newClassSubject">Artistic Discipline</label>
+                                            <input type="text" id="newClassSubject" required>
+                                            <div class="invalid-feedback" id="classSubjectVal">
+                                                Please enter an artistic discipline
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 mb-3">
+                                            <label for="newClassGroup">Group</label>
+                                            <input type="text" id="newClassGroup" required>
+                                            <div class="invalid-feedback" id="groupVal">
+                                                Please enter a group
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 mb-3">
+                                            <label for="newClassSection">Section</label>
+                                            <input type="text" id="newClassSection" required>
+                                            <div class="invalid-feedback" id="sectionVal">
+                                                Please enter a grade
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                    </div>
+                                    <button class="btn btn-primary" id="signUpbtn" type="submit">Submit form</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- JQuery -->
+            <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+                integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+            <!--Javascript-->
+            <script src="./assets/javascript/admin.js"></script>
+            <!--------------JS from Bootstrap------------------------->
+            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+                integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+                crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+                integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+                crossorigin="anonymous"></script>
+            <!--firebase-->
+            <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-app.js"></script>
+            <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-database.js"></script>
+            <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-auth.js"></script>
+            <!-- script for collapsing menu -->
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $('#sidebarCollapse').on('click', function () {
+                        $('#sidebar').toggleClass('active');
+                        $(this).toggleClass('active');
+                    });
+                });
+            </script>
+</body>
+
+</html>
