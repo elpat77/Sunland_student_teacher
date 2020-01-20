@@ -14,9 +14,7 @@ $(document).ready(function () {
             new Draggable(eventEl, {
                 eventData: {
                     title: eventEl.innerText.trim(),
-
                 },
-
             });
         });
 
