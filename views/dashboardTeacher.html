@@ -22,6 +22,20 @@
     <!-- User CSS -->
     <link rel="stylesheet" href="./assets/css/styleDashboardTeacher.css">
 
+    <!-- CALENDAR -->
+    <link href='./Fullcalendar/fullcalendar-4.3.1/packages/core/main.css' rel='stylesheet' />
+    <link href='./Fullcalendar/fullcalendar-4.3.1/packages/daygrid/main.css' rel='stylesheet' />
+    <link href='./Fullcalendar/fullcalendar-4.3.1/packages/timegrid/main.css' rel='stylesheet' />
+    <link href='./Fullcalendar/fullcalendar-4.3.1/packages/list/main.css' rel='stylesheet' />
+    <link href='./Fullcalendar/fullcalendar-4.3.1/packages/bootstrap/main.css' rel='stylesheet' />
+    <script src='./Fullcalendar/fullcalendar-4.3.1/packages/core/main.js'></script>
+    <script src='./Fullcalendar/fullcalendar-4.3.1/packages/interaction/main.js'></script>
+    <script src='./Fullcalendar/fullcalendar-4.3.1/packages/daygrid/main.js'></script>
+    <script src='./Fullcalendar/fullcalendar-4.3.1/packages/timegrid/main.js'></script>
+    <script src='./Fullcalendar/fullcalendar-4.3.1/packages/bootstrap/main.js'></script>
+    <script src='./Fullcalendar/fullcalendar-4.3.1/packages/list/main.js'></script>
+    <script src='./Fullcalendar/fullcalendar-4.3.1/packages/moment/main.js'></script>
+
 </head>
 <header>
 
@@ -43,7 +57,7 @@
             <div>
                 <ul class="nav flex-column nav-pills list-unstyled components" id="v-pills-tab" role="tablist">
                     <div class="componentHeader">
-                        <h3>Dashboard Menu</h3>
+                        <h3>Teacher Dashboard</h3>
                     </div>
 
                     <li><a class="nav-link" id="v-pills-teacherOverview-tab" data-toggle="pill"
@@ -142,24 +156,139 @@
                 <div class="tab-pane fade" id="v-pills-teacherCalendar" role="tabpanel">
                     <h2>The calendar will be displayed here</h2>
                     <div class="line"></div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                        labore et
-                        dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                        aliquip
-                        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                        dolore eu
-                        fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                        deserunt mollit anim id est laborum.</p>
-                    <div class="line"></div>
-                    <h2>We can add some text if needed</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                        labore et
-                        dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                        aliquip
-                        ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                        dolore eu
-                        fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                        deserunt mollit anim id est laborum.</p>
+                    <script>
+
+                        document.addEventListener('DOMContentLoaded', function () {
+                            var Calendar = FullCalendar.Calendar;
+                            var Draggable = FullCalendarInteraction.Draggable
+
+                            /* initialize the external events
+                            -----------------------------------------------------------------*/
+
+                            var containerEl = document.getElementById('external-events-list');
+                            var eventEls = Array.prototype.slice.call(
+                                containerEl.querySelectorAll('.fc-event')
+                            );
+                            eventEls.forEach(function (eventEl) {
+                                new Draggable(eventEl, {
+                                    eventData: {
+                                        title: eventEl.innerText.trim(),
+
+                                    },
+
+                                });
+                            });
+
+                            /* initialize the calendar
+                            -----------------------------------------------------------------*/
+
+                            var calendarEl = document.getElementById('calendar');
+
+                            var calendar = new FullCalendar.Calendar(calendarEl, {
+                                plugins: ['bootstrap', 'interaction', 'dayGrid', 'timeGrid', 'list'],
+                                themeSystem: 'bootstrap',
+                                header: {
+                                    left: 'prev,next today',
+                                    center: 'title',
+                                    right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek',
+
+                                },
+                                events: [
+                                    {
+                                        title: 'New Event',
+                                        start: '2020-01-29T10:30:00',
+                                        end: '2020-01-29T11:30:00',
+                                        extendedProps: {
+                                            department: 'BioChemistry'
+                                        },
+                                        description: 'Lecture'
+                                    }],
+                                footer: {
+                                    center: 'addEventButton',
+                                },
+                                editable: true,
+                                droppable: true, // this allows things to be dropped onto the calendar
+                                drop: function (arg) {
+                                    // is the "remove after drop" checkbox checked?
+                                    if (document.getElementById('drop-remove').checked) {
+                                        // if so, remove the element from the "Draggable Events" list
+                                        arg.draggedEl.parentNode.removeChild(arg.draggedEl);
+                                    }
+                                },
+                                eventClick: function (arg) {
+                                    if (confirm('delete event?')) {
+                                        arg.event.remove()
+                                    }
+                                },
+
+                                // eventClick: function (calEvent, jsEvent) {
+                                //     var title = prompt('Event Title:', calEvent.title, {
+                                //         buttons: {
+                                //             Ok: true,
+                                //             Cancel: false
+                                //         }
+                                //     });
+
+                                //     if (title) {
+                                //         calEvent.title = title;
+                                //         ('#calendar').fullCalendar('updateEvent', calEvent);
+                                //     }
+                                // },
+
+                                customButtons: {
+                                    addEventButton: {
+                                        text: 'Add New Event',
+                                        click: function () {
+                                            var dateStr = prompt('Enter a date in YYYY-MM-DD format');
+                                            var date = new Date(dateStr + 'T00:00:00'); // will be in local time
+
+                                            if (!isNaN(date.valueOf())) { // valid?
+                                                calendar.addEvent({
+                                                    title: "new event",
+                                                    start: date,
+                                                    allDay: true,
+                                                    editable: true
+                                                });
+                                                alert('Event added. Now, update your database...');
+                                            } else {
+                                                alert('Invalid date.');
+                                            }
+                                        }
+                                    }
+                                }
+
+                            });
+                            calendar.render();
+
+                        });
+                    </script>
+
+
+                    <div id='wrap'>
+
+                        <div id='external-events'>
+                            <h4>Draggable Events</h4>
+
+                            <div id='external-events-list'>
+                                <div class='fc-event p-2 mb-2 text-center homeworkEvent bg-primary'>Homework Due
+                                </div>
+                                <div class='fc-event p-2 mb-2 text-center tripEvent bg-secondary'>Field Trip</div>
+                                <div class='fc-event p-2 mb-2 text-center finalEvent bg-success'>Final Exam</div>
+                                <div class='fc-event p-2 mb-2 text-center vacationEvent bg-danger'>Vacation</div>
+                                <div class='fc-event p-2 mb-2 text-center holidayEvent bg-info'>Holiday</div>
+                            </div>
+
+                            <p>
+                                <input type='checkbox' id='drop-remove' />
+                                <label for='drop-remove'>remove after drop</label>
+                            </p>
+                        </div>
+
+                        <div id='calendar'></div>
+
+                        <div style='clear:both'></div>
+                    </div>
+
                 </div>
                 <div class="tab-pane fade" id="v-pills-teacherCourses" role="tabpanel">
                     <h2>All the courses will be displayed here</h2>
@@ -174,7 +303,7 @@
                                         adipisicing
                                         elit.
                                         Incidunt, dignissimos!</p>
-                                    <a class="btn" id="btnCourses" href="../views/classInfo.html">Class
+                                    <a class="btn" id="btnCourses" href="../views/classInfoTeacher.html">Class
                                         Info</a>
                                 </div>
                             </div>
@@ -188,7 +317,7 @@
                                         elit.
                                         Incidunt, dignissimos!</p>
 
-                                    <a class="btn" id="btnCourses" href="../views/classInfo.html">Class
+                                    <a class="btn" id="btnCourses" href="../views/classInfoTeacher.html">Class
                                         Info</a>
                                 </div>
 
@@ -202,27 +331,13 @@
                                         adipisicing
                                         elit.
                                         Incidunt, dignissimos!</p>
-                                    <a class="btn" id="btnCourses" href="../views/classInfo.html">Class
+                                    <a class="btn" id="btnCourses" href="../views/classInfoTeacher.html">Class
                                         Info</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <!-- <div class="tab-pane fade" id="v-pills-teacherTutorials" role="tabpanel">
-                    <h3>Tutorials</h3>
-                    <div class="line"></div>
-                    <h1>Sunland Videos</h1>
-                    <h3>Git Hub</h3> -->
-                <!-- <video class="tutorial_video" id="basic-html" src="./assets/videos/basic-html.mp4" controls
-                        width="300">
-                    </video>
-                    <br><br>
-                    <h3>Basic HTML</h3>
-                    <video class="tutorial_video" id="basics" src="./assets/videos/github-basics.mp4" controls
-                        width="300">
-                    </video> -->
             </div>
 
         </div>

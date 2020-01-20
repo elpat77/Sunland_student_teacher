@@ -37,13 +37,25 @@ const classesRoutes = require('./controllers/api/classesRoutes');
 app.use('/classesRoutes', classesRoutes);
 
 const announcementRoutes = require('./controllers/api/announcementRoutes');
-app.use('/annoucementRoutes', announcementRoutes);
+app.use('/announcementRoutes', announcementRoutes);
 
 const assignmentsRoutes = require('./controllers/api/assignmentsRoutes');
 app.use('/assignmentsRoutes', assignmentsRoutes);
 
 const gradesRoutes = require('./controllers/api/gradesRoutes');
 app.use('/gradesRoutes', gradesRoutes);
+
+const studentsRoutes = require('./controllers/api/studentsRoutes');
+app.use('/studentsRoutes', studentsRoutes);
+
+const classInfoRoutes = require('./controllers/api/classInfoRoutes');
+app.use('/classInfoRoutes', classInfoRoutes);
+
+const quizzesRoutes = require('./controllers/api/quizzesRoutes');
+app.use('/quizzesRoutes', quizzesRoutes);
+
+const testsRoutes = require('./controllers/api/testsRoutes');
+app.use('/testsRoutes', testsRoutes);
 
 const htmlRoutes = require('./controllers/client/htmlRoutes');
 app.use('/', htmlRoutes);

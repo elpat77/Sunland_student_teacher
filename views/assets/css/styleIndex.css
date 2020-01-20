@@ -70,6 +70,17 @@ body {
   font-size: x-large;
 }
 
+#studentlink, #teacherLink{
+  background:rgb(99, 209, 172);
+  color: #fff;
+  padding: .5rem 1rem;
+  font-size: 1.25rem;
+}
+
+#studentlink:hover, #teacherLink:hover{
+  background: #fff!important;
+  color: #085D61 !important;
+} 
 
 
 

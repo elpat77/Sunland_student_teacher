@@ -166,8 +166,8 @@ ul.CTAs a {
     margin-bottom: 5px;
 }
 
-#logOut, #btnCourses{
-    background: #13777C;
+#logOut, #btnCourses, #btnBackTeacherDash{
+    background:rgb(99, 209, 172);
     color: #fff;
     padding: .5rem 1rem;
     font-size: 1.25rem;
@@ -177,6 +177,11 @@ ul.CTAs a {
     background: #fff!important;
     color: #085D61 !important;
 } 
+
+#btnBackTeacherDash:hover, #btnCourses:hover{
+    background:#FF726E!important;
+    color: #fff !important;
+  }
 
 
 
@@ -224,10 +229,10 @@ ul.CTAs a {
     margin: 5px auto;
 }
 
-.btn{
+/* .btn{
     padding: .5rem 1rem;
     font-size: 2.25rem;
-}
+} */
 
 /* ---------------------------------------------------
     MEDIAQUERIES
@@ -262,3 +267,22 @@ ul.CTAs a {
     }
 
 }
+
+/* card styling */
+.tutorialHeader {
+    color: #E54945 ;
+    }
+    
+    .card-header{
+        font-size: x-large;
+        color: #FF9B99;
+        background-color: #2A868A;
+        font-family: 'Fresca','sans-serif';
+        
+      }
+      .card-body{
+        background-color:#74BEC1;
+        font-family: 'Nimrati','sans-serif';
+      }
+
+    
