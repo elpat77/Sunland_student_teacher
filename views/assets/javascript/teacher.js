@@ -22,21 +22,37 @@ $(document).ready(function () {
         if (lastName === '') {
             $('#lastNameVal').show();
         }
-
         if (email != '' && password != '' && firstName != '' && lastName != '') {
             $.ajax({
-                method: 'POST',
-                url: '/teacherRoutes',
-                data: {
-                    name: fullName,
-                    email: email,
-                    password: password,
-                    picture: null
-                }
+                method: 'GET',
+                url: '/emails/teacherEmails'
             }).then(res => {
-                console.log(res);
+                let teachers = new Set();
+                for (let i = 0; i < res.length; i++) {
+                    teachers.add(res[i].email);
+                }
+                if (teachers.has(email)) {
+                    login(result => {
+                        console.log(result);
+                        let teachersSet = new Set();
+                        for (let j = 0; j < result.length; j++) {
+                            teachersSet.add(result[j].email);
+                        }
+                        if (!teachersSet.has(email)) {
+                            createAccount(fullName, email, password, resultAccount => {
+                                console.log(resultAccount);
+                            });
+                            window.location.href = '/teacherlogin';
+                        } else {
+                            alert('This email has an account already');
+                        }
+
+                    });
+                } else {
+                    alert('sorry, you must be registered by the school');
+                }
+
             });
-            window.location.href = '/teacherlogin'
         }
     });
     //--------------------------------------------------------------------------------
@@ -90,6 +106,7 @@ $(document).ready(function () {
     window.onload = function () {
         const urlQuerries = new URLSearchParams(window.location.search);
         const teacherId = urlQuerries.get('TeacherId');
+        // GETTING BASIC TEACHER INFO   --------------------------------------------------
         if (urlQuerries.get('location') == 'dashboard') {
             $.ajax({
                 method: 'GET',
@@ -97,7 +114,26 @@ $(document).ready(function () {
             }).then(res => {
                 console.log(res);
                 $('#name').text(res[0].name);
+                if (res[0].Classes.length != 0) {
+                    for (let i = 0; i < res[0].Classes.length; i++) {
+                        let classes = res[0].Classes;
+                        $('.classCard').append(`                            
+                    <div class="card text-white bg-primary mb-3 text-center">
+                    <div class="card-header">${classes[i].subject + classes[i].section}</div>
+                    <div class="card-body">
+                        <h5 class="card-title">Basic Details regarding this course</h5>
+                        <p class="card-text text-dark">Lorem ipsum dolor sit amet consectetur
+                            adipisicing
+                            elit.
+                            Incidunt, dignissimos!</p>
+                        <a class="btn" id="btnCourses" href="../views/classInfoTeacher.html">Class
+                            Info</a>
+                    </div>
+                </div>`);
+                    }
+                }
             });
+            // ----------------------------------------------------------------------
 
         }
     }
@@ -115,6 +151,21 @@ $(document).ready(function () {
             cb(result);
         });
     }
+
+    function createAccount(fullName, email, password, cb) {
+        $.ajax({
+            method: 'POST',
+            url: '/teacherRoutes',
+            data: {
+                name: fullName,
+                email: email,
+                password: password,
+                picture: null
+            }
+        }).then(res => {
+            cb(res);
+        });
+    };
 
 
 });
