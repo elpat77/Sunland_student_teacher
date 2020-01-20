@@ -15,7 +15,9 @@ router.post('/:id', (req, res) => {
         subject: req.body.subject,
         section: req.body.section,
         teacher: req.body.teacher,
-        TeacherId: req.params.id,
+        location: req.body.location,
+        meetTime: req.body.meetTime,
+        TeacherId: req.params.id
     }).then(result => {
         res.json(result);
     });

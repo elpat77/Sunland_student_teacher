@@ -15,7 +15,8 @@ router.get('/dashboard-teacher/:id', (req, res) => {
     db.Teacher.findAll({
         where: {
             id: req.params.id
-        }
+        },
+        include: [db.Classes]
     }).then(result => {
         res.json(result);
     });
