@@ -166,9 +166,10 @@ ul.CTAs a {
     margin-bottom: 5px;
 }
 
-#logOut, #btnCourses, #btnBackTeacherDash{
+#logOut, #changeTeacher, #changeStudent, #changeClass, #changeAnnouncement, #submitNewTeacher, #submitNewStudent, #submitNewAnnouncement, #submitNewClass{
     background:rgb(99, 209, 172);
     color: #fff;
+    margin-bottom: 1rem;
     padding: .5rem 1rem;
     font-size: 1.25rem;
 }
@@ -178,7 +179,7 @@ ul.CTAs a {
     color: #085D61 !important;
 } 
 
-#btnBackTeacherDash:hover, #btnCourses:hover{
+#changeTeacher:hover, #changeStudent:hover, #changeClass:hover, #changeAnnouncement:hover, #submitNewTeacher:hover, #submitNewStudent:hover, #submitNewAnnouncement:hover, #submitNewClass:hover{
     background:#FF726E!important;
     color: #fff !important;
   }

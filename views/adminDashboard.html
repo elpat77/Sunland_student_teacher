@@ -43,14 +43,16 @@
                         <h3>Admin Dashboard</h3>
                     </div>
                     ​
-                    <li><a class="nav-link" id="v-pills-adminCreateTeacher-tab" data-toggle="pill"
+                    <li><a class="nav-link active" id="v-pills-adminCreateTeacher-tab" data-toggle="pill"
                             href="#v-pills-adminCreateTeacher" role="tab">Add a new Teacher</a></li>
-                    <li><a class="nav-link calendarDiv" id="v-pills-adminCreateStudent-tab" data-toggle="pill"
+                    <li><a class="nav-link" id="v-pills-adminCreateStudent-tab" data-toggle="pill"
                             href="#v-pills-adminCreateStudent" role="tab">Add a new Student</a></li>
                     <li><a class="nav-link" id="v-pills-adminCreateClass-tab" data-toggle="pill"
                             href="#v-pills-adminCreateClass" role="tab">Create a new Class</a></li>
                     <li><a class="nav-link" id="v-pills-adminModify-tab" data-toggle="pill" href="#v-pills-adminModify"
                             role="tab">Make Changes</a></li>
+                    <li><a class="nav-link" id="v-pills-makeGeneralAnnouncement-tab" data-toggle="pill"
+                            href="#v-pills-makeGeneralAnnouncement" role="tab">Make an Announcement</a></li>
 
                 </ul>
             </div>
@@ -118,7 +120,7 @@
                                     ​
                                     <div class="form-group">
                                     </div>
-                                    <button class="btn btn-primary" id="signUpbtn" type="submit">Submit</button>
+                                    <button class="btn" id="submitNewTeacher" type="submit">Submit</button>
                                 </form>
                             </div>
                         </div>
@@ -150,7 +152,7 @@
                                     ​
                                     <div class="form-group">
                                     </div>
-                                    <button class="btn btn-primary" id="signUpbtn" type="submit">Submit</button>
+                                    <button class="btn" id="submitNewStudent" type="submit">Submit</button>
                                 </form>
                             </div>
                         </div>
@@ -162,27 +164,64 @@
                     <div class="col-sm-10">
                         <div class="card">
                             <h5 class="card-header">What would you like to modify?</h5>
+                            <div class="card-body"> ​ ​
+                                <div class="text-center">
+                                    <a href="">
+                                        <button class="btn px-5" type="submit" id="changeTeacher">Change
+                                            Teacher</button>
+                                    </a>
+                                </div>
+                                <div class="text-center">
+                                    <a href="">
+                                        <button class="btn px-5" type="submit" id="changeStudent">Change
+                                            Student</button>
+                                    </a>
+                                </div>
+                                <div class="text-center">
+                                    <a href="">
+                                        <button class="btn px-5" type="submit" id="changeClass">Change
+                                            Classes</button>
+                                    </a>
+                                </div>
+                                <div class="text-center">
+                                    <a href="">
+                                        <button class="btn px-5" type="submit" id="changeAnnouncement">Change
+                                            Announcements</button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="v-pills-makeGeneralAnnouncement" role="tabpanel">
+                    <h2>Make an announcement</h2>
+                    <div class="line"></div>
+                    <div class="col-sm-10">
+                        <div class="card">
+                            <h5 class="card-header">What would you like to announce?</h5>
                             <div class="card-body">
                                 <form class="needs-validation" novalidate>
                                     <div class="form-row">
-                                        <div class="col-md-6 mb-3">
-                                            <label for="newStudentEmail">Enter the new student's email address:</label>
-                                            <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text" id="inputGroupPrepend">@</span>
-                                                </div>
-                                                <input type="text" class="form-control" id="newStudentEmail"
-                                                    aria-describedby="inputGroupPrepend" required>
-                                                <div class="invalid-feedback" id="emailVal">
-                                                    Please enter a valid student email
-                                                </div>
+                                        <div class="col-md-9 mb-3">
+                                            <label for="newAnnouncemetTitle">What is the announcement title?</label>
+                                            <input type="text" class="form-control mb-3" id="newAnnouncemetTitle"
+                                                required>
+                                            <div class="invalid-feedback" id="newAnnouncemetTitleVal">
+                                                Please enter an announcement title
+                                            </div>
+                                            <label for="newAnnouncemetContent">What is the announcement
+                                                content?</label>
+                                            <textarea class="form-control" rows="7" id="newAnnouncementContent"
+                                                required></textarea>
+                                            <div class="invalid-feedback" id="newAnnouncementContentVal">
+                                                Please enter an announcement content
                                             </div>
                                         </div>
                                     </div>
                                     ​
                                     <div class="form-group">
                                     </div>
-                                    <button class="btn btn-primary" id="signUpbtn" type="submit">Submit</button>
+                                    <button class="btn" id="submitNewAnnouncement" type="submit">Submit</button>
                                 </form>
                             </div>
                         </div>
@@ -190,7 +229,7 @@
                 </div>
                 ​
                 <div class="tab-pane fade" id="v-pills-adminCreateClass" role="tabpanel">
-                    <h2>Add a New Class</h2>
+                    <h2>Create a New Class</h2>
                     <div class="line"></div>
                     <div class="col-sm-10">
                         <div class="card">
@@ -231,9 +270,9 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-row">
-                                        <div class="col-md-5 mb-3">
-                                            <label for="newClassSubject">Artistic Discipline</label>
+                                    <div class="form-row mt-3">
+                                        <div class="col-md-4 mb-3">
+                                            <label for="newClassSubject">Subject</label>
                                             <input type="text" id="newClassSubject" required>
                                             <div class="invalid-feedback" id="classSubjectVal">
                                                 Please enter an artistic discipline
@@ -246,7 +285,7 @@
                                                 Please enter a group
                                             </div>
                                         </div>
-                                        <div class="col-md-3 mb-3">
+                                        <div class="col-md-4 mb-3">
                                             <label for="newClassSection">Section</label>
                                             <input type="text" id="newClassSection" required>
                                             <div class="invalid-feedback" id="sectionVal">
@@ -256,7 +295,8 @@
                                     </div>
                                     <div class="form-group">
                                     </div>
-                                    <button class="btn btn-primary" id="signUpbtn" type="submit">Submit form</button>
+                                    <button class="btn" id="submitNewClass" type="submit">Submit
+                                        form</button>
                                 </form>
                             </div>
                         </div>
