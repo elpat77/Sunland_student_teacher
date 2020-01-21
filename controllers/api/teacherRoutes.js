@@ -32,14 +32,22 @@ router.post('/', (req, res) => {
         res.json(result);
     });
 
-
-
     //async
     // const hashedPassword = await bcrypt.hash(req.body.password, 10);
     // try { } catch {
     //     res.redirect('/register');}
 });
 
+router.get('/searchEmail/:id', (req, res) => {
+    db.Teacher.findOne({
+        where: {
+            email: req.params.id
+        },
+        include: [db.Classes]
+    }).then(result => {
+        res.json(result);
+    });
+});
 
 
 

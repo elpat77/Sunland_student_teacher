@@ -2,13 +2,13 @@ const express = require('express');
 const router = express.Router();
 const db = require('../../models');
 
-router.get('/teacherEmails', (req, res) => {
+router.get('/teacher', (req, res) => {
     db.TeacherEmails.findAll({}).then(teacherEmailsDb => {
         res.json(teacherEmailsDb);
     });
 });
 
-router.post('/teacherEmails', (req, res) => {
+router.post('/teacher', (req, res) => {
     db.TeacherEmails.create({
         email: req.body.email
     }).then(result => {
