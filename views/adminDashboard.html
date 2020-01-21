@@ -71,25 +71,13 @@
         <div id="content">
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
-                    <button type="button" id="sidebarCollapse" class="navbar-btn">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </button>
-                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse"
-                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                        <i class="fas fa-align-justify"></i>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="nav navbar-nav">
-                            <li class="nav-item inactive">
-                                <div class="welcome ml-3">
-                                    <h1 id="welcome">Welcome <span id="name">holder</span></h1>
-                                </div>
-                            </li>
-                        </ul>
-                    </div> ​
+                    <ul class="nav navbar-nav">
+                        <li class="nav-item inactive">
+                            <div class="welcome ml-3">
+                                <h1 id="welcome">Welcome <span id="name">holder</span></h1>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </nav>
             ​ ​
@@ -97,7 +85,8 @@
                 <div class="tab-pane fade show active" id="v-pills-adminCreateTeacher" role="tabpanel">
                     <h2>Add a New Teacher</h2>
                     <div class="line"></div>
-                    <div class="col-sm-10">
+                    <div class="col-sm-10" id="addTeacher">
+                        <h6 id="message"></h6>
                         <div class="card">
                             <h5 class="card-header">Please complete this form</h5>
                             <div class="card-body">
