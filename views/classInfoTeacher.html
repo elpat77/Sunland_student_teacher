@@ -88,50 +88,96 @@
             <div class="tab-content" id="v-pills-tabContent">
 
                 <div class="tab-pane fade show active" id="v-pills-courseInfo" role="tabpanel">
-                    <h2>Class Information will be displayed here</h2>
+                    <h2>The name of the class will go here</h2>
                     <div class="line"></div>
                     <div class="card-columns">
                         <div class="container">
-                            <div class="card text-white  mb-3 text-center">
-                                <div class="card-header">Downloadable files</div>
+                            <div class="card text-white mb-3 text-center">
+                                <div class="card-header">File Uploads</div>
                                 <div class="card-body">
-                                    <h5 class="card-title">Upload any class materilas here</h5>
-                                    <p class="card-text text-dark">Add a button on this box with functionality for the
-                                        teacher to upload a file. We should also include a place to enter details about
-                                        the file such as a name. Once uploaded the files and name should be displayed
-                                        here in a list form.</p>
-                                </div>
-                            </div>
-
-                            <div class="card text-white s mb-3 text-center">
-                                <div class="card-header">Tutorials</div>
-                                <div class="card-body">
-                                    <h5 class="card-title">Upload any class tutorials here</h5>
-                                    <p class="card-text text-dark">Add a button or text box on this box with
-                                        functionality for the teacher to enter the vimeop URL. We should also include a
-                                        place to enter details about the file such as a name. Once uploaded the links
-                                        and names should be displayed in a list form.</p>
-                                </div>
-                            </div>
-
-                            <div class="card text-white  mb-3 text-center">
-                                <div class="card-header">Class Overview</div>
-                                <div class="card-body">
-                                    <h5 class="card-title">A summary or class syllabus </h5>
-                                    <p class="card-text text-dark">Add a button or text box on this box with
-                                        functionality for the teacher to enter the upload the class syllabus text or pdf
-                                        file. We should also include a place to enter details about the file such as a
-                                        name. Once uploaded the file and names should be displayed.</p>
+                                    <h5 class="card-title">Any files to share with your students?</h5>
+                                    <div class="card-text text-dark">
+                                        <label for="myFileName ">Name of the File:</label>
+                                        <input type="text" class="form-control" id="myFileName" required>
+                                        <div class="invalid-feedback" id="myFileNameVal">
+                                            Please enter a name for your file
+                                        </div>
+                                        <div class="mt-3">
+                                            <input type="file" id="myFile" name="fileName" required>
+                                            <div class="invalid-feedback" id="myFileVal">
+                                                Please attach a file
+                                            </div>
+                                        </div>
+                                        <div class="mt-3">
+                                            <button type="submit" class="btn" id="uploadFileSubmit">Submit</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="card text-white mb-3 text-center">
+                                <div class="card-header">Tutorials</div>
+                                <div class="card-body">
+                                    <h5 class="card-title">Any video tutorials to share with the class?</h5>
+                                    <div class="card-text text-dark">
+                                        <label for="basic-url">Tutorial url:</label>
+                                        <div class="input-group mb-3">
+                                            <input type="text" class="form-control" id="basic-url"
+                                                placeholder="https://example.com/users/" required>
+                                            <div class="invalid-feedback" id="myFileNameVal"> Please provide a URL link
+                                            </div>
+                                        </div>
+                                        <div class="mt-3">
+                                            <button type="submit" class="btn" id="uploadTutorialURL">Submit</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card text-white  mb-3 text-center">
+                                <div class="card-header">Syllabus Upload</div>
+                                <div class="card-body">
+                                    <h5 class="card-title">Share the syllabus with your students!</h5>
+                                    <div class="card-text text-dark">
+                                        <label for="mySyllabusName">Name of the Syllabus:</label>
+                                        <input type="text" class="form-control" id="mySyllabusName" required>
+                                        <div class="invalid-feedback" id="mySyllabusNameVal">
+                                            Please enter a name for your syllabus
+                                        </div>
+                                        <div class="mt-3">
+                                            <input type="file" id="mySyllabus" name="SyllabusName" required>
+                                            <div class="invalid-feedback" id="myFileVal">
+                                                Please attach a file
+                                            </div>
+                                        </div>
+                                        <div class="mt-3">
+                                            <button type="submit" class="btn" id="uploadSyllabusSubmit">Submit</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card text-white  mb-3 text-center">
                                 <div class="card-header">Announcements</div>
                                 <div class="card-body">
-                                    <h5 class="card-title">Any announcements should be entered here</h5>
-                                    <p class="card-text text-dark">Create a form for the teacher to add an anouncemt.
-                                        Let's keep it simple, fileds on the form should include: Date, Announcement
-                                        header, Announcement Details</p>
+                                    <h5 class="card-title">Any special class Announcements?</h5>
+                                    <div class="card-text text-dark">
+                                        <label for="newAnnouncemetTitle">What is the announcement title?</label>
+                                        <input type="text" class="form-control mb-3" id="newAnnouncemetTitle" required>
+                                        <div class="invalid-feedback" id="newAnnouncemetTitleVal">
+                                            Please enter an announcement title
+                                        </div>
+                                        <label for="newAnnouncemetContent">What is the announcement
+                                            content?</label>
+                                        <textarea class="form-control" rows="7" id="newAnnouncementContent"
+                                            required></textarea>
+                                        <div class="invalid-feedback" id="newAnnouncementContentVal">
+                                            Please enter an announcement content
+                                        </div>
+                                        <div class="mt-3">
+                                            <button type="submit" class="btn" id="uploadSyllabusSubmit">Submit</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
@@ -208,18 +254,6 @@
             });
         });
     </script>
-
-    <!-- script for chat -->
-    <!-- <script>
-        function openForm() {
-            document.getElementById("myForm").style.display = "block";
-        }
-
-        function closeForm() {
-            document.getElementById("myForm").style.display = "none";
-        }
-    </script> -->
-
 
 </body>
 
