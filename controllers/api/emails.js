@@ -16,13 +16,13 @@ router.post('/teacher', (req, res) => {
     });
 });
 
-router.get('/studentEmails', (req, res) => {
+router.get('/student', (req, res) => {
     db.StudentEmails.findAll({}).then(studentEmailsdb => {
         res.json(studentEmailsdb);
     });
 });
 
-router.post('/studentEmails', (req, res) => {
+router.post('/student', (req, res) => {
     db.StudentEmails.create({
         email: req.body.email
     }).then(result => {
