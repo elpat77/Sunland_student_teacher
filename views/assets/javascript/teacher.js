@@ -126,7 +126,7 @@ $(document).ready(function () {
                             adipisicing
                             elit.
                             Incidunt, dignissimos!</p>
-                        <a class="btn" id="btnCourses" href="../views/classInfoTeacher.html">Class
+                        <a class="btn" value="${classes[i].id}" id="btnCourses" href="">Class
                             Info</a>
                     </div>
                 </div>`);
@@ -134,9 +134,13 @@ $(document).ready(function () {
                 }
             });
             // ----------------------------------------------------------------------
-
         }
     }
+    $(document).on('click', '#btnCourses', function (e) {
+        e.preventDefault();
+        let classId = $(this).attr('value');
+        window.location.href = `/classInfoTeacher?ClassId=${classId}`;
+    });
 
     $('#logOut').on('click', function (e) {
         e.preventDefault();

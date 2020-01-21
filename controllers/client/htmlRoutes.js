@@ -26,4 +26,7 @@ router.get('/dashboard-teacher', (req, res) => {
     res.sendFile(path.join(__dirname, '../../views/dashboardTeacher.html'));
 });
 
+router.get('/classInfoTeacher', (req, res) => {
+    res.sendFile(path.join(__dirname, '../../views/classInfoTeacher.html'));
+});
 module.exports = router;
