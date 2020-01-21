@@ -20,6 +20,7 @@ $(document).ready(function () {
     });
     //---------------------------------------------------------------------------
 
+    //Setting up information on load screan -------------------------------------
     window.onload = function () {
         const urlQuerries = new URLSearchParams(window.location.search);
         const location = urlQuerries.get('location');
@@ -30,98 +31,10 @@ $(document).ready(function () {
             });
         }
 
-        getTeachersEmails(teacherEmailResult => {
-            for (i = 0; i < teacherEmailResult.length; i++) {
-                $('#changeTeacher').append(`<div class="card mt-2">
-                <h5 class="card-header">Teacher</h5>
-                <div class="card-body">
-                <h5 class="card-title">${teacherEmailResult[i].email}</h5>
-                <div class="dropdown">
-                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Modify
-                </button>
-                <div class="dropdown-menu">
-                <form class="px-4 py-3">
-                <div class="form-group">
-                    <label for="exampleDropdownFormEmail1">Change Email address</label>
-                    <input type="email" class="form-control" id="exampleDropdownFormEmail1" placeholder="email@example.com">
-                    <button class="btn btn-primary mt-1" value="${teacherEmailResult[i].id}">Change Email</button>
-                </div>
-                
-                <div class="form-group">
-                    <label for="exampleDropdownFormPassword1">Add Class</label>
-                    <br>
-                    <label class="mb-1" for="exampleDropdownFormPassword1">Class Subject</label>
-                    <input type="text" class="form-control" id="classSubject" placeholder="Class Subject">
-
-                    <label class="mb-1" for="exampleDropdownFormPassword1">Section</label>
-                    <input type="text" class="form-control" id="section" placeholder="Section (4A, 5A, 6A, ect)">
-
-                    <label class="mb-1" for="exampleDropdownFormPassword1">Class Location</label>
-                    <input type="text" class="form-control" id="classLocation" placeholder="Class Location">
-
-                    <label class="mb-1" for="exampleDropdownFormPassword1">Class Time</label>
-                    <input type="text" class="form-control" id="classTime" placeholder="Class Time">
-
-                    <label class="mb-1" for="exampleDropdownFormPassword1">Teacher Name</label>
-                    <input type="text" class="form-control" id="classTeacher" placeholder="Teacher Name">
-                    <button class="btn btn-primary mt-1" value="${teacherEmailResult[i].id}">Add Class for Student</button>
-                </div>
-                </form>
-                <div class="dropdown-divider"></div>
-                <button class="btn btn-danger ml-2">Delete User</button>
-            </div>
-            </div>
-                </div>
-            </div>`);
-            }
-        });
-
-        getStudentEmails(studentEmailResult => {
-            for (i = 0; i < studentEmailResult.length; i++) {
-                $('#changeStudent').append(`<div class="card mt-2">
-                <h5 class="card-header">Student</h5>
-                <div class="card-body">
-                <h5 class="card-title">${studentEmailResult[i].email}</h5>
-
-                <div class="dropdown">
-                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Modify
-                </button>
-                <div class="dropdown-menu">
-                <form class="px-4 py-3">
-                <div class="form-group">
-                    <label for="exampleDropdownFormEmail1">Change Email address</label>
-                    <input type="email" class="form-control" id="exampleDropdownFormEmail1" placeholder="email@example.com">
-                    <button class="btn btn-primary mt-1" value="${studentEmailResult[i].id}">Change Email</button>
-                </div>
-                
-                <div class="form-group">
-                    <label for="exampleDropdownFormPassword1">Add Class</label>
-                    <br>
-                    <label class="mb-1" for="exampleDropdownFormPassword1">Class Subject</label>
-                    <input type="text" class="form-control" id="classSubject" placeholder="Class Subject">
-
-                    <label class="mb-1" for="exampleDropdownFormPassword1">Section</label>
-                    <input type="text" class="form-control" id="section" placeholder="Section (4A, 5A, 6A, ect)">
-
-                    <label class="mb-1" for="exampleDropdownFormPassword1">Class Location</label>
-                    <input type="text" class="form-control" id="classLocation" placeholder="Class Location">
-
-                    <label class="mb-1" for="exampleDropdownFormPassword1">Class Time</label>
-                    <input type="text" class="form-control" id="classTime" placeholder="Class Time">
-                    <button class="btn btn-primary mt-1" value="${studentEmailResult[i].id}">Add Class for Student</button>
-                </div>
-                </form>
-                <div class="dropdown-divider"></div>
-                <button class="btn btn-danger ml-2">Delete User</button>
-            </div>
-            </div>
-                </div>
-            </div>`);
-            }
-        });
+        appendStudentEmails();
+        appendTeacherEmails();
     };
+    //---------------------------------------------------------------------------
 
     $('#newTeacherEmail').on('click', function () {
         $('#message').hide();
@@ -185,22 +98,131 @@ $(document).ready(function () {
     });
     //-------------------------------------------------------------------------
 
-    function addStudentEmail(em, cb) {
-        $.ajax({
-            method: 'POST',
-            url: '/emails/student',
-            data: { email: em }
-        }).then(result => {
-            cb(result);
+    //Changing Teacher Email Address ------------------------------------------    
+    $(document).on('click', '.changeTeacherEmail', function (e) {
+        e.preventDefault();
+        let teacherEmailId = $(this).attr('value');
+        let newEmail = $(`#newEmailTeacher${teacherEmailId}`).val();
+        console.log(teacherEmailId);
+        console.log(newEmail);
+
+        updateTeacherEmail(teacherEmailId, newEmail, result => {
+            console.log(result);
+            appendStudentEmails();
+            appendTeacherEmails();
+        });
+
+    });
+    //-------------------------------------------------------------------------
+
+    //appending emails
+    //get teacher email information and modification
+    function appendTeacherEmails() {
+        $('#changeTeacher').empty();
+        getTeachersEmails(teacherEmailResult => {
+            for (i = 0; i < teacherEmailResult.length; i++) {
+                $('#changeTeacher').append(`<div class="card mt-2">
+                <h5 class="card-header">Teacher</h5>
+                <div class="card-body">
+                <h5 class="card-title">${teacherEmailResult[i].email}</h5>
+                <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Modify
+                </button>
+                <div class="dropdown-menu">
+                <form class="px-4 py-3">
+                <div class="form-group">
+                    <label for="exampleDropdownFormEmail1">Change Email address</label>
+                    <input type="email" class="form-control newEmail"  id="newEmailTeacher${teacherEmailResult[i].id}" placeholder="email@example.com">
+                    <button class="btn btn-primary mt-1 changeTeacherEmail" value="${teacherEmailResult[i].id}">Change Email</button>
+                </div>
+                
+                <div class="form-group">
+                    <label for="exampleDropdownFormPassword1">Add Class</label>
+                    <br>
+                    <label class="mb-1" for="exampleDropdownFormPassword1">Class Subject</label>
+                    <input type="text" class="form-control classSubject" placeholder="Class Subject">
+
+                    <label class="mb-1" for="exampleDropdownFormPassword1">Section</label>
+                    <input type="text" class="form-control section" placeholder="Section (4A, 5A, 6A, ect)">
+
+                    <label class="mb-1" for="exampleDropdownFormPassword1">Class Location</label>
+                    <input type="text" class="form-control classLocation" placeholder="Class Location">
+
+                    <label class="mb-1" for="exampleDropdownFormPassword1">Class Time</label>
+                    <input type="text" class="form-control classTime" placeholder="Class Time">
+
+                    <label class="mb-1" for="exampleDropdownFormPassword1">Teacher Name</label>
+                    <input type="text" class="form-control classTeacher" placeholder="Teacher Name">
+                    <button class="btn btn-primary mt-1 changeStudentEmail" value="${teacherEmailResult[i].id}">Add Class for Teacher</button>
+                </div>
+                </form>
+                <div class="dropdown-divider"></div>
+                <button class="btn btn-danger ml-2">Delete User</button>
+            </div>
+            </div>
+                </div>
+            </div>`);
+            }
         });
     }
 
-    function getStudentEmails(cb) {
+    //get student email information and modification
+    function appendStudentEmails() {
+        $('#changeStudent').empty();
+        getStudentEmails(studentEmailResult => {
+            for (i = 0; i < studentEmailResult.length; i++) {
+                $('#changeStudent').append(`<div class="card mt-2">
+                <h5 class="card-header">Student</h5>
+                <div class="card-body">
+                <h5 class="card-title">${studentEmailResult[i].email}</h5>
+
+                <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Modify
+                </button>
+                <div class="dropdown-menu">
+                <form class="px-4 py-3">
+                <div class="form-group">
+                    <label for="exampleDropdownFormEmail1">Change Email address</label>
+                    <input type="email" class="form-control" id="newEmailStudent${studentEmailResult[i].id}" placeholder="email@example.com">
+                    <button class="btn btn-primary mt-1 changeTeacherEmail" value="${studentEmailResult[i].id}">Change Email</button>
+                </div>
+                
+                <div class="form-group">
+                    <label for="exampleDropdownFormPassword1">Add Class</label>
+                    <br>
+                    <label class="mb-1" for="exampleDropdownFormPassword1">Class Subject</label>
+                    <input type="text" class="form-control classSubject" placeholder="Class Subject">
+
+                    <label class="mb-1" for="exampleDropdownFormPassword1">Section</label>
+                    <input type="text" class="form-control section" placeholder="Section (4A, 5A, 6A, ect)">
+
+                    <label class="mb-1" for="exampleDropdownFormPassword1">Class Location</label>
+                    <input type="text" class="form-control classLocation" placeholder="Class Location">
+
+                    <label class="mb-1" for="exampleDropdownFormPassword1">Class Time</label>
+                    <input type="text" class="form-control classTime" placeholder="Class Time">
+                    <button class="btn btn-primary mt-1" value="${studentEmailResult[i].id}">Add Class for Student</button>
+                </div>
+                </form>
+                <div class="dropdown-divider"></div>
+                <button class="btn btn-danger ml-2">Delete User</button>
+            </div>
+            </div>
+                </div>
+            </div>`);
+            }
+        });
+    }
+
+    function updateTeacherEmail(id, newEmail, cb) {
         $.ajax({
-            method: 'GET',
-            url: '/emails/student'
+            method: 'PUT',
+            url: `/emails/updateTeacherEmail/${id}`,
+            data: { email: newEmail }
         }).then(result => {
-            cb(result);
+            cb(result)
         });
     }
 
@@ -240,4 +262,23 @@ $(document).ready(function () {
             cb(result);
         });
     };
+
+    function addStudentEmail(em, cb) {
+        $.ajax({
+            method: 'POST',
+            url: '/emails/student',
+            data: { email: em }
+        }).then(result => {
+            cb(result);
+        });
+    }
+
+    function getStudentEmails(cb) {
+        $.ajax({
+            method: 'GET',
+            url: '/emails/student'
+        }).then(result => {
+            cb(result);
+        });
+    }
 });
