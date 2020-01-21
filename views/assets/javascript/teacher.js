@@ -136,16 +136,21 @@ $(document).ready(function () {
             // ----------------------------------------------------------------------
         }
     }
+
+    //View Courses ------------------------------------------------------------------
     $(document).on('click', '#btnCourses', function (e) {
         e.preventDefault();
         let classId = $(this).attr('value');
         window.location.href = `/classInfoTeacher?ClassId=${classId}`;
     });
+    //-------------------------------------------------------------------------------
 
+    //logout ------------------------------------------------------------------------
     $('#logOut').on('click', function (e) {
         e.preventDefault();
         console.log('clicked');
     });
+    //-------------------------------------------------------------------------------
 
     function login(cb) {
         $.ajax({
