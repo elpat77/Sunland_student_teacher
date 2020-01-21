@@ -4,22 +4,21 @@
 }
 
 html,
-body {
-  height: 100%;
+body {height: 100%;
 }
 
 body {
-  background: url(../images/Background.png);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+background: url(../images/Background.png);
+background-position: center;
+background-repeat: no-repeat;
+background-size: cover;
 
 }
 
 .logo {
     display: block;
     width: 100%;
-  }
+}
 
 body {
     font-family: 'Niramit', sans-serif;
@@ -182,7 +181,7 @@ ul.CTAs a {
 #changeTeacher:hover, #changeStudent:hover, #changeClass:hover, #changeAnnouncement:hover, #submitNewTeacher:hover, #submitNewStudent:hover, #submitNewAnnouncement:hover, #submitNewClass:hover{
     background:#FF726E!important;
     color: #fff !important;
-  }
+}
 
 
 
@@ -280,10 +279,15 @@ ul.CTAs a {
         background-color: #2A868A;
         font-family: 'Fresca','sans-serif';
         
-      }
-      .card-body{
+    }
+    .card-body{
         background-color:#74BEC1;
         font-family: 'Nimrati','sans-serif';
-      }
+    }
 
-    
+.modify{
+    background-color: #085D61;
+    display: inline-block;
+    width: 350px;
+    min-height: auto;
+}

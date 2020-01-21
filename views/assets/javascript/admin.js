@@ -29,6 +29,30 @@ $(document).ready(function () {
                 $('#name').text(result[0].name);
             });
         }
+
+        getTeachersEmails(teacherEmailResult => {
+            for (i = 0; i < teacherEmailResult.length; i++) {
+                $('#changeTeacher').append(`<div class="card mt-2">
+                <h5 class="card-header">Teacher</h5>
+                <div class="card-body">
+                <h5 class="card-title">${teacherEmailResult[i].email}</h5>
+                <a href="#" class="btn btn-primary" value= "${teacherEmailResult[i].email}">modify</a>
+                </div>
+            </div>`);
+            }
+        });
+
+        getStudentEmails(studentEmailResult => {
+            for (i = 0; i < studentEmailResult.length; i++) {
+                $('#changeStudent').append(`<div class="card mt-2">
+                <h5 class="card-header">Student</h5>
+                <div class="card-body">
+                <h5 class="card-title">${studentEmailResult[i].email}</h5>
+                <a href="#" class="btn btn-primary" value= "${studentEmailResult[i].email}">modify</a>
+                </div>
+            </div>`);
+            }
+        });
     };
 
     $('#newTeacherEmail').on('click', function () {
@@ -40,7 +64,6 @@ $(document).ready(function () {
     $('#submitNewTeacher').on('click', function (e) {
         e.preventDefault();
         let email = $('#newTeacherEmail').val();
-        console.log(email);
         if (email != '' && email.includes('@')) {
             getTeachersEmails(resultEmails => {
                 let teacherEmails = new Set();
