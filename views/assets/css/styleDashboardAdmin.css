@@ -286,8 +286,10 @@ ul.CTAs a {
     }
 
 .modify{
-    background-color: #085D61;
     display: inline-block;
     width: 350px;
-    min-height: auto;
+    min-height: 180px;
+}
+#changeTeacher{
+    float: left;
 }

@@ -36,7 +36,42 @@ $(document).ready(function () {
                 <h5 class="card-header">Teacher</h5>
                 <div class="card-body">
                 <h5 class="card-title">${teacherEmailResult[i].email}</h5>
-                <a href="#" class="btn btn-primary" value= "${teacherEmailResult[i].email}">modify</a>
+                <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Modify
+                </button>
+                <div class="dropdown-menu">
+                <form class="px-4 py-3">
+                <div class="form-group">
+                    <label for="exampleDropdownFormEmail1">Change Email address</label>
+                    <input type="email" class="form-control" id="exampleDropdownFormEmail1" placeholder="email@example.com">
+                    <button class="btn btn-primary mt-1" value="${teacherEmailResult[i].id}">Change Email</button>
+                </div>
+                
+                <div class="form-group">
+                    <label for="exampleDropdownFormPassword1">Add Class</label>
+                    <br>
+                    <label class="mb-1" for="exampleDropdownFormPassword1">Class Subject</label>
+                    <input type="text" class="form-control" id="classSubject" placeholder="Class Subject">
+
+                    <label class="mb-1" for="exampleDropdownFormPassword1">Section</label>
+                    <input type="text" class="form-control" id="section" placeholder="Section (4A, 5A, 6A, ect)">
+
+                    <label class="mb-1" for="exampleDropdownFormPassword1">Class Location</label>
+                    <input type="text" class="form-control" id="classLocation" placeholder="Class Location">
+
+                    <label class="mb-1" for="exampleDropdownFormPassword1">Class Time</label>
+                    <input type="text" class="form-control" id="classTime" placeholder="Class Time">
+
+                    <label class="mb-1" for="exampleDropdownFormPassword1">Teacher Name</label>
+                    <input type="text" class="form-control" id="classTeacher" placeholder="Teacher Name">
+                    <button class="btn btn-primary mt-1" value="${teacherEmailResult[i].id}">Add Class for Student</button>
+                </div>
+                </form>
+                <div class="dropdown-divider"></div>
+                <button class="btn btn-danger ml-2">Delete User</button>
+            </div>
+            </div>
                 </div>
             </div>`);
             }
@@ -48,7 +83,40 @@ $(document).ready(function () {
                 <h5 class="card-header">Student</h5>
                 <div class="card-body">
                 <h5 class="card-title">${studentEmailResult[i].email}</h5>
-                <a href="#" class="btn btn-primary" value= "${studentEmailResult[i].email}">modify</a>
+
+                <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Modify
+                </button>
+                <div class="dropdown-menu">
+                <form class="px-4 py-3">
+                <div class="form-group">
+                    <label for="exampleDropdownFormEmail1">Change Email address</label>
+                    <input type="email" class="form-control" id="exampleDropdownFormEmail1" placeholder="email@example.com">
+                    <button class="btn btn-primary mt-1" value="${studentEmailResult[i].id}">Change Email</button>
+                </div>
+                
+                <div class="form-group">
+                    <label for="exampleDropdownFormPassword1">Add Class</label>
+                    <br>
+                    <label class="mb-1" for="exampleDropdownFormPassword1">Class Subject</label>
+                    <input type="text" class="form-control" id="classSubject" placeholder="Class Subject">
+
+                    <label class="mb-1" for="exampleDropdownFormPassword1">Section</label>
+                    <input type="text" class="form-control" id="section" placeholder="Section (4A, 5A, 6A, ect)">
+
+                    <label class="mb-1" for="exampleDropdownFormPassword1">Class Location</label>
+                    <input type="text" class="form-control" id="classLocation" placeholder="Class Location">
+
+                    <label class="mb-1" for="exampleDropdownFormPassword1">Class Time</label>
+                    <input type="text" class="form-control" id="classTime" placeholder="Class Time">
+                    <button class="btn btn-primary mt-1" value="${studentEmailResult[i].id}">Add Class for Student</button>
+                </div>
+                </form>
+                <div class="dropdown-divider"></div>
+                <button class="btn btn-danger ml-2">Delete User</button>
+            </div>
+            </div>
                 </div>
             </div>`);
             }
