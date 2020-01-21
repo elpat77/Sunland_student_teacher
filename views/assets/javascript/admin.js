@@ -16,10 +16,9 @@ $(document).ready(function () {
                     }
                 });
             });
-
         }
     });
-    //login----------------------------------------------------------------------
+    //---------------------------------------------------------------------------
 
     window.onload = function () {
         const urlQuerries = new URLSearchParams(window.location.search);
@@ -34,8 +33,10 @@ $(document).ready(function () {
 
     $('#newTeacherEmail').on('click', function () {
         $('#message').hide();
+        $('#emailVal').hide();
     });
 
+    //adding teacher email ----------------------------------------------------
     $('#submitNewTeacher').on('click', function (e) {
         e.preventDefault();
         let email = $('#newTeacherEmail').val();
@@ -58,9 +59,59 @@ $(document).ready(function () {
                 }
             });
         } else {
-            $('#message').show().text('that email is invalid');
+            $('#emailVal').show();
         }
     });
+    //-------------------------------------------------------------------------
+
+    //adding student email ----------------------------------------------------
+    $('#submitNewStudent').on('click', function (e) {
+        e.preventDefault();
+        let email = $('#newStudentEmail').val();
+        console.log(email);
+        if (email != '' && email.includes('@')) {
+            getStudentEmails(resultEmails => {
+                console.log(resultEmails);
+                let studentEmails = new Set();
+                for (let i = 0; i < resultEmails.length; i++) {
+                    studentEmails.add(resultEmails[i].email);
+                }
+                if (studentEmails.has(email)) {
+                    $('#newStudentEmail').val('');
+                    $('#studentMessage').show().text('Sorry, email is already in the system');
+                } else {
+                    addStudentEmail(email, result => {
+                        $('#newStudentEmail').val('');
+                        $('#studentMessage').show().text('Email added!');
+                        console.log(result);
+                    });
+                }
+            });
+        } else {
+            console.log('this was hit');
+            $('#studentMessage').show().text('invalid email');
+        }
+    });
+    //-------------------------------------------------------------------------
+
+    function addStudentEmail(em, cb) {
+        $.ajax({
+            method: 'POST',
+            url: '/emails/student',
+            data: { email: em }
+        }).then(result => {
+            cb(result);
+        });
+    }
+
+    function getStudentEmails(cb) {
+        $.ajax({
+            method: 'GET',
+            url: '/emails/student'
+        }).then(result => {
+            cb(result);
+        });
+    }
 
     function addTeacherEmail(email, cb) {
         $.ajax({
