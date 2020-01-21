@@ -16,6 +16,17 @@ router.post('/teacher', (req, res) => {
     });
 });
 
+router.put('/updateTeacherEmail/:id', (req, res) => {
+    db.TeacherEmails.update({
+        email: req.body.email
+    },
+        {
+            where: { id: req.params.id }
+        }).then(result => {
+            res.json(result);
+        });
+});
+
 router.get('/student', (req, res) => {
     db.StudentEmails.findAll({}).then(studentEmailsdb => {
         res.json(studentEmailsdb);
