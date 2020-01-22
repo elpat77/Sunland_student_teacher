@@ -47,10 +47,10 @@
                             href="#v-pills-adminCreateTeacher" role="tab">Add a new Teacher</a></li>
                     <li><a class="nav-link" id="v-pills-adminCreateStudent-tab" data-toggle="pill"
                             href="#v-pills-adminCreateStudent" role="tab">Add a new Student</a></li>
-                    <li><a class="nav-link" id="v-pills-adminCreateClass-tab" data-toggle="pill"
-                            href="#v-pills-adminCreateClass" role="tab">Create a new Class</a></li>
+                    <li><a class="nav-link" id="v-pills-adminEditClass-tab" data-toggle="pill"
+                            href="#v-pills-adminEditClass" role="tab">Edit Classes</a></li>
                     <li><a class="nav-link" id="v-pills-adminModify-tab" data-toggle="pill" href="#v-pills-adminModify"
-                            role="tab">Make Changes</a></li>
+                            role="tab">Edit Students or Teachers</a></li>
                     <li><a class="nav-link" id="v-pills-makeGeneralAnnouncement-tab" data-toggle="pill"
                             href="#v-pills-makeGeneralAnnouncement" role="tab">Make an Announcement</a></li>
 
@@ -149,7 +149,7 @@
                     </div>
                 </div>
                 <div class="tab-pane fade" id="v-pills-adminModify" role="tabpanel">
-                    <h2>Make Changes</h2>
+                    <h2>Edit a Student or Teacher</h2>
                     <div class="line"></div>
                     <div class="col-sm-10">
                         <div class="modify col-sm-6" id="changeTeacher"></div>
@@ -191,76 +191,109 @@
                     </div>
                 </div>
                 ​
-                <div class="tab-pane fade" id="v-pills-adminCreateClass" role="tabpanel">
-                    <h2>Create a New Class</h2>
+                <div class="tab-pane fade" id="v-pills-adminEditClass" role="tabpanel">
+                    <h2>Edit Classes</h2>
                     <div class="line"></div>
                     <div class="col-sm-10">
                         <div class="card">
-                            <h5 class="card-header">Please complete this form</h5>
-                            <div class="card-body">
+                            <div class="card-header">
                                 <form class="needs-validation" novalidate>
-                                    ​
-                                    <div class="form-row">
-                                        <div class="col-md-6 mb-3">
-                                            <label for="newClassDescription">Class description</label>
-                                            <input type="text" class="form-control" id="newClassDescription" required>
-                                            <div class="invalid-feedback" id="classDescriptionVal">
-                                                Please enter class description
-                                            </div>
+                                    <div class="form-group row">
+                                        <label for="searchByID" class="col-sm-5 col-form-label text-center">Search for
+                                            Teacher or
+                                            Student by ID:</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" id="searchByID">
                                         </div>
-                                        <div class="col-md-6 mb-3">
-                                            <label for="newClassTeacher">Class Teacher</label>
-                                            <input type="text" class="form-control" id="newClassTeacher" required>
-                                            <div class="invalid-feedback" id="classTeacherVal">
-                                                Please enter a teacher name
-                                            </div>
-                                        </div>
-                                        ​
+
                                     </div>
-                                    <div class="form-row">
-                                        <div class="col-md-6 mb-3">
-                                            <label for="newClassLocation">Class Location</label>
-                                            <input type="text" class="form-control" id="newClassLocation" required>
-                                            <div class="invalid-feedback" id="classLocationVal">
-                                                Please enter class location
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 mb-3">
-                                            <label for="newClassTime">Class Times</label>
-                                            <input type="text" class="form-control" id="newClassTime" required>
-                                            <div class="invalid-feedback" id="classTimeVal">
-                                                Please enter class times
-                                            </div>
+                                    <div class="form-group row"></div>
+                                    <div class="form-group row">
+                                        <label for="searchByClass" class="col-sm-5 col-form-label text-center">Search by
+                                            Class
+                                            ID:</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" id="searchByClass">
                                         </div>
                                     </div>
-                                    <div class="form-row mt-3">
-                                        <div class="col-md-4 mb-3">
-                                            <label for="newClassSubject">Subject</label>
-                                            <input type="text" id="newClassSubject" required>
-                                            <div class="invalid-feedback" id="classSubjectVal">
-                                                Please enter an artistic discipline
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4 mb-3">
-                                            <label for="newClassGroup">Group</label>
-                                            <input type="text" id="newClassGroup" required>
-                                            <div class="invalid-feedback" id="groupVal">
-                                                Please enter a group
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4 mb-3">
-                                            <label for="newClassSection">Section</label>
-                                            <input type="text" id="newClassSection" required>
-                                            <div class="invalid-feedback" id="sectionVal">
-                                                Please enter a grade
-                                            </div>
-                                        </div>
+                                    <div class="text-center col-sm-4">
+                                        <button type="submit" class="btn" id="searchIDBtn">Search</button>
                                     </div>
-                                    <div class="form-group">
-                                    </div>
-                                    <button class="btn" id="submitNewClass" type="submit">Submit
-                                        form</button>
                                 </form>
+
+                            </div>
+
+                            <div class="card-body">
+                                <div class="card-text text-dark">
+                                    <form class="needs-validation" novalidate>
+                                        <div class="form-group row">
+                                            <label for="updateSubject" class="col-sm-4 col-form-label text-center">Enter
+                                                new subject:</label>
+                                            <div class="col-sm-4">
+                                                <input type="text" class="form-control" id="updateSubject">
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <button type="submit" class="btn" id="updateSubjectBtn">Update
+                                                    Subject</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <form class="needs-validation" novalidate>
+                                        <div class="form-group row">
+                                            <label for="updateSection" class="col-sm-4 col-form-label text-center">Enter
+                                                new section:</label>
+                                            <div class="col-sm-4">
+                                                <input type="text" class="form-control" id="updateSection">
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <button type="submit" class="btn" id="updateSectionBtn">Update
+                                                    Section</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <form class="needs-validation" novalidate>
+                                        <div class="form-group row">
+                                            <label for="updateLocation"
+                                                class="col-sm-4 col-form-label text-center">Enter new location:</label>
+                                            <div class="col-sm-4">
+                                                <input type="text" class="form-control" id="updateLocation">
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <button type="submit" class="btn" id="updateLocationBtn">Update
+                                                    Location
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <form class="needs-validation" novalidate>
+                                        <div class="form-group row">
+                                            <label for="updateClassTime"
+                                                class="col-sm-4 col-form-label text-center">Enter new time:</label>
+                                            <div class="col-sm-4">
+                                                <input type="text" class="form-control" id="updateClassTime">
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <button type="submit" class="btn" id="updateClassTimeBtn">Update
+                                                    Time
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <form class="needs-validation" novalidate>
+                                        <div class="form-group row">
+                                            <label for="updateClassTeacher"
+                                                class="col-sm-4 col-form-label text-center">Enter new Teacher:</label>
+                                            <div class="col-sm-4">
+                                                <input type="text" class="form-control" id="updateClassTeacher">
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <button type="submit" class="btn" id="updateClassTeacherBtn">Update
+                                                    Teacher
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
