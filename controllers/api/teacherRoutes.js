@@ -50,6 +50,15 @@ router.get('/searchEmail/:id', (req, res) => {
     });
 });
 
-
+router.put('/updateTeacherEmail/:id', (req, res) => {
+    db.Teacher.update({
+        email: req.body.email
+    },
+        {
+            where: { id: req.params.id }
+        }).then(result => {
+            res.json(result);
+        });
+});
 
 module.exports = router;

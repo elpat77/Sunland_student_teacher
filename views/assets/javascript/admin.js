@@ -31,8 +31,8 @@ $(document).ready(function () {
             });
         }
 
-        appendStudentEmails();
-        appendTeacherEmails();
+        appendStudents();
+        appendTeachers();
     };
     //---------------------------------------------------------------------------
 
@@ -61,8 +61,8 @@ $(document).ready(function () {
                         console.log(result);
                     });
                 }
-                appendStudentEmails();
-                appendTeacherEmails();
+                appendStudents();
+                appendTeachers();
             });
         } else {
             $('#emailVal').show();
@@ -93,8 +93,8 @@ $(document).ready(function () {
                         console.log(result);
                     });
                 }
-                appendStudentEmails();
-                appendTeacherEmails();
+                appendStudents();
+                appendTeachers();
             });
         } else {
             console.log('this was hit');
@@ -111,8 +111,8 @@ $(document).ready(function () {
 
         updateTeacherEmail(teacherEmailId, newEmail, result => {
             console.log(result);
-            appendStudentEmails();
-            appendTeacherEmails();
+            appendStudents();
+            appendTeachers();
         });
     });
     //-------------------------------------------------------------------------
@@ -125,8 +125,8 @@ $(document).ready(function () {
 
         updateStudentEmail(studentEmailId, newEmail, result => {
             console.log(result);
-            appendStudentEmails();
-            appendTeacherEmails();
+            appendStudents();
+            appendTeachers();
         });
     });
     //-------------------------------------------------------------------------
@@ -184,16 +184,127 @@ $(document).ready(function () {
     });
     //-------------------------------------------------------------------------
 
+    //Creating Account Teachers------------------------------------------------
+    $('#submitNewTeacherAccount').on('click', function (e) {
+        e.preventDefault();
+
+        let email = $('#teacherEmail').val();
+        let password = $('#teacherPassword').val();
+        let firstName = $('#teacherFirstName').val();
+        let lastName = $('#teacherLastName').val();
+        let fullName = firstName + ' ' + lastName;
+
+        if (email === '') {
+            $('#emailVal').show();
+        }
+        if (password === '') {
+            $('#passwordVal').show();
+        }
+        if (firstName === '') {
+            $('#firstNameVal').show();
+        }
+        if (lastName === '') {
+            $('#lastNameVal').show();
+        }
+
+        if (email != '' && password != '' && firstName != '' && lastName != '') {
+            getTeachers(result => {
+                console.log(result);
+                let teachersSet = new Set();
+                for (let j = 0; j < result.length; j++) {
+                    teachersSet.add(result[j].email);
+                }
+                if (!teachersSet.has(email)) {
+                    createAccountTeacher(fullName, email, password, resultAccount => {
+                        console.log(resultAccount);
+                    });
+                } else {
+                    alert('This email has an account already');
+                }
+            });
+            appendTeachers();
+        }
+    });
+    //--------------------------------------------------------------------------------
+
+    //Validation ---------------------------------------------------------------------
+    $('#teacherEmail').on('click', function () {
+        $('#emailVal').hide();
+    });
+    $('#teacherPassword').on('click', function () {
+        $('#passwordVal').hide();
+    });
+    $('#teacherFirstName').on('click', function () {
+        $('#firstNameVal').hide();
+    });
+    $('#teacherLastName').on('click', function () {
+        $('#lastNameVal').hide();
+    });
+
+    //--------------------------------------------------------------------------------
+
+    //Creating Account Students---------------------------------------------------
+    $('#submitNewStudentAccount').on('click', function (e) {
+        e.preventDefault();
+
+        let email = $('#studentEmail').val();
+        let password = $('#studentPassword').val();
+        let firstName = $('#studentFirstName').val();
+        let lastName = $('#studentLastName').val();
+        let fullName = firstName + ' ' + lastName;
+
+        if (email === '') {
+            $('#emailVal').show();
+        }
+        if (password === '') {
+            $('#passwordVal').show();
+        }
+        if (firstName === '') {
+            $('#firstNameVal').show();
+        }
+        if (lastName === '') {
+            $('#lastNameVal').show();
+        }
+
+        if (email != '' && password != '' && firstName != '' && lastName != '') {
+            getStudents(result => {
+                console.log(result);
+                let studentSet = new Set();
+                for (let j = 0; j < result.length; j++) {
+                    studentSet.add(result[j].email);
+                }
+                if (!studentSet.has(email)) {
+                    createAccountStudent(fullName, email, password, resultAccount => {
+                        console.log(resultAccount);
+                    });
+                } else {
+                    alert('This email has an account already');
+                }
+            });
+            appendStudents();
+        }
+    });
+    //--------------------------------------------------------------------------------
+
+    function getTeachers(cb) {
+        $.ajax({
+            method: 'GET',
+            url: '/teacherRoutes',
+        }).then(result => {
+            cb(result);
+        });
+    }
+
     //appending emails
     //get teacher email information and modification
-    function appendTeacherEmails() {
+    function appendTeachers() {
         $('#changeTeacher').empty();
-        getTeachersEmails(teacherEmailResult => {
-            for (i = 0; i < teacherEmailResult.length; i++) {
+        getTeachers(teacherResult => {
+            for (i = 0; i < teacherResult.length; i++) {
                 $('#changeTeacher').append(`<div class="card mt-2">
                 <h5 class="card-header">Teacher</h5>
                 <div class="card-body">
-                <h5 class="card-title">${teacherEmailResult[i].email}</h5>
+                <h5 class="card-title">${teacherResult[i].email}</h5>
                 <div class="dropdown">
                 <button class="btn dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Modify
@@ -202,29 +313,29 @@ $(document).ready(function () {
                 <form class="px-4 py-3">
                 <div class="form-group">
                     <label for="exampleDropdownFormEmail1">Change Email address</label>
-                    <input type="email" class="form-control newEmai"  id="newEmailTeacher${teacherEmailResult[i].id}" placeholder="email@example.com">
-                    <button class="btn btn-primary mt-1 changeTeacherEmail" value="${teacherEmailResult[i].id}">Change Email</button>
+                    <input type="email" class="form-control newEmai"  id="newEmailTeacher${teacherResult[i].id}" placeholder="email@example.com">
+                    <button class="btn btn-primary mt-1 changeTeacherEmail" value="${teacherResult[i].id}">Change Email</button>
                 </div>
                 
                 <div class="form-group">
                     <label for="exampleDropdownFormPassword1">Add Class</label>
                     <br>
                     <label class="mb-1" for="exampleDropdownFormPassword1">Class Subject</label>
-                    <input type="text" class="form-control classSubject" id="classSubjectTeacher${teacherEmailResult[i].id}" placeholder="Class Subject">
+                    <input type="text" class="form-control classSubject" id="classSubjectTeacher${teacherResult[i].id}" placeholder="Class Subject">
 
                     <label class="mb-1" for="exampleDropdownFormPassword1">Section</label>
-                    <input type="text" class="form-control section" id="sectionTeacher${teacherEmailResult[i].id}" placeholder="Section (4A, 5A, 6A, ect)">
+                    <input type="text" class="form-control section" id="sectionTeacher${teacherResult[i].id}" placeholder="Section (4A, 5A, 6A, ect)">
 
                     <label class="mb-1" for="exampleDropdownFormPassword1">Class Location</label>
-                    <input type="text" class="form-control classLocation" id="classLocationTeacher${teacherEmailResult[i].id}" placeholder="Class Location">
+                    <input type="text" class="form-control classLocation" id="classLocationTeacher${teacherResult[i].id}" placeholder="Class Location">
 
                     <label class="mb-1" for="exampleDropdownFormPassword1">Class Time</label>
-                    <input type="text" class="form-control classTime" id="classTimeTeacher${teacherEmailResult[i].id}" placeholder="Class Time">
+                    <input type="text" class="form-control classTime" id="classTimeTeacher${teacherResult[i].id}" placeholder="Class Time">
 
                     <label class="mb-1" for="exampleDropdownFormPassword1">Teacher Name</label>
-                    <input type="text" class="form-control classTeacher" id="classTeacher${teacherEmailResult[i].id}" placeholder="Teacher Name">
+                    <input type="text" class="form-control classTeacher" id="classTeacher${teacherResult[i].id}" placeholder="Teacher Name">
 
-                    <button class="btn btn-primary mt-1 addClassTeacher" data="${teacherEmailResult[i].email}" value="${teacherEmailResult[i].id}">Add Class for Teacher</button>
+                    <button class="btn btn-primary mt-1 addClassTeacher" data="${teacherResult[i].email}" value="${teacherResult[i].id}">Add Class for Teacher</button>
                 </div>
                 </form>
                 <div class="dropdown-divider"></div>
@@ -238,7 +349,7 @@ $(document).ready(function () {
     }
 
     //get student email information and modification
-    function appendStudentEmails() {
+    function appendStudents() {
         $('#changeStudent').empty();
         getStudentEmails(studentEmailResult => {
             for (i = 0; i < studentEmailResult.length; i++) {
@@ -293,7 +404,7 @@ $(document).ready(function () {
     function updateTeacherEmail(id, newEmail, cb) {
         $.ajax({
             method: 'PUT',
-            url: `/emails/updateTeacherEmail/${id}`,
+            url: `/teacherRoutes/updateTeacherEmail/${id}`,
             data: { email: newEmail }
         }).then(result => {
             cb(result)
@@ -353,6 +464,23 @@ $(document).ready(function () {
         });
     };
 
+
+    function createAccountTeacher(fullName, email, password, cb) {
+        $.ajax({
+            method: 'POST',
+            url: '/teacherRoutes',
+            data: {
+                name: fullName,
+                email: email,
+                password: password,
+                picture: null
+            }
+        }).then(res => {
+            cb(res);
+        });
+    };
+
+
     //Students-------------------------------------------------
     function updateStudentEmail(id, newEmail, cb) {
         $.ajax({
@@ -406,8 +534,28 @@ $(document).ready(function () {
         });
     }
 
-
-
+    function getStudents(cb) {
+        $.ajax({
+            method: 'GET',
+            url: '/studentsRoutes'
+        }).then(result => {
+            cb(result);
+        });
+    }
+    function createAccountStudent(fullName, email, password, cb) {
+        $.ajax({
+            method: 'POST',
+            url: '/studentsRoutes',
+            data: {
+                name: fullName,
+                email: email,
+                password: password,
+                picture: null
+            }
+        }).then(result => {
+            cb(result);
+        });
+    }
     // function addStudentToClass() {
     //     $.ajax({
     //         method: 'POST',

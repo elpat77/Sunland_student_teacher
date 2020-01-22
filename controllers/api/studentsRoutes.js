@@ -10,6 +10,26 @@ router.get('/', (req, res) => {
     });
 });
 
+router.post('/', (req, res) => {
+    db.Students.create({
+        name: req.body.name,
+        email: req.body.email,
+        picture: req.body.pic,
+        password: req.body.password
+    }).then(result => {
+        res.json(result);
+    });
+});
+
+router.put('/connectClass/:id', (req, res) => {
+    db.Students.update(
+        { ClassId: req.body.ClassId },
+        { where: { id: req.params.id } }
+    ).then(result => {
+        res.json(result);
+    });
+});
+
 router.post('/:class', (req, res) => {
     db.Students.create({
         name: req.body.name,
@@ -32,5 +52,6 @@ router.get('/searchEmail/:id', (req, res) => {
         res.json(result);
     });
 });
+
 
 module.exports = router;
