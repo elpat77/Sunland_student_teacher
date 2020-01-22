@@ -159,30 +159,48 @@ $(document).ready(function () {
     //adding classes to students ----------------------------------------------
     $(document).on('click', '.addClassStudent', function (e) {
         e.preventDefault();
-        let studentEmailId = $(this).attr('value');
+        let studentId = $(this).attr('value');
         let studentEmail = $(this).attr('data');
-        let classSubject = $(`#classSubjectStudent${studentEmailId}`).val();
-        let section = $(`#sectionStudent${studentEmailId}`).val();
-        let classLocation = $(`#classLocationStudent${studentEmailId}`).val();
-        let classTime = $(`#classTimeStudent${studentEmailId}`).val();
-        let teacherName = $(`#classStudent${studentEmailId}`).val();
+        let classSubject = $(`#classSubjectStudent${studentId}`).val();
+        let section = $(`#sectionStudent${studentId}`).val();
+        let classLocation = $(`#classLocationStudent${studentId}`).val();
+        let classTime = $(`#classTimeStudent${studentId}`).val();
+        let teacherName = $(`#classStudent${studentId}`).val();
 
-        searchStudentByEmail(studentEmail, resultStudent => {
-            console.log(resultStudent);
-            if (resultStudent != null) {
-                let studentId = resultStudent.id;
-                addClassInfoToStudent(studentId, classSubject, section, teacherName, resultClassInfo => {
-                    console.log(resultClassInfo);
-                });
-                let studentClassId = resultStudent.ClassId;
-                //crate students first
-                //addStudentToClass();
-            } else {
-                alert('That student must create an account/no such email');
+        getClassId(classSubject, teacherName, result => {
+            console.log(result);
+            if (result.length > 1) {
+                let success = false;
+                let id = 2000;
+                for (let i = 0; i < result.length; i++) {
+                    if (section == result[i].section && classLocation == result[i].location
+                        && classTime == result[i].meetTime) {
+                        success = true;
+                        id = result[i].id;
+                        i = result.length;
+                    }
+                }
+                if (success) {
+                    addStudentToClass(studentId, id, addedStudent => {
+                        console.log(addedStudent);
+                    });
+                } else {
+                    alert('sorry, couldnt find classes');
+                }
             }
         });
     });
     //-------------------------------------------------------------------------
+
+    function addStudentToClass(studentId, ClassId, cb) {
+        $.ajax({
+            method: 'PUT',
+            url: `/studentsRoutes/connectClass/${studentId}`,
+            data: { ClassId: ClassId }
+        }).then(result => {
+            cb(result);
+        });
+    }
 
     //Creating Account Teachers------------------------------------------------
     $('#submitNewTeacherAccount').on('click', function (e) {
@@ -286,10 +304,10 @@ $(document).ready(function () {
     });
     //--------------------------------------------------------------------------------
 
-    function getTeachers(cb) {
+    function getClassId(subject, teacher, cb) {
         $.ajax({
             method: 'GET',
-            url: '/teacherRoutes',
+            url: `/classesRoutes/getClassBySubject/${subject}/${teacher}`
         }).then(result => {
             cb(result);
         });
@@ -351,12 +369,12 @@ $(document).ready(function () {
     //get student email information and modification
     function appendStudents() {
         $('#changeStudent').empty();
-        getStudentEmails(studentEmailResult => {
-            for (i = 0; i < studentEmailResult.length; i++) {
+        getStudents(studentResult => {
+            for (i = 0; i < studentResult.length; i++) {
                 $('#changeStudent').append(`<div class="card mt-2">
                 <h5 class="card-header">Student</h5>
                 <div class="card-body">
-                <h5 class="card-title">${studentEmailResult[i].email}</h5>
+                <h5 class="card-title">${studentResult[i].email}</h5>
 
                 <div class="dropdown">
                 <button class="btn dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -366,28 +384,28 @@ $(document).ready(function () {
                 <form class="px-4 py-3">
                 <div class="form-group">
                     <label for="exampleDropdownFormEmail1">Change Email address</label>
-                    <input type="email" class="form-control" id="newEmailStudent${studentEmailResult[i].id}" placeholder="email@example.com">
-                    <button class="btn btn-primary mt-1 changeStudentEmail" value="${studentEmailResult[i].id}">Change Email</button>
+                    <input type="email" class="form-control" id="newEmailStudent${studentResult[i].id}" placeholder="email@example.com">
+                    <button class="btn btn-primary mt-1 changeStudentEmail" value="${studentResult[i].id}">Change Email</button>
                 </div>
                 
                 <div class="form-group">
                     <label for="exampleDropdownFormPassword1">Add Class</label>
                     <br>
                     <label class="mb-1" for="exampleDropdownFormPassword1">Class Subject</label>
-                    <input type="text" class="form-control classSubject" id="classSubjectStudent${studentEmailResult[i].id}" placeholder="Class Subject">
+                    <input type="text" class="form-control classSubject" id="classSubjectStudent${studentResult[i].id}" placeholder="Class Subject">
 
                     <label class="mb-1" for="exampleDropdownFormPassword1">Section</label>
-                    <input type="text" class="form-control section" id="sectionStudent${studentEmailResult[i].id}" placeholder="Section (4A, 5A, 6A, ect)">
+                    <input type="text" class="form-control section" id="sectionStudent${studentResult[i].id}" placeholder="Section (4A, 5A, 6A, ect)">
 
                     <label class="mb-1" for="exampleDropdownFormPassword1">Class Location</label>
-                    <input type="text" class="form-control classLocation" id="classLocationStudent${studentEmailResult[i].id}"placeholder="Class Location">
+                    <input type="text" class="form-control classLocation" id="classLocationStudent${studentResult[i].id}"placeholder="Class Location">
 
                     <label class="mb-1" for="exampleDropdownFormPassword1">Class Time</label>
-                    <input type="text" class="form-control classTime" id="classTimeStudent${studentEmailResult[i].id}" placeholder="Class Time">
+                    <input type="text" class="form-control classTime" id="classTimeStudent${studentResult[i].id}" placeholder="Class Time">
 
                     <label class="mb-1" for="exampleDropdownFormPassword1">Teacher Name</label>
-                    <input type="text" class="form-control classTeacher" id="classStudent${studentEmailResult[i].id}" placeholder="Teacher Name">
-                    <button class="btn btn-primary mt-1" data="${studentEmailResult[i].email}" value="${studentEmailResult[i].id}">Add Class for Student</button>
+                    <input type="text" class="form-control classTeacher" id="classStudent${studentResult[i].id}" placeholder="Teacher Name">
+                    <button class="btn btn-primary mt-1 addClassStudent" data="${studentResult[i].email}" value="${studentResult[i].id}">Add Class for Student</button>
                 </div>
                 </form>
                 <div class="dropdown-divider"></div>
@@ -401,6 +419,16 @@ $(document).ready(function () {
     }
 
     //Teachers------------------------------------------------------------
+
+    function getTeachers(cb) {
+        $.ajax({
+            method: 'GET',
+            url: '/teacherRoutes',
+        }).then(result => {
+            cb(result);
+        });
+    }
+
     function updateTeacherEmail(id, newEmail, cb) {
         $.ajax({
             method: 'PUT',
@@ -556,10 +584,4 @@ $(document).ready(function () {
             cb(result);
         });
     }
-    // function addStudentToClass() {
-    //     $.ajax({
-    //         method: 'POST',
-
-    //     }).then();
-    // }
 });
