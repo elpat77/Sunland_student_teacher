@@ -1,9 +1,8 @@
 # Sunland School of Arts <br> Student - Teacher communication application
 
 # Group Members
-- Jennifer Ni
+- Jennifer Ni 
 - Patricio Aguilar
-- Chin Kuay
 
 ---
 
@@ -35,7 +34,9 @@ This is the front end, a place where parents or students will be able to login a
 
 ### Teacher/School side
 
-This is the back end controlled by the school. It will be the place where school staff will upload relevant information for the parents/students to view. It should contain the following:
+This is the back end controlled by the school. It will be the place where school staff will upload relevant information for the parents/students to view. It should be divided into two pages: Teacher and Admin.
+
+They should contain the following:
 
 1. **Database -** A separate form with a database schema will be created indicating all the fields that are needed. In general it should contain; parent information and  student information
 2. **Calendar -** Admin staff needs a way of uploading different calendar events updating the specific calendars accordingly. (General Calendar, Classroom Calendar, Field Trips, Transportation, etc)
@@ -55,6 +56,10 @@ This is the back end controlled by the school. It will be the place where school
 ---
 ### API's used:
 1. Vimeo
+
+---
+### New Technologies
+1. Full Calendar
 
 
 
