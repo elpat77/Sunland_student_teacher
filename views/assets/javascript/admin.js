@@ -160,7 +160,6 @@ $(document).ready(function () {
     $(document).on('click', '.addClassStudent', function (e) {
         e.preventDefault();
         let studentId = $(this).attr('value');
-        let studentEmail = $(this).attr('data');
         let classSubject = $(`#classSubjectStudent${studentId}`).val();
         let section = $(`#sectionStudent${studentId}`).val();
         let classLocation = $(`#classLocationStudent${studentId}`).val();
@@ -169,7 +168,9 @@ $(document).ready(function () {
 
         getClassId(classSubject, teacherName, result => {
             console.log(result);
-            if (result.length > 1) {
+            if (result.length === 0) {
+                alert('Sorry, no class found');
+            } if (result.length > 1) {
                 let success = false;
                 let id = 2000;
                 for (let i = 0; i < result.length; i++) {
@@ -182,25 +183,24 @@ $(document).ready(function () {
                 }
                 if (success) {
                     addStudentToClass(studentId, id, addedStudent => {
-                        console.log(addedStudent);
+                        addClassInfoToStudent(studentId, classSubject, section, teacherName, classInfoResult => {
+                            alert('Class Added for Student');
+                        });
                     });
                 } else {
                     alert('sorry, couldnt find classes');
                 }
+            } else {
+                id = result[0].id;
+                addStudentToClass(studentId, id, addStudent => {
+                    addClassInfoToStudent(studentId, classSubject, section, teacherName, classInfoResult => {
+                        alert('Class Added for Student');
+                    });
+                });
             }
         });
     });
     //-------------------------------------------------------------------------
-
-    function addStudentToClass(studentId, ClassId, cb) {
-        $.ajax({
-            method: 'PUT',
-            url: `/studentsRoutes/connectClass/${studentId}`,
-            data: { ClassId: ClassId }
-        }).then(result => {
-            cb(result);
-        });
-    }
 
     //Creating Account Teachers------------------------------------------------
     $('#submitNewTeacherAccount').on('click', function (e) {
@@ -245,7 +245,7 @@ $(document).ready(function () {
     });
     //--------------------------------------------------------------------------------
 
-    //Validation ---------------------------------------------------------------------
+    //Validation Teachers-------------------------------------------------------------
     $('#teacherEmail').on('click', function () {
         $('#emailVal').hide();
     });
@@ -258,7 +258,6 @@ $(document).ready(function () {
     $('#teacherLastName').on('click', function () {
         $('#lastNameVal').hide();
     });
-
     //--------------------------------------------------------------------------------
 
     //Creating Account Students---------------------------------------------------
@@ -304,6 +303,43 @@ $(document).ready(function () {
     });
     //--------------------------------------------------------------------------------
 
+    //Validation Students-------------------------------------------------------------
+    $('#studentEmail').on('click', function () {
+        $('#emailVal').hide();
+    });
+    $('#studentPassword').on('click', function () {
+        $('#passwordVal').hide();
+    });
+    $('#studentFirstName').on('click', function () {
+        $('#firstNameVal').hide();
+    });
+    $('#studentLastName').on('click', function () {
+        $('#lastNameVal').hide();
+    });
+    //--------------------------------------------------------------------------------
+
+    //Delete Teacher Account ---------------------------------------------------------
+    $(document).on('click', '.deleteUserTeacher', function (e) {
+        e.preventDefault();
+        let teacherId = $(this).attr('value');
+        deleteTeacherById(teacherId, result => {
+            appendTeachers();
+            alert('Teacher has been deleted');
+        });
+    });
+    //--------------------------------------------------------------------------------
+
+    //Delete Student Account ---------------------------------------------------------
+    $(document).on('click', '.deleteUserStudent', function (e) {
+        e.preventDefault();
+        let studentId = $(this).attr('value');
+        deleteStudentById(studentId, result => {
+            appendStudents();
+            alert('Student has been deleted');
+        });
+    });
+    //--------------------------------------------------------------------------------
+
     function getClassId(subject, teacher, cb) {
         $.ajax({
             method: 'GET',
@@ -322,7 +358,8 @@ $(document).ready(function () {
                 $('#changeTeacher').append(`<div class="card mt-2">
                 <h5 class="card-header">Teacher</h5>
                 <div class="card-body">
-                <h5 class="card-title">${teacherResult[i].email}</h5>
+                <h5 class="card-title">${teacherResult[i].name}</h5>
+                <h6 class="card-title">${teacherResult[i].email}</h6>
                 <div class="dropdown">
                 <button class="btn dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Modify
@@ -357,7 +394,7 @@ $(document).ready(function () {
                 </div>
                 </form>
                 <div class="dropdown-divider"></div>
-                <button class="btn btn-danger ml-2">Delete User</button>
+                <button class="btn btn-danger ml-2 deleteUserTeacher" value= "${teacherResult[i].id}">Delete User</button>
             </div>
             </div>
                 </div>
@@ -374,8 +411,8 @@ $(document).ready(function () {
                 $('#changeStudent').append(`<div class="card mt-2">
                 <h5 class="card-header">Student</h5>
                 <div class="card-body">
-                <h5 class="card-title">${studentResult[i].email}</h5>
-
+                <h5 class="card-title">${studentResult[i].name}</h5>
+                <h6 class="card-title">${studentResult[i].email}</h6>
                 <div class="dropdown">
                 <button class="btn dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Modify
@@ -409,7 +446,7 @@ $(document).ready(function () {
                 </div>
                 </form>
                 <div class="dropdown-divider"></div>
-                <button class="btn btn-danger ml-2">Delete User</button>
+                <button class="btn btn-danger ml-2 deleteUserStudent" value="${studentResult[i].id}">Delete User</button>
             </div>
             </div>
                 </div>
@@ -508,12 +545,20 @@ $(document).ready(function () {
         });
     };
 
+    function deleteTeacherById(teacherId, cb) {
+        $.ajax({
+            method: 'DELETE',
+            url: `/teacherRoutes/delete/${teacherId}`
+        }).then(result => {
+            cb(result);
+        });
+    }
 
     //Students-------------------------------------------------
     function updateStudentEmail(id, newEmail, cb) {
         $.ajax({
             method: 'PUT',
-            url: `/emails/updateStudentEmail/${id}`,
+            url: `/studentsRoutes/updateStudentEmail/${id}`,
             data: { email: newEmail }
         }).then(result => {
             cb(result)
@@ -580,6 +625,39 @@ $(document).ready(function () {
                 password: password,
                 picture: null
             }
+        }).then(result => {
+            cb(result);
+        });
+    }
+
+    function addStudentToClass(studentId, ClassId, cb) {
+        $.ajax({
+            method: 'PUT',
+            url: `/studentsRoutes/connectClass/${studentId}`,
+            data: { ClassId: ClassId }
+        }).then(result => {
+            cb(result);
+        });
+    }
+
+    function addClassInfoToStudent(studentId, name, section, teacher, cb) {
+        $.ajax({
+            method: 'POST',
+            url: `/classInfoRoutes/${studentId}`,
+            data: {
+                name: name,
+                section: section,
+                teacher: teacher,
+            }
+        }).then(result => {
+            cb(result);
+        });
+    }
+
+    function deleteStudentById(teacherId, cb) {
+        $.ajax({
+            method: 'DELETE',
+            url: `/studentsRoutes/delete/${teacherId}`
         }).then(result => {
             cb(result);
         });
