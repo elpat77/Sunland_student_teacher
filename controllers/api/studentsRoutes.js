@@ -22,4 +22,15 @@ router.post('/:class', (req, res) => {
     });
 });
 
+router.get('/searchEmail/:id', (req, res) => {
+    db.Students.findOne({
+        where: {
+            email: req.params.id
+        },
+        include: [db.Classes]
+    }).then(result => {
+        res.json(result);
+    });
+});
+
 module.exports = router;

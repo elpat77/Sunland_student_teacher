@@ -23,4 +23,15 @@ router.post('/:id', (req, res) => {
     });
 });
 
+router.get('/getClassBySubject/:subject/:teacher', (req, res) => {
+    db.Classes.findAll({
+        where: {
+            teacher: req.params.teacher,
+            subject: req.params.subject
+        }
+    }).then(result => {
+        res.json(result);
+    });
+});
+
 module.exports = router;

@@ -135,6 +135,52 @@ $(document).ready(function () {
     $(document).on('click', '.addClassTeacher', function (e) {
         e.preventDefault();
         let teacherEmailId = $(this).attr('value');
+        let currentEmail = $(this).attr('data');
+        let classSubject = $(`#classSubjectTeacher${teacherEmailId}`).val();
+        let section = $(`#sectionTeacher${teacherEmailId}`).val();
+        let classLocation = $(`#classLocationTeacher${teacherEmailId}`).val();
+        let classTime = $(`#classTimeTeacher${teacherEmailId}`).val();
+        let teacherName = $(`#classTeacher${teacherEmailId}`).val();
+
+        searchTeacherByEmail(currentEmail, resultTeacher => {
+            console.log(resultTeacher);
+            if (resultTeacher != null) {
+                let teacherId = resultTeacher.id;
+                addClassesToTeacher(teacherId, classSubject, section, teacherName, classLocation, classTime, resultClass => {
+                    console.log(resultClass);
+                });
+            } else {
+                alert('That teacher must create an account');
+            }
+        });
+    });
+    //-------------------------------------------------------------------------
+
+    //adding classes to students ----------------------------------------------
+    $(document).on('click', '.addClassStudent', function (e) {
+        e.preventDefault();
+        let studentEmailId = $(this).attr('value');
+        let studentEmail = $(this).attr('data');
+        let classSubject = $(`#classSubjectStudent${studentEmailId}`).val();
+        let section = $(`#sectionStudent${studentEmailId}`).val();
+        let classLocation = $(`#classLocationStudent${studentEmailId}`).val();
+        let classTime = $(`#classTimeStudent${studentEmailId}`).val();
+        let teacherName = $(`#classStudent${studentEmailId}`).val();
+
+        searchStudentByEmail(studentEmail, resultStudent => {
+            console.log(resultStudent);
+            if (resultStudent != null) {
+                let studentId = resultStudent.id;
+                addClassInfoToStudent(studentId, classSubject, section, teacherName, resultClassInfo => {
+                    console.log(resultClassInfo);
+                });
+                let studentClassId = resultStudent.ClassId;
+                //crate students first
+                //addStudentToClass();
+            } else {
+                alert('That student must create an account/no such email');
+            }
+        });
     });
     //-------------------------------------------------------------------------
 
@@ -176,7 +222,8 @@ $(document).ready(function () {
                     <input type="text" class="form-control classTime" id="classTimeTeacher${teacherEmailResult[i].id}" placeholder="Class Time">
 
                     <label class="mb-1" for="exampleDropdownFormPassword1">Teacher Name</label>
-                    <input type="text" class="form-control classTeacher" placeholder="Teacher Name">
+                    <input type="text" class="form-control classTeacher" id="classTeacher${teacherEmailResult[i].id}" placeholder="Teacher Name">
+
                     <button class="btn btn-primary mt-1 addClassTeacher" data="${teacherEmailResult[i].email}" value="${teacherEmailResult[i].id}">Add Class for Teacher</button>
                 </div>
                 </form>
@@ -226,6 +273,9 @@ $(document).ready(function () {
 
                     <label class="mb-1" for="exampleDropdownFormPassword1">Class Time</label>
                     <input type="text" class="form-control classTime" id="classTimeStudent${studentEmailResult[i].id}" placeholder="Class Time">
+
+                    <label class="mb-1" for="exampleDropdownFormPassword1">Teacher Name</label>
+                    <input type="text" class="form-control classTeacher" id="classStudent${studentEmailResult[i].id}" placeholder="Teacher Name">
                     <button class="btn btn-primary mt-1" data="${studentEmailResult[i].email}" value="${studentEmailResult[i].id}">Add Class for Student</button>
                 </div>
                 </form>
@@ -239,6 +289,7 @@ $(document).ready(function () {
         });
     }
 
+    //Teachers------------------------------------------------------------
     function updateTeacherEmail(id, newEmail, cb) {
         $.ajax({
             method: 'PUT',
@@ -254,6 +305,22 @@ $(document).ready(function () {
             method: 'POST',
             url: '/emails/teacher',
             data: { email: email }
+        }).then(result => {
+            cb(result);
+        });
+    }
+
+    function addClassesToTeacher(id, subject, section, teacher, location, meetTime, cb) {
+        $.ajax({
+            method: 'POST',
+            url: `/classesRoutes/${id}`,
+            data: {
+                subject: subject,
+                section: section,
+                teacher: teacher,
+                location: location,
+                meetTime: meetTime
+            }
         }).then(result => {
             cb(result);
         });
@@ -286,6 +353,7 @@ $(document).ready(function () {
         });
     };
 
+    //Students-------------------------------------------------
     function updateStudentEmail(id, newEmail, cb) {
         $.ajax({
             method: 'PUT',
@@ -314,4 +382,36 @@ $(document).ready(function () {
             cb(result);
         });
     }
+
+    function searchStudentByEmail(em, cb) {
+        $.ajax({
+            method: 'GET',
+            url: `/studentsRoutes/searchEmail/${em}`
+        }).then(result => {
+            cb(result);
+        });
+    }
+
+    function addClassInfoToStudent(id, name, section, teacher, cb) {
+        $.ajax({
+            method: 'POST',
+            url: `/classInfoRoutes/${id}`,
+            data: {
+                name: name,
+                section: section,
+                teacher: teacher
+            }
+        }).then(result => {
+            cb(result);
+        });
+    }
+
+
+
+    // function addStudentToClass() {
+    //     $.ajax({
+    //         method: 'POST',
+
+    //     }).then();
+    // }
 });
