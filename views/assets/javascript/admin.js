@@ -61,10 +61,13 @@ $(document).ready(function () {
                         console.log(result);
                     });
                 }
+                appendStudentEmails();
+                appendTeacherEmails();
             });
         } else {
             $('#emailVal').show();
         }
+
     });
     //-------------------------------------------------------------------------
 
@@ -90,6 +93,8 @@ $(document).ready(function () {
                         console.log(result);
                     });
                 }
+                appendStudentEmails();
+                appendTeacherEmails();
             });
         } else {
             console.log('this was hit');
@@ -103,15 +108,33 @@ $(document).ready(function () {
         e.preventDefault();
         let teacherEmailId = $(this).attr('value');
         let newEmail = $(`#newEmailTeacher${teacherEmailId}`).val();
-        console.log(teacherEmailId);
-        console.log(newEmail);
 
         updateTeacherEmail(teacherEmailId, newEmail, result => {
             console.log(result);
             appendStudentEmails();
             appendTeacherEmails();
         });
+    });
+    //-------------------------------------------------------------------------
 
+    //Changing Student Email Address ------------------------------------------
+    $(document).on('click', '.changeStudentEmail', function (e) {
+        e.preventDefault();
+        let studentEmailId = $(this).attr('value');
+        let newEmail = $(`#newEmailStudent${studentEmailId}`).val();
+
+        updateStudentEmail(studentEmailId, newEmail, result => {
+            console.log(result);
+            appendStudentEmails();
+            appendTeacherEmails();
+        });
+    });
+    //-------------------------------------------------------------------------
+
+    //adding classes to teachers ----------------------------------------------
+    $(document).on('click', '.addClassTeacher', function (e) {
+        e.preventDefault();
+        let teacherEmailId = $(this).attr('value');
     });
     //-------------------------------------------------------------------------
 
@@ -133,7 +156,7 @@ $(document).ready(function () {
                 <form class="px-4 py-3">
                 <div class="form-group">
                     <label for="exampleDropdownFormEmail1">Change Email address</label>
-                    <input type="email" class="form-control newEmail"  id="newEmailTeacher${teacherEmailResult[i].id}" placeholder="email@example.com">
+                    <input type="email" class="form-control newEmai"  id="newEmailTeacher${teacherEmailResult[i].id}" placeholder="email@example.com">
                     <button class="btn btn-primary mt-1 changeTeacherEmail" value="${teacherEmailResult[i].id}">Change Email</button>
                 </div>
                 
@@ -141,20 +164,20 @@ $(document).ready(function () {
                     <label for="exampleDropdownFormPassword1">Add Class</label>
                     <br>
                     <label class="mb-1" for="exampleDropdownFormPassword1">Class Subject</label>
-                    <input type="text" class="form-control classSubject" placeholder="Class Subject">
+                    <input type="text" class="form-control classSubject" id="classSubjectTeacher${teacherEmailResult[i].id}" placeholder="Class Subject">
 
                     <label class="mb-1" for="exampleDropdownFormPassword1">Section</label>
-                    <input type="text" class="form-control section" placeholder="Section (4A, 5A, 6A, ect)">
+                    <input type="text" class="form-control section" id="sectionTeacher${teacherEmailResult[i].id}" placeholder="Section (4A, 5A, 6A, ect)">
 
                     <label class="mb-1" for="exampleDropdownFormPassword1">Class Location</label>
-                    <input type="text" class="form-control classLocation" placeholder="Class Location">
+                    <input type="text" class="form-control classLocation" id="classLocationTeacher${teacherEmailResult[i].id}" placeholder="Class Location">
 
                     <label class="mb-1" for="exampleDropdownFormPassword1">Class Time</label>
-                    <input type="text" class="form-control classTime" placeholder="Class Time">
+                    <input type="text" class="form-control classTime" id="classTimeTeacher${teacherEmailResult[i].id}" placeholder="Class Time">
 
                     <label class="mb-1" for="exampleDropdownFormPassword1">Teacher Name</label>
                     <input type="text" class="form-control classTeacher" placeholder="Teacher Name">
-                    <button class="btn btn-primary mt-1 changeStudentEmail" value="${teacherEmailResult[i].id}">Add Class for Teacher</button>
+                    <button class="btn btn-primary mt-1 addClassTeacher" data="${teacherEmailResult[i].email}" value="${teacherEmailResult[i].id}">Add Class for Teacher</button>
                 </div>
                 </form>
                 <div class="dropdown-divider"></div>
@@ -186,24 +209,24 @@ $(document).ready(function () {
                 <div class="form-group">
                     <label for="exampleDropdownFormEmail1">Change Email address</label>
                     <input type="email" class="form-control" id="newEmailStudent${studentEmailResult[i].id}" placeholder="email@example.com">
-                    <button class="btn btn-primary mt-1 changeTeacherEmail" value="${studentEmailResult[i].id}">Change Email</button>
+                    <button class="btn btn-primary mt-1 changeStudentEmail" value="${studentEmailResult[i].id}">Change Email</button>
                 </div>
                 
                 <div class="form-group">
                     <label for="exampleDropdownFormPassword1">Add Class</label>
                     <br>
                     <label class="mb-1" for="exampleDropdownFormPassword1">Class Subject</label>
-                    <input type="text" class="form-control classSubject" placeholder="Class Subject">
+                    <input type="text" class="form-control classSubject" id="classSubjectStudent${studentEmailResult[i].id}" placeholder="Class Subject">
 
                     <label class="mb-1" for="exampleDropdownFormPassword1">Section</label>
-                    <input type="text" class="form-control section" placeholder="Section (4A, 5A, 6A, ect)">
+                    <input type="text" class="form-control section" id="sectionStudent${studentEmailResult[i].id}" placeholder="Section (4A, 5A, 6A, ect)">
 
                     <label class="mb-1" for="exampleDropdownFormPassword1">Class Location</label>
-                    <input type="text" class="form-control classLocation" placeholder="Class Location">
+                    <input type="text" class="form-control classLocation" id="classLocationStudent${studentEmailResult[i].id}"placeholder="Class Location">
 
                     <label class="mb-1" for="exampleDropdownFormPassword1">Class Time</label>
-                    <input type="text" class="form-control classTime" placeholder="Class Time">
-                    <button class="btn btn-primary mt-1" value="${studentEmailResult[i].id}">Add Class for Student</button>
+                    <input type="text" class="form-control classTime" id="classTimeStudent${studentEmailResult[i].id}" placeholder="Class Time">
+                    <button class="btn btn-primary mt-1" data="${studentEmailResult[i].email}" value="${studentEmailResult[i].id}">Add Class for Student</button>
                 </div>
                 </form>
                 <div class="dropdown-divider"></div>
@@ -262,6 +285,16 @@ $(document).ready(function () {
             cb(result);
         });
     };
+
+    function updateStudentEmail(id, newEmail, cb) {
+        $.ajax({
+            method: 'PUT',
+            url: `/emails/updateStudentEmail/${id}`,
+            data: { email: newEmail }
+        }).then(result => {
+            cb(result)
+        });
+    }
 
     function addStudentEmail(em, cb) {
         $.ajax({
