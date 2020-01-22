@@ -126,7 +126,7 @@ $(document).ready(function () {
                 <div class="card-body">
                 <h5 class="card-title">${teacherEmailResult[i].email}</h5>
                 <div class="dropdown">
-                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <button class="btn dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Modify
                 </button>
                 <div class="dropdown-menu">
@@ -178,7 +178,7 @@ $(document).ready(function () {
                 <h5 class="card-title">${studentEmailResult[i].email}</h5>
 
                 <div class="dropdown">
-                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <button class="btn dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Modify
                 </button>
                 <div class="dropdown-menu">
