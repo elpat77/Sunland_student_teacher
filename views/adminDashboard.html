@@ -42,8 +42,11 @@
                     <div class="componentHeader">
                         <h3>Admin Dashboard</h3>
                     </div>
-                    ​
-                    <li><a class="nav-link active" id="v-pills-adminCreateTeacher-tab" data-toggle="pill"
+                    <li><a class="nav-link active" id="v-pills-adminCreateTeacherAccount-tab" data-toggle="pill"
+                            href="#v-pills-adminCreateTeacherAccount" role="tab">Create Teacher Account</a></li>
+                    <li><a class="nav-link" id="v-pills-adminCreateStudentAccount-tab" data-toggle="pill"
+                            href="#v-pills-adminCreateStudentAccount" role="tab">Create Student Account</a></li>
+                    <li><a class="nav-link" id="v-pills-adminCreateTeacher-tab" data-toggle="pill"
                             href="#v-pills-adminCreateTeacher" role="tab">Add a new Teacher</a></li>
                     <li><a class="nav-link" id="v-pills-adminCreateStudent-tab" data-toggle="pill"
                             href="#v-pills-adminCreateStudent" role="tab">Add a new Student</a></li>
@@ -82,7 +85,220 @@
             </nav>
             ​ ​
             <div class="tab-content" id="v-pills-tabContent">
-                <div class="tab-pane fade show active" id="v-pills-adminCreateTeacher" role="tabpanel">
+
+                <div class="tab-pane fade show active" id="v-pills-adminCreateTeacherAccount" role="tabpanel">
+                    <div class="col-sm-10">
+                        <div class="card">
+                            <h5 class="card-header">Please complete this form</h5>
+                            <div class="card-body">
+                                <form class="needs-validation" novalidate>
+                                    <div class="form-row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="teacherEmail">Email Address</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="inputGroupPrepend">@</span>
+                                                </div>
+                                                <input type="text" class="form-control" id="teacherEmail"
+                                                    aria-describedby="inputGroupPrepend" required>
+                                                <div class="invalid-feedback" id="emailVal">
+                                                    Please enter a valid email address
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="teacherPassword">Password</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="inputGroupPrepend">#</span>
+                                                </div>
+                                                <input type="text" class="form-control" id="teacherPassword"
+                                                    aria-describedby="inputGroupPrepend" required>
+                                                <div class="invalid-feedback" id="passwordVal">
+                                                    Please enter valid password
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="teacherFirstName">First name</label>
+                                            <input type="text" class="form-control" id="teacherFirstName" required>
+                                            <div class="invalid-feedback" id="firstNameVal">
+                                                Please enter your First Name
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="teacherLastName">Last name</label>
+                                            <input type="text" class="form-control" id="teacherLastName" required>
+                                            <div class="invalid-feedback" id="lastNameVal">
+                                                Please enter your Last Name
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-md-5 mb-3">
+                                            <label for="teacherClass">Class Name</label>
+                                            <select class="custom-select" id="teacherClass" required>
+                                                <option selected disabled value="">Choose...</option>
+                                                <option value="D1">Math</option>
+                                                <option value="D2">Chemistry</option>
+                                                <option value="D3">Theater</option>
+                                            </select>
+                                            <div class="invalid-feedback">
+                                                Please select an artistic discipline
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 mb-3">
+                                            <label for="teacherGroup">Group</label>
+                                            <select class="custom-select" id="teacherGroup" required>
+                                                <option selected disabled value="">Choose...</option>
+                                                <option value="G1">4th</option>
+                                                <option value="G2">5th </option>
+                                                <option value="G3">6th</option>
+                                            </select>
+                                            <div class="invalid-feedback">
+                                                Please select a group
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 mb-3">
+                                            <label for="teacherSection">Section</label>
+                                            <select class="custom-select" id="teacherSection" required>
+                                                <option selected disabled value="">Choose...</option>
+                                                <option value="S1">A</option>
+                                                <option value="S2">B </option>
+                                                <option value="S3">C</option>
+                                            </select>
+                                            <div class="invalid-feedback">
+                                                Please select a grade
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group">
+                                    </div>
+                                    <button class="btn" id="submitNewTeacherAccount" type="submit">Submit</button>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="tab-pane fade" id="v-pills-adminCreateStudentAccount" role="tabpanel">
+                    <div class="col-sm-10">
+                        <div class="card">
+                            <h5 class="card-header">Please complete this form</h5>
+                            <div class="card-body">
+                                <form class="needs-validation" novalidate>
+                                    <div class="form-row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="studentEmail">Email Address</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="inputGroupPrepend">@</span>
+                                                </div>
+                                                <input type="text" class="form-control" id="studentEmail"
+                                                    aria-describedby="inputGroupPrepend" required>
+                                                <div class="invalid-feedback" id="emailVal">
+                                                    Please enter a valid email address
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="studentPassword">Password</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="inputGroupPrepend">#</span>
+                                                </div>
+                                                <input type="text" class="form-control" id="studentPassword"
+                                                    aria-describedby="inputGroupPrepend" required>
+                                                <div class="invalid-feedback" id="passwordVal">
+                                                    Please enter valid password
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="studentFirstName">First name</label>
+                                            <input type="text" class="form-control" id="studentFirstName" required>
+                                            <div class="invalid-feedback" id="firstNameVal">
+                                                Please enter your First Name
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="studentLastName">Last name</label>
+                                            <input type="text" class="form-control" id="studentLastName" required>
+                                            <div class="invalid-feedback" id="lastNameVal">
+                                                Please enter your Last Name
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-md-5 mb-3">
+                                            <label for="studentDiscipline">Artistic Discipline</label>
+                                            <select class="custom-select" id="studentDiscipline" required>
+                                                <option selected disabled value="">Choose...</option>
+                                                <option value="D1">Dance</option>
+                                                <option value="D2">Music</option>
+                                                <option value="D3">Theater</option>
+                                            </select>
+                                            <div class="invalid-feedback">
+                                                Please select an artistic discipline
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 mb-3">
+                                            <label for="studentGroup">Group</label>
+                                            <select class="custom-select" id="studentGroup" required>
+                                                <option selected disabled value="">Choose...</option>
+                                                <option value="G1">4th</option>
+                                                <option value="G2">5th </option>
+                                                <option value="G3">6th</option>
+                                            </select>
+                                            <div class="invalid-feedback">
+                                                Please select a group
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 mb-3">
+                                            <label for="studentSection">Section</label>
+                                            <select class="custom-select" id="studentSection" required>
+                                                <option selected disabled value="">Choose...</option>
+                                                <option value="S1">A</option>
+                                                <option value="S2">B </option>
+                                                <option value="S3">C</option>
+                                            </select>
+                                            <div class="invalid-feedback">
+                                                Please select a grade
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <!-- <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                                            <label class="form-check-label" for="invalidCheck">
+                                                I agree to the terms and conditions.
+                                            </label>
+                                            <div class="invalid-feedback">
+                                                You must agree before submitting.
+                                            </div>
+                                        </div> -->
+                                    </div>
+                                    <button class="btn" id="submitNewStudentAccount" type="submit">Submit</button>
+                                </form>
+                            </div>
+                        </div>
+
+
+
+
+
+                    </div>
+
+                </div>
+
+                <div class="tab-pane fade" id="v-pills-adminCreateTeacher" role="tabpanel">
                     <h2>Add a New Teacher</h2>
                     <div class="line"></div>
                     <div class="col-sm-10" id="addTeacher">
@@ -93,7 +309,8 @@
                                 <form class="needs-validation" novalidate>
                                     <div class="form-row">
                                         <div class="col-md-6 mb-3">
-                                            <label for="newTeacherEmail">Enter the new teacher's email address:</label>
+                                            <label for="newTeacherEmail">Enter the new teacher's email
+                                                address:</label>
                                             <div class="input-group">
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text" id="inputGroupPrepend">@</span>
@@ -126,7 +343,8 @@
                                 <form class="needs-validation" novalidate>
                                     <div class="form-row">
                                         <div class="col-md-6 mb-3">
-                                            <label for="newStudentEmail">Enter the new student's email address:</label>
+                                            <label for="newStudentEmail">Enter the new student's email
+                                                address:</label>
                                             <div class="input-group">
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text" id="inputGroupPrepend">@</span>
@@ -199,7 +417,8 @@
                             <div class="card-header">
                                 <form class="needs-validation" novalidate>
                                     <div class="form-group row">
-                                        <label for="searchByID" class="col-sm-5 col-form-label text-center">Search for
+                                        <label for="searchByID" class="col-sm-5 col-form-label text-center">Search
+                                            for
                                             Teacher or
                                             Student by ID:</label>
                                         <div class="col-sm-6">
@@ -254,7 +473,8 @@
                                     <form class="needs-validation" novalidate>
                                         <div class="form-group row">
                                             <label for="updateLocation"
-                                                class="col-sm-4 col-form-label text-center">Enter new location:</label>
+                                                class="col-sm-4 col-form-label text-center">Enter new
+                                                location:</label>
                                             <div class="col-sm-4">
                                                 <input type="text" class="form-control" id="updateLocation">
                                             </div>
@@ -282,7 +502,8 @@
                                     <form class="needs-validation" novalidate>
                                         <div class="form-group row">
                                             <label for="updateClassTeacher"
-                                                class="col-sm-4 col-form-label text-center">Enter new Teacher:</label>
+                                                class="col-sm-4 col-form-label text-center">Enter new
+                                                Teacher:</label>
                                             <div class="col-sm-4">
                                                 <input type="text" class="form-control" id="updateClassTeacher">
                                             </div>
