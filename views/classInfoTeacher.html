@@ -45,8 +45,15 @@
                     <div class="componentHeader">
                         <h3>Class Information</h3>
                     </div>
+                    <li><a class="nav-link active" id="v-pills-studentList-tab" data-toggle="pill"
+                            href="#v-pills-studentList" role="tab">Student List</a></li>
+                    <li><a class="nav-link" id="v-pills-fileUploads-tab" data-toggle="pill" href="#v-pills-fileUploads"
+                            role="tab">Tutorials or File Uploads</a></li>
+                    <li><a class="nav-link" id="v-pills-classAnnouncements-tab" data-toggle="pill"
+                            href="#v-pills-classAnouncements" role="tab">Class Announcements</a></li>
                 </ul>
             </div>
+
 
             <ul class="list-unstyled CTAs">
                 <div class="text-center">
@@ -85,14 +92,88 @@
 
                 </div>
             </nav>
-            <div class="tab-content" id="v-pills-tabContent">
 
-                <div class="tab-pane fade show active" id="v-pills-courseInfo" role="tabpanel">
-                    <h2>The name of the class will go here</h2>
-                    <div class="line"></div>
+            <div class="tab-content" id="v-pills-tabContent">
+                <div class="tab-pane fade show active" id="v-pills-studentList" role="tabpanel">
+                    <div class="container">
+                        <div class="row justify-content-md-center">
+                            <div class="card mb-3 text-center" style="width: 50rem;">
+                                <div class="card-header">Student List</div>
+                                <div class="card-body">
+                                    <h5 class="card-title text-white">The following students are enrolled in this class:
+                                    </h5>
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">
+                                        <a href="#" class="card-link" id="student1">Student 1</a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <a href="#" class="card-link" id="student2">Student 2</a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <a href="#" class="card-link" id="student3">Student 3</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-pane fade" id="v-pills-classAnouncements" role="tabpanel">
+                    <div class="container">
+                        <div class="row justify-content-md-center">
+                            <div class="card mb-3 text-center" style="width: 50rem;">
+                                <div class=" card-header">Announcements</div>
+                                <div class="card-body">
+                                    <h5 class="card-title text-white">Any special class Announcements?</h5>
+                                    <div class="card-text text-dark">
+                                        <label for="newAnnouncemetTitle">What is the announcement title?</label>
+                                        <input type="text" class="form-control mb-3" id="newAnnouncemetTitle" required>
+                                        <div class="invalid-feedback" id="newAnnouncemetTitleVal">
+                                            Please enter an announcement title
+                                        </div>
+                                        <label for="newAnnouncemetContent">What is the announcement
+                                            content?</label>
+                                        <textarea class="form-control" rows="7" id="newAnnouncementContent"
+                                            required></textarea>
+                                        <div class="invalid-feedback" id="newAnnouncementContentVal">
+                                            Please enter an announcement content
+                                        </div>
+                                        <div class="mt-3">
+                                            <button type="submit" class="btn" id="announcementSubmit">Submit</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-pane fade" id="v-pills-fileUploads" role="tabpanel">
                     <div class="card-columns">
                         <div class="container">
-                            <div class="card text-white mb-3 text-center">
+
+                            <div class="card text-white text-center" style="width: 25rem;">
+                                <div class="card-header">Tutorials</div>
+                                <div class="card-body">
+                                    <h5 class="card-title">Any video tutorials to share with the class?</h5>
+                                    <div class="card-text text-dark">
+                                        <label for="basic-url">Tutorial url:</label>
+                                        <div class="input-group mb-3">
+                                            <input type="text" class="form-control" id="basic-url"
+                                                placeholder="https://example.com/users/" required>
+                                            <div class="invalid-feedback" id="myFileNameVal"> Please provide a URL
+                                                link
+                                            </div>
+                                        </div>
+                                        <div class="mt-3">
+                                            <button type="submit" class="btn" id="uploadTutorialURL">Submit</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card text-white text-center" style="width: 25rem;">
                                 <div class="card-header">File Uploads</div>
                                 <div class="card-body">
                                     <h5 class="card-title">Any files to share with your students?</h5>
@@ -115,26 +196,7 @@
                                 </div>
                             </div>
 
-                            <div class="card text-white mb-3 text-center">
-                                <div class="card-header">Tutorials</div>
-                                <div class="card-body">
-                                    <h5 class="card-title">Any video tutorials to share with the class?</h5>
-                                    <div class="card-text text-dark">
-                                        <label for="basic-url">Tutorial url:</label>
-                                        <div class="input-group mb-3">
-                                            <input type="text" class="form-control" id="basic-url"
-                                                placeholder="https://example.com/users/" required>
-                                            <div class="invalid-feedback" id="myFileNameVal"> Please provide a URL link
-                                            </div>
-                                        </div>
-                                        <div class="mt-3">
-                                            <button type="submit" class="btn" id="uploadTutorialURL">Submit</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="card text-white  mb-3 text-center">
+                            <div class="card text-white text-center" style="width: 25rem;">
                                 <div class="card-header">Syllabus Upload</div>
                                 <div class="card-body">
                                     <h5 class="card-title">Share the syllabus with your students!</h5>
@@ -157,61 +219,12 @@
                                 </div>
                             </div>
 
-                            <div class="card text-white  mb-3 text-center">
-                                <div class="card-header">Announcements</div>
-                                <div class="card-body">
-                                    <h5 class="card-title">Any special class Announcements?</h5>
-                                    <div class="card-text text-dark">
-                                        <label for="newAnnouncemetTitle">What is the announcement title?</label>
-                                        <input type="text" class="form-control mb-3" id="newAnnouncemetTitle" required>
-                                        <div class="invalid-feedback" id="newAnnouncemetTitleVal">
-                                            Please enter an announcement title
-                                        </div>
-                                        <label for="newAnnouncemetContent">What is the announcement
-                                            content?</label>
-                                        <textarea class="form-control" rows="7" id="newAnnouncementContent"
-                                            required></textarea>
-                                        <div class="invalid-feedback" id="newAnnouncementContentVal">
-                                            Please enter an announcement content
-                                        </div>
-                                        <div class="mt-3">
-                                            <button type="submit" class="btn" id="uploadSyllabusSubmit">Submit</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="card text-white mb-3 text-center">
-                                <div class="card-header">Students</div>
-                                <div class="card-body">
-                                    <h5 class="card-title">This will be a list with all the students that belong to that
-                                        class. It will be dinamically displayed by Jen. The names should be clickable
-                                        and will take us to a student information page. We can worry about this box
-                                        later. </h5>
-                                    <p class="card-text text-dark">
-                                        <ul class="list-unstyled" id="studentList">
-                                            <li>
-                                                <a href="#studentName">Jennifer</a>
-                                            </li>
-                                            <li>
-                                                <a href="#studentName">Patricio</a>
-                                            </li>
-                                            <li>
-                                                <a href="#studentName">Chin </a>
-                                            </li>
-                                        </ul>
-
-                                    </p>
-                                </div>
-                            </div>
                         </div>
                     </div>
                     <div class="container" data-toggle="collapse" id="setup">
                         <div class="row mt-3">
                             <div class="col-sm-12 text-center">
-
-
-                                <a class="btn mt-3" id="btnBackTeacherDash" href="../views/dashboardTeacher.html">Back
+                                <a class="btn" id="btnBackTeacherDash" href="../views/dashboardTeacher.html">Back
                                     to
                                     my dashboard</a>
                             </div>
