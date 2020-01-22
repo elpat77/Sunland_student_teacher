@@ -38,6 +38,7 @@ router.post('/', (req, res) => {
     //     res.redirect('/register');}
 });
 
+//search by email
 router.get('/searchEmail/:id', (req, res) => {
     db.Teacher.findOne({
         where: {
