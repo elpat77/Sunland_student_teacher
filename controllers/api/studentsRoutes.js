@@ -30,6 +30,15 @@ router.put('/connectClass/:id', (req, res) => {
     });
 });
 
+router.put('/updateStudentEmail/:id', (req, res) => {
+    db.Students.update(
+        { email: req.body.email },
+        { where: { id: req.params.id } }
+    ).then(result => {
+        res.json(result);
+    });
+});
+
 router.post('/:class', (req, res) => {
     db.Students.create({
         name: req.body.name,
@@ -48,6 +57,14 @@ router.get('/searchEmail/:id', (req, res) => {
             email: req.params.id
         },
         include: [db.Classes]
+    }).then(result => {
+        res.json(result);
+    });
+});
+
+router.delete('/delete/:id', (req, res) => {
+    db.Students.destroy({
+        where: { id: req.params.id }
     }).then(result => {
         res.json(result);
     });

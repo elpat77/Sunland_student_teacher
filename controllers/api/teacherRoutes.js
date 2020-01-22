@@ -61,4 +61,12 @@ router.put('/updateTeacherEmail/:id', (req, res) => {
         });
 });
 
+router.delete('/delete/:id', (req, res) => {
+    db.Teacher.destroy({
+        where: { id: req.params.id }
+    }).then(result => {
+        res.json(result);
+    });
+});
+
 module.exports = router;
