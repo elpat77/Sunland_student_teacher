@@ -33,6 +33,17 @@ router.get('/student', (req, res) => {
     });
 });
 
+router.put('/updateStudentEmail/:id', (req, res) => {
+    db.StudentEmails.update({
+        email: req.body.email
+    },
+        {
+            where: { id: req.params.id }
+        }).then(result => {
+            res.json(result);
+        });
+});
+
 router.post('/student', (req, res) => {
     db.StudentEmails.create({
         email: req.body.email
