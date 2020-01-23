@@ -46,10 +46,6 @@
                             href="#v-pills-adminCreateTeacherAccount" role="tab">Create Teacher Account</a></li>
                     <li><a class="nav-link" id="v-pills-adminCreateStudentAccount-tab" data-toggle="pill"
                             href="#v-pills-adminCreateStudentAccount" role="tab">Create Student Account</a></li>
-                    <li><a class="nav-link" id="v-pills-adminCreateTeacher-tab" data-toggle="pill"
-                            href="#v-pills-adminCreateTeacher" role="tab">Add a new Teacher</a></li>
-                    <li><a class="nav-link" id="v-pills-adminCreateStudent-tab" data-toggle="pill"
-                            href="#v-pills-adminCreateStudent" role="tab">Add a new Student</a></li>
                     <li><a class="nav-link" id="v-pills-adminEditClass-tab" data-toggle="pill"
                             href="#v-pills-adminEditClass" role="tab">Edit Classes</a></li>
                     <li><a class="nav-link" id="v-pills-adminModify-tab" data-toggle="pill" href="#v-pills-adminModify"
@@ -220,74 +216,6 @@
 
                 </div>
 
-                <div class="tab-pane fade" id="v-pills-adminCreateTeacher" role="tabpanel">
-                    <h2>Add a New Teacher</h2>
-                    <div class="line"></div>
-                    <div class="col-sm-10" id="addTeacher">
-                        <h6 id="message"></h6>
-                        <div class="card">
-                            <h5 class="card-header">Please complete this form</h5>
-                            <div class="card-body">
-                                <form class="needs-validation" novalidate>
-                                    <div class="form-row">
-                                        <div class="col-md-6 mb-3">
-                                            <label for="newTeacherEmail">Enter the new teacher's email
-                                                address:</label>
-                                            <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text" id="inputGroupPrepend">@</span>
-                                                </div>
-                                                <input type="text" class="form-control" id="newTeacherEmail"
-                                                    aria-describedby="inputGroupPrepend" required>
-                                                <div class="invalid-feedback" id="emailVal">
-                                                    Please enter a valid email
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    ​
-                                    <div class="form-group">
-                                    </div>
-                                    <button class="btn" id="submitNewTeacher" type="submit">Submit</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div> ​
-                <div class="tab-pane fade" id="v-pills-adminCreateStudent" role="tabpanel">
-                    <h2>Add a New Student</h2>
-                    <div class="line"></div>
-                    <h6 id="studentMessage"></h6>
-                    <div class="col-sm-10">
-                        <div class="card">
-                            <h5 class="card-header">Please complete this form</h5>
-                            <div class="card-body">
-                                <form class="needs-validation" novalidate>
-                                    <div class="form-row">
-                                        <div class="col-md-6 mb-3">
-                                            <label for="newStudentEmail">Enter the new student's email
-                                                address:</label>
-                                            <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text" id="inputGroupPrepend">@</span>
-                                                </div>
-                                                <input type="text" class="form-control" id="newStudentEmail"
-                                                    aria-describedby="inputGroupPrepend" required>
-                                                <div class="invalid-feedback" id="emailVal">
-                                                    Please enter a valid student email
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    ​
-                                    <div class="form-group">
-                                    </div>
-                                    <button class="btn" id="submitNewStudent" type="submit">Submit</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <div class="tab-pane fade" id="v-pills-adminModify" role="tabpanel">
                     <h2>Edit a Student or Teacher</h2>
                     <div class="line"></div>
@@ -351,7 +279,7 @@
 
                                     </div>
                                     <div class="form-group row"></div>
-                                    <div class="teacherInfo"></div>
+                                    <div class="teacherInfo text-center text-white"></div>
                                     <div class="form-group row">
                                         <label for="searchByClass" class="col-sm-5 col-form-label text-center">Search by
                                             Class
@@ -360,7 +288,7 @@
                                             <input type="text" class="form-control" id="searchByClass">
                                         </div>
                                     </div>
-                                    <div class="classInfoShow"></div>
+                                    <div class="classInfoShow text-center text-white"></div>
                                     <div class="text-center col-sm-4">
                                         <button type="submit" class="btn" id="searchClassBtn">Search</button>
                                     </div>
