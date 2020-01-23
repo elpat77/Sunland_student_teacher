@@ -10,17 +10,15 @@ $(document).ready(function () {
                 $('#notAuthorizedAlert').fadeOut(1000);
             }, 5000);
         } else {
-            getTeachersEmails(result => {
-                searchTeacherByEmail(email, resultEmail => {
-                    if (password === resultEmail.password) {
-                        window.location.href = `/adminDashboard?location=dashboard&AdminId=${resultEmail.id}`;
-                    } else {
-                        $('#incorrectPwd').fadeIn(1000);
-                        setTimeout(function () {
-                            $('#incorrectPwd').fadeOut(1000);
-                        }, 5000);
-                    }
-                });
+            searchTeacherByEmail(email, resultEmail => {
+                if (password === resultEmail.password) {
+                    window.location.href = `/adminDashboard?location=dashboard&AdminId=${resultEmail.id}`;
+                } else {
+                    $('#incorrectPwd').fadeIn(1000);
+                    setTimeout(function () {
+                        $('#incorrectPwd').fadeOut(1000);
+                    }, 5000);
+                }
             });
         }
     });
@@ -737,15 +735,6 @@ $(document).ready(function () {
         $.ajax({
             method: 'GET',
             url: `/teacherRoutes/dashboard-teacher/${id}`
-        }).then(result => {
-            cb(result);
-        });
-    }
-
-    function getTeachersEmails(cb) {
-        $.ajax({
-            method: 'GET',
-            url: '/emails/teacher'
         }).then(result => {
             cb(result);
         });
