@@ -59,7 +59,7 @@ router.put('/addClass/:id', (req, res) => {
 
 router.delete('/delete/:id', (req, res) => {
     db.StudentClasses.destroy({
-        where: req.params.id
+        where: { studentId: req.params.id }
     }).then(result => {
         res.json(result);
     });

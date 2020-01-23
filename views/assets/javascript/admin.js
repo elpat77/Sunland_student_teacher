@@ -94,6 +94,12 @@ $(document).ready(function () {
                 let teacherId = resultTeacher.id;
                 addClassesToTeacher(teacherId, classSubject, section, teacherName, classLocation, classTime, resultClass => {
                     console.log(resultClass);
+                    alert('Class added!');
+                    $(`#classSubjectTeacher${teacherEmailId}`).val('');
+                    $(`#sectionTeacher${teacherEmailId}`).val('');
+                    $(`#classLocationTeacher${teacherEmailId}`).val('');
+                    $(`#classTimeTeacher${teacherEmailId}`).val('');
+                    $(`#classTeacher${teacherEmailId}`).val('');
                 });
             } else {
                 alert('That teacher must create an account');
@@ -129,7 +135,7 @@ $(document).ready(function () {
                 }
                 if (success) {
                     addStudentClassesToClass(studentEmail, id, addedStudent => {
-                        addClassInfoToStudent(studentId, classSubject, section, teacherName, classInfoResult => {
+                        addClassInfoToStudent(id, studentId, classSubject, section, teacherName, classInfoResult => {
                             alert('Class Added for Student');
                         });
                     });
@@ -140,7 +146,7 @@ $(document).ready(function () {
                 let id = result[0].id;
                 console.log(id);
                 addStudentClassesToClass(studentEmail, id, addStudent => {
-                    addClassInfoToStudent(studentId, classSubject, section, teacherName, classInfoResult => {
+                    addClassInfoToStudent(id, studentId, classSubject, section, teacherName, classInfoResult => {
                         alert('Class Added for Student');
                     });
                 });
@@ -359,8 +365,13 @@ $(document).ready(function () {
         e.preventDefault();
         let studentId = $(this).attr('value');
         deleteStudentById(studentId, result => {
-            appendStudents();
-            alert('Student has been deleted');
+            $.ajax({
+                method: 'DELETE',
+                url: `/StudentClasses/delete/${studentId}`
+            }).then(result => {
+                alert('Student has been deleted');
+                appendStudents();
+            });
         });
     });
     //--------------------------------------------------------------------------------
@@ -495,10 +506,13 @@ $(document).ready(function () {
             url: '/adminAnnouncements',
             data: {
                 title: title,
-                data: text
+                body: text
             }
         }).then(result => {
             console.log(result);
+            $('#newAnnouncemetTitle').val('');
+            $('#newAnnouncementContent').val('');
+            alert('Announcement Created');
         });
     });
     //-------------------------------------------------------------------------------
@@ -829,11 +843,12 @@ $(document).ready(function () {
         });
     }
 
-    function addClassInfoToStudent(studentId, name, section, teacher, cb) {
+    function addClassInfoToStudent(id, studentId, name, section, teacher, cb) {
         $.ajax({
             method: 'POST',
             url: `/classInfoRoutes/${studentId}`,
             data: {
+                classId: id,
                 name: name,
                 section: section,
                 teacher: teacher,

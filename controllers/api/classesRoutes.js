@@ -12,7 +12,8 @@ router.get('/', (req, res) => {
 
 router.get('/searchClassById/:id', (req, res) => {
     db.Classes.findOne({
-        where: { id: req.params.id }
+        where: { id: req.params.id },
+        include: [db.StudentClasses]
     }).then(result => {
         res.json(result);
     });
