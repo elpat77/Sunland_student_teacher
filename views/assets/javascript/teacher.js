@@ -23,7 +23,10 @@ $(document).ready(function () {
             if (success === true) {
                 window.location.assign(`/dashboard-teacher?location=dashboard&TeacherId=${result[id].id}`);
             } else {
-                $('.invalid').append(`<div id="invalidEmail" class="col-xs-12 alert alert-warning alert-dismissible " role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>`)
+                $('#invalidFormSubmission').fadeIn(1000);
+                setTimeout(function () {
+                    $('#invalidFormSubmission').fadeOut(1000);
+                }, 5000);
             }
         });
 
