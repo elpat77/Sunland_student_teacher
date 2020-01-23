@@ -42,4 +42,18 @@ router.get('/getClassBySubject/:subject/:teacher', (req, res) => {
     });
 });
 
+
+router.put('/changeSubject/:id', (req, res) => {
+    db.Classes.update({
+        subject: req.body.subject
+    },
+        {
+            where: {
+                id: req.params.id
+            }
+        }).then(result => {
+            res.json(result);
+        });
+});
+
 module.exports = router;
