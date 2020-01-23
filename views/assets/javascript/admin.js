@@ -450,7 +450,7 @@ $(document).ready(function () {
     });
     //-------------------------------------------------------------------------------
 
-    //Update Class Time ---------------------------------------------------------
+    //Update Class Time -------------------------------------------------------------
     $('#updateClassTimeBtn').on('click', function (e) {
         e.preventDefault();
         let classId = $('#searchByClass').val();
