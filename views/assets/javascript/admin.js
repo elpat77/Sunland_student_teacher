@@ -381,7 +381,7 @@ $(document).ready(function () {
     function searchClassesById(classId, cb) {
         $.ajax({
             method: 'GET',
-            url: `/classesRoutes/searchClassById/${classId}`
+            url: `/classesRoutes/searchClassById/${classId}`,
         }).then(result => {
             cb(result);
         });
