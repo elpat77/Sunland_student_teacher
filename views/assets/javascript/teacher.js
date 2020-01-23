@@ -33,7 +33,6 @@ $(document).ready(function () {
 
     window.onload = function () {
         const urlQuerries = new URLSearchParams(window.location.search);
-
         // GETTING BASIC TEACHER INFO   --------------------------------------------------
         if (urlQuerries.get('location') == 'dashboard') {
             //annoucenemt section
@@ -69,6 +68,29 @@ $(document).ready(function () {
         e.preventDefault();
         let classId = $(this).attr('value');
         window.location.href = `/classInfoTeacher?ClassId=${classId}`;
+    });
+    //-------------------------------------------------------------------------------
+
+    //Change Password ---------------------------------------------------------------
+    $('#changeTeacherPwdBtn').on('click', function (e) {
+        const urlQuerries = new URLSearchParams(window.location.search);
+        let teacherId = urlQuerries.get('TeacherId');
+        console.log(teacherId);
+
+        e.preventDefault();
+        let newPassword = $('#newPassword').val();
+        let againPassword = $('#newPasswordRetype').val();
+        if (newPassword != againPassword) {
+            alert('Passwords must match');
+        } else {
+            $.ajax({
+                method: 'PUT',
+                url: `/teacherRoutes/changePassword/${teacherId}`,
+                data: { password: newPassword }
+            }).then(result => {
+                console.log(result);
+            });
+        }
     });
     //-------------------------------------------------------------------------------
 
