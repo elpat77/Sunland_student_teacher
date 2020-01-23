@@ -108,7 +108,6 @@ $(document).ready(function () {
         let teacherName = $(`#classStudent${studentId}`).val();
 
         getClassId(classSubject, teacherName, result => {
-            console.log(result);
             if (result.length === 0) {
                 alert('Sorry, no class found');
             } if (result.length > 1) {
@@ -132,8 +131,9 @@ $(document).ready(function () {
                     alert('sorry, couldnt find classes');
                 }
             } else {
-                id = result[0].id;
-                addStudentClassesToClass(studentId, id, addStudent => {
+                let id = result[0].id;
+                console.log(id);
+                addStudentClassesToClass(studentEmail, id, addStudent => {
                     addClassInfoToStudent(studentId, classSubject, section, teacherName, classInfoResult => {
                         alert('Class Added for Student');
                     });
@@ -144,9 +144,12 @@ $(document).ready(function () {
     //-------------------------------------------------------------------------
 
     function addStudentClassesToClass(email, classId, cb) {
+        console.log(classId);
+
         searchStudentByEmail(email, resultStudent => {
             let studentId = resultStudent.id;
             getStudentClassesById(studentId, StudentClassRes => {
+                console.log(StudentClassRes);
                 let success = false;
                 for (let i = 0; i < StudentClassRes.length; i++) {
                     if (StudentClassRes[i].ClassId === null) {
@@ -156,15 +159,22 @@ $(document).ready(function () {
                             url: `/StudentClasses/addClass/${studentId}`,
                             data: { ClassId: classId }
                         }).then(result => {
+                            console.log(result);
+                            console.log(StudentClassRes[i].ClassId);
+
                             cb(result);
                         });
                     }
                 }
+                console.log(success);
+
                 if (!success) {
+                    console.log('got here');
                     let fullName = StudentClassRes[0].name;
                     let email = StudentClassRes[0].email;
+
                     createStudentClassesWithClassId(classId, studentId, fullName, email, createdStudent => {
-                        console.log(createdStudent);
+                        cb(createdStudent);
                     });
                 }
             });
@@ -172,6 +182,8 @@ $(document).ready(function () {
     }
 
     function createStudentClassesWithClassId(classId, studentId, fullName, email, cb) {
+        console.log(classId);
+
         $.ajax({
             method: 'POST',
             url: `/StudentClasses/${classId}`,
@@ -190,8 +202,6 @@ $(document).ready(function () {
             method: 'GET',
             url: `/StudentClasses/getById/${studentId}`
         }).then(result => {
-            console.log(result);
-
             cb(result)
         });
     }
@@ -761,25 +771,6 @@ $(document).ready(function () {
             method: 'PUT',
             url: `/studentsRoutes/updateStudentEmail/${id}`,
             data: { email: newEmail }
-        }).then(result => {
-            cb(result);
-        });
-    }
-
-    function addStudentEmail(em, cb) {
-        $.ajax({
-            method: 'POST',
-            url: '/emails/student',
-            data: { email: em }
-        }).then(result => {
-            cb(result);
-        });
-    }
-
-    function getStudentEmails(cb) {
-        $.ajax({
-            method: 'GET',
-            url: '/emails/student'
         }).then(result => {
             cb(result);
         });

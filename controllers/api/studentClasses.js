@@ -37,7 +37,7 @@ router.post('/:id', (req, res) => {
     });
 });
 
-router.post('/changeEmail/:id', (req, res) => {
+router.put('/changeEmail/:id', (req, res) => {
     db.StudentClasses.update({
         email: req.body.email
     }, {
@@ -49,9 +49,9 @@ router.post('/changeEmail/:id', (req, res) => {
 
 router.put('/addClass/:id', (req, res) => {
     db.StudentClasses.update({
-        ClassId: req.body.id
+        ClassId: req.body.ClassId
     }, {
-        where: { id: req.params.id }
+        where: { studentId: req.params.id }
     }).then(result => {
         res.json(result);
     });
