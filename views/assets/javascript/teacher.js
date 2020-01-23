@@ -79,4 +79,14 @@ $(document).ready(function () {
     });
     //-------------------------------------------------------------------------------
 
+    function login(cb) {
+        $.ajax({
+            method: 'GET',
+            url: '/teacherRoutes',
+        }).then(result => {
+            cb(result);
+        });
+    }
+
+
 });
