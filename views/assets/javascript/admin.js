@@ -234,6 +234,7 @@ $(document).ready(function () {
                 }
                 if (!teachersSet.has(email)) {
                     createAccountTeacher(fullName, email, password, resultAccount => {
+                        appendTeachers();
                         alert('Teacher account created!');
                         $('#teacherEmail').val('');
                         $('#teacherPassword').val('');
@@ -244,7 +245,6 @@ $(document).ready(function () {
                     alert('This email has an account already');
                 }
             });
-            appendTeachers();
         }
     });
     //--------------------------------------------------------------------------------
@@ -296,6 +296,7 @@ $(document).ready(function () {
                 }
                 if (!studentSet.has(email)) {
                     createAccountStudent(fullName, email, password, resultAccount => {
+                        appendStudents();
                         alert('Student Account Created!');
                         $('#studentEmail').val('');
                         $('#studentPassword').val('');
@@ -306,7 +307,6 @@ $(document).ready(function () {
                     alert('This email has an account already');
                 }
             });
-            appendStudents();
         }
     });
     //--------------------------------------------------------------------------------
@@ -366,11 +366,26 @@ $(document).ready(function () {
                 </div>
             `);
             }
-            //ask pat to make another btn for class ID
         });
-
     });
     //--------------------------------------------------------------------------------
+    $('#searchClassBtn').on('click', function (e) {
+        e.preventDefault();
+        let classId = $('#searchByClass').val();
+        searchClassesById(classId, result => {
+            console.log(result);
+
+        });
+    });
+
+    function searchClassesById(classId, cb) {
+        $.ajax({
+            method: 'GET',
+            url: `/classesRoutes/searchClassById/${classId}`
+        }).then(result => {
+            cb(result);
+        });
+    }
 
     function getClassId(subject, teacher, cb) {
         $.ajax({
