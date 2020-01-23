@@ -5,14 +5,20 @@ $(document).ready(function () {
         let email = $('#logInEmail').val();
         let password = $('#logInPassword').val();
         if (email.toLowerCase() != 'jennifer_ngo70@yahoo.com') {
-            alert('Sorry, you do not have authorization');
+            $('#notAuthorizedAlert').fadeIn(1000);
+            setTimeout(function () {
+                $('#notAuthorizedAlert').fadeOut(1000);
+            }, 5000);
         } else {
             getTeachersEmails(result => {
                 searchTeacherByEmail(email, resultEmail => {
                     if (password === resultEmail.password) {
                         window.location.href = `/adminDashboard?location=dashboard&AdminId=${resultEmail.id}`;
                     } else {
-                        alert('Incorrect Password');
+                        $('#incorrectPwd').fadeIn(1000);
+                        setTimeout(function () {
+                            $('#incorrectPwd').fadeOut(1000);
+                        }, 5000);
                     }
                 });
             });
