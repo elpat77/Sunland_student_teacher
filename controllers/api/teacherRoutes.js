@@ -61,6 +61,16 @@ router.put('/updateTeacherEmail/:id', (req, res) => {
         });
 });
 
+router.put('/changePassword/:id', (req, res) => {
+    db.Teacher.update({
+        password: req.body.password
+    }, {
+        where: { id: req.params.id }
+    }).then(result => {
+        res.json(result);
+    });
+});
+
 router.delete('/delete/:id', (req, res) => {
     db.Teacher.destroy({
         where: { id: req.params.id }
