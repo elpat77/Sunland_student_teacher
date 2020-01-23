@@ -55,6 +55,9 @@ app.use('/adminAnnouncements', adminAnnouncement);
 const htmlRoutes = require('./controllers/client/htmlRoutes');
 app.use('/', htmlRoutes);
 
+const StudentClasses = require('./controllers/api/studentClasses');
+app.use('/StudentClasses', StudentClasses);
+
 app.delete('/logout', (req, res) => {
     req.logOut();
     res.redirect('/');

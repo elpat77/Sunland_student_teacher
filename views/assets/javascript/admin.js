@@ -47,68 +47,6 @@ $(document).ready(function () {
         $('#emailVal').hide();
     });
 
-    //adding teacher email ----------------------------------------------------
-    $('#submitNewTeacher').on('click', function (e) {
-        e.preventDefault();
-        let email = $('#newTeacherEmail').val();
-        if (email != '' && email.includes('@')) {
-            getTeachersEmails(resultEmails => {
-                let teacherEmails = new Set();
-                for (let i = 0; i < resultEmails.length; i++) {
-                    teacherEmails.add(resultEmails[i].email);
-                }
-                if (teacherEmails.has(email)) {
-                    $('#newTeacherEmail').val('');
-                    $('#message').show().text('Sorry, email is already in the system');
-                } else {
-                    addTeacherEmail(email, result => {
-                        $('#newTeacherEmail').val('');
-                        $('#message').show().text('Email added!');
-                        console.log(result);
-                    });
-                }
-                appendStudents();
-                appendTeachers();
-            });
-        } else {
-            $('#emailVal').show();
-        }
-
-    });
-    //-------------------------------------------------------------------------
-
-    //adding student email ----------------------------------------------------
-    $('#submitNewStudent').on('click', function (e) {
-        e.preventDefault();
-        let email = $('#newStudentEmail').val();
-        console.log(email);
-        if (email != '' && email.includes('@')) {
-            getStudentEmails(resultEmails => {
-                console.log(resultEmails);
-                let studentEmails = new Set();
-                for (let i = 0; i < resultEmails.length; i++) {
-                    studentEmails.add(resultEmails[i].email);
-                }
-                if (studentEmails.has(email)) {
-                    $('#newStudentEmail').val('');
-                    $('#studentMessage').show().text('Sorry, email is already in the system');
-                } else {
-                    addStudentEmail(email, result => {
-                        $('#newStudentEmail').val('');
-                        $('#studentMessage').show().text('Email added!');
-                        console.log(result);
-                    });
-                }
-                appendStudents();
-                appendTeachers();
-            });
-        } else {
-            console.log('this was hit');
-            $('#studentMessage').show().text('invalid email');
-        }
-    });
-    //-------------------------------------------------------------------------
-
     //Changing Teacher Email Address ------------------------------------------    
     $(document).on('click', '.changeTeacherEmail', function (e) {
         e.preventDefault();
@@ -126,13 +64,15 @@ $(document).ready(function () {
     //Changing Student Email Address ------------------------------------------
     $(document).on('click', '.changeStudentEmail', function (e) {
         e.preventDefault();
-        let studentEmailId = $(this).attr('value');
-        let newEmail = $(`#newEmailStudent${studentEmailId}`).val();
+        let studentId = $(this).attr('value');
+        let newEmail = $(`#newEmailStudent${studentId}`).val();
 
-        updateStudentEmail(studentEmailId, newEmail, result => {
+        updateStudentEmail(studentId, newEmail, result => {
             console.log(result);
-            appendStudents();
-            appendTeachers();
+            updateStudentClassEmail(studentId, newEmail, resultStudentClasses => {
+                appendStudents();
+                appendTeachers();
+            });
         });
     });
     //-------------------------------------------------------------------------
@@ -166,6 +106,7 @@ $(document).ready(function () {
     $(document).on('click', '.addClassStudent', function (e) {
         e.preventDefault();
         let studentId = $(this).attr('value');
+        let studentEmail = $(this).attr('data');
         let classSubject = $(`#classSubjectStudent${studentId}`).val();
         let section = $(`#sectionStudent${studentId}`).val();
         let classLocation = $(`#classLocationStudent${studentId}`).val();
@@ -188,7 +129,7 @@ $(document).ready(function () {
                     }
                 }
                 if (success) {
-                    addStudentToClass(studentId, id, addedStudent => {
+                    addStudentClassesToClass(studentEmail, id, addedStudent => {
                         addClassInfoToStudent(studentId, classSubject, section, teacherName, classInfoResult => {
                             alert('Class Added for Student');
                         });
@@ -198,7 +139,7 @@ $(document).ready(function () {
                 }
             } else {
                 id = result[0].id;
-                addStudentToClass(studentId, id, addStudent => {
+                addStudentClassesToClass(studentId, id, addStudent => {
                     addClassInfoToStudent(studentId, classSubject, section, teacherName, classInfoResult => {
                         alert('Class Added for Student');
                     });
@@ -207,6 +148,59 @@ $(document).ready(function () {
         });
     });
     //-------------------------------------------------------------------------
+
+    function addStudentClassesToClass(email, classId, cb) {
+        searchStudentByEmail(email, resultStudent => {
+            let studentId = resultStudent.id;
+            getStudentClassesById(studentId, StudentClassRes => {
+                let success = false;
+                for (let i = 0; i < StudentClassRes.length; i++) {
+                    if (StudentClassRes[i].ClassId === null) {
+                        success = true;
+                        $.ajax({
+                            method: 'PUT',
+                            url: `/StudentClasses/addClass/${studentId}`,
+                            data: { ClassId: classId }
+                        }).then(result => {
+                            cb(result);
+                        });
+                    }
+                }
+                if (!success) {
+                    let fullName = StudentClassRes[0].name;
+                    let email = StudentClassRes[0].email;
+                    createStudentClassesWithClassId(classId, studentId, fullName, email, createdStudent => {
+                        console.log(createdStudent);
+                    });
+                }
+            });
+        });
+    }
+
+    function createStudentClassesWithClassId(classId, studentId, fullName, email, cb) {
+        $.ajax({
+            method: 'POST',
+            url: `/StudentClasses/${classId}`,
+            data: {
+                studentId: studentId,
+                studentName: fullName,
+                email: email
+            }
+        }).then(result => {
+            cb(result);
+        });
+    }
+
+    function getStudentClassesById(studentId, cb) {
+        $.ajax({
+            method: 'GET',
+            url: `/StudentClasses/getById/${studentId}`
+        }).then(result => {
+            console.log(result);
+
+            cb(result)
+        });
+    }
 
     //Creating Account Teachers------------------------------------------------
     $('#submitNewTeacherAccount').on('click', function (e) {
@@ -303,11 +297,18 @@ $(document).ready(function () {
                 if (!studentSet.has(email)) {
                     createAccountStudent(fullName, email, password, resultAccount => {
                         appendStudents();
-                        alert('Student Account Created!');
-                        $('#studentEmail').val('');
-                        $('#studentPassword').val('');
-                        $('#studentFirstName').val('');
-                        $('#studentLastName').val('');
+                        let studentId = resultAccount.id;
+                        console.log(resultAccount);
+
+                        createStudentClasses(studentId, fullName, email, result => {
+                            console.log(result);
+
+                            alert('Student Account Created!');
+                            $('#studentEmail').val('');
+                            $('#studentPassword').val('');
+                            $('#studentFirstName').val('');
+                            $('#studentLastName').val('');
+                        });
                     });
                 } else {
                     alert('This email has an account already');
@@ -354,7 +355,7 @@ $(document).ready(function () {
     });
     //--------------------------------------------------------------------------------
 
-    //Edit Classes search Teacher Email-------------------------------------------------------------------
+    //Edit Classes search Teacher Email-----------------------------------------------
     $('#searchIDBtn').on('click', function (e) {
         e.preventDefault();
         let teacherEmail = $('#searchByTeacherEmail').val();
@@ -767,7 +768,7 @@ $(document).ready(function () {
             url: `/studentsRoutes/updateStudentEmail/${id}`,
             data: { email: newEmail }
         }).then(result => {
-            cb(result)
+            cb(result);
         });
     }
 
@@ -821,6 +822,7 @@ $(document).ready(function () {
             cb(result);
         });
     }
+
     function createAccountStudent(fullName, email, password, cb) {
         $.ajax({
             method: 'POST',
@@ -831,16 +833,6 @@ $(document).ready(function () {
                 password: password,
                 picture: null
             }
-        }).then(result => {
-            cb(result);
-        });
-    }
-
-    function addStudentToClass(studentId, ClassId, cb) {
-        $.ajax({
-            method: 'PUT',
-            url: `/studentsRoutes/connectClass/${studentId}`,
-            data: { ClassId: ClassId }
         }).then(result => {
             cb(result);
         });
@@ -868,4 +860,29 @@ $(document).ready(function () {
             cb(result);
         });
     }
+
+    function updateStudentClassEmail(id, em, cb) {
+        $.ajax({
+            method: 'PUT',
+            url: `/StudentClasses/changeEmail/${id}`,
+            data: { email: em }
+        }).then(result => {
+            cb(result);
+        });
+    }
+
+    function createStudentClasses(studentId, fullName, email, cb) {
+        $.ajax({
+            method: 'POST',
+            url: '/StudentClasses',
+            data: {
+                studentId: studentId,
+                name: fullName,
+                email: email
+            }
+        }).then(result => {
+            cb(result);
+        });
+    }
+
 });
