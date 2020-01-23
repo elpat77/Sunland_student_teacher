@@ -1,6 +1,7 @@
 $(document).ready(function () {
     start();
 
+    //initial setup ------------------------------------------------------------------
     function start() {
         let urlQuerries = new URLSearchParams(window.location.search);
         let teacherId = urlQuerries.get('TeacherId');
@@ -15,6 +16,7 @@ $(document).ready(function () {
             });
         });
     }
+    //--------------------------------------------------------------------------------
 
     function getStudentsInClass(classId, cb) {
         $.ajax({
@@ -29,7 +31,6 @@ $(document).ready(function () {
                 </li>
                 `);
             }
-
         });
     }
 });
