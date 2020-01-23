@@ -11,6 +11,14 @@ router.get('/', (req, res) => {
     });
 });
 
+router.get('/searchById/:id', (req, res) => {
+    db.Teacher.findOne({
+        where: { id: req.params.id }
+    }).then(result => {
+        res.json(result);
+    });
+});
+
 router.get('/dashboard-teacher/:id', (req, res) => {
     db.Teacher.findAll({
         where: {

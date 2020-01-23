@@ -67,7 +67,9 @@ $(document).ready(function () {
     $(document).on('click', '#btnCourses', function (e) {
         e.preventDefault();
         let classId = $(this).attr('value');
-        window.location.href = `/classInfoTeacher?ClassId=${classId}`;
+        const urlQuerries = new URLSearchParams(window.location.search);
+        let teacherId = urlQuerries.get('TeacherId');
+        window.location.href = `/classInfoTeacher?TeacherId=${teacherId}&ClassId=${classId}`;
     });
     //-------------------------------------------------------------------------------
 
