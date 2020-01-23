@@ -46,10 +46,7 @@
                             href="#v-pills-adminCreateTeacherAccount" role="tab">Create Teacher Account</a></li>
                     <li><a class="nav-link" id="v-pills-adminCreateStudentAccount-tab" data-toggle="pill"
                             href="#v-pills-adminCreateStudentAccount" role="tab">Create Student Account</a></li>
-                    <li><a class="nav-link" id="v-pills-adminCreateTeacher-tab" data-toggle="pill"
-                            href="#v-pills-adminCreateTeacher" role="tab">Add a new Teacher</a></li>
-                    <li><a class="nav-link" id="v-pills-adminCreateStudent-tab" data-toggle="pill"
-                            href="#v-pills-adminCreateStudent" role="tab">Add a new Student</a></li>
+
                     <li><a class="nav-link" id="v-pills-adminEditClass-tab" data-toggle="pill"
                             href="#v-pills-adminEditClass" role="tab">Edit Classes</a></li>
                     <li><a class="nav-link" id="v-pills-adminModify-tab" data-toggle="pill" href="#v-pills-adminModify"
@@ -346,10 +343,13 @@
                                         <div class="col-sm-6">
                                             <input type="text" class="form-control" id="searchByID">
                                         </div>
+                                        <div class="text-center col-sm-4">
+                                            <button type="submit" class="btn" id="searchIDBtn">Search</button>
+                                        </div>
 
                                     </div>
                                     <div class="form-group row"></div>
-                                    <div class="form-group row">
+                                    <div class="form-group row text-center">
                                         <label for="searchByClass" class="col-sm-5 col-form-label text-center">Search by
                                             Class
                                             ID:</label>
@@ -358,7 +358,7 @@
                                         </div>
                                     </div>
                                     <div class="text-center col-sm-4">
-                                        <button type="submit" class="btn" id="searchIDBtn">Search</button>
+                                        <button type="submit" class="btn" id="searchClassBtn">Search</button>
                                     </div>
                                 </form>
 
