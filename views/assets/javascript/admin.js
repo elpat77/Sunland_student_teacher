@@ -234,7 +234,11 @@ $(document).ready(function () {
                 }
                 if (!teachersSet.has(email)) {
                     createAccountTeacher(fullName, email, password, resultAccount => {
-                        console.log(resultAccount);
+                        alert('Teacher account created!');
+                        $('#teacherEmail').val('');
+                        $('#teacherPassword').val('');
+                        $('#teacherFirstName').val('');
+                        $('#teacherLastName').val('');
                     });
                 } else {
                     alert('This email has an account already');
@@ -292,7 +296,11 @@ $(document).ready(function () {
                 }
                 if (!studentSet.has(email)) {
                     createAccountStudent(fullName, email, password, resultAccount => {
-                        console.log(resultAccount);
+                        alert('Student Account Created!');
+                        $('#studentEmail').val('');
+                        $('#studentPassword').val('');
+                        $('#studentFirstName').val('');
+                        $('#studentLastName').val('');
                     });
                 } else {
                     alert('This email has an account already');
@@ -337,6 +345,30 @@ $(document).ready(function () {
             appendStudents();
             alert('Student has been deleted');
         });
+    });
+    //--------------------------------------------------------------------------------
+
+    //Edit Classes -------------------------------------------------------------------
+    $('#searchIDBtn').on('click', function (e) {
+        e.preventDefault();
+        let teacherEmail = $('#searchByTeacherEmail').val();
+        searchTeacherByEmail(teacherEmail, result => {
+            console.log(result);
+            $('.teacherInfo').append(`
+                <div>Teacher Info:</div>
+                <h6>Classes and Id: </h6>
+            `);
+            let classes = result.Classes;
+            for (let i = 0; i < result.Classes.length; i++) {
+                $('.teacherInfo').append(`
+                <div>
+                <h6><li>${classes[i].subject} ${classes[i].section}: ${classes[i].id}</li></h6>
+                </div>
+            `);
+            }
+            //ask pat to make another btn for class ID
+        });
+
     });
     //--------------------------------------------------------------------------------
 
