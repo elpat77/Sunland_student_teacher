@@ -374,7 +374,20 @@ $(document).ready(function () {
         let classId = $('#searchByClass').val();
         searchClassesById(classId, result => {
             console.log(result);
-
+            if (result.length != 0) {
+                $('#classInfoShow').append(`
+                    <div>
+                        <h5>Class Info: </h5>
+                        <h6>subject: ${result.subject}</h6>
+                        <h6>section: ${result.section}</h6>
+                        <h6>teacher: ${result.teacher}</h6>
+                        <h6>location: ${result.location}</h6>
+                        <h6>meet time: ${result.meetTime}</h6>
+                    </div>
+                `);
+            } else {
+                alert('Sorry, no class with that Id');
+            }
         });
     });
 
