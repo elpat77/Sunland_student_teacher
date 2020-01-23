@@ -32,35 +32,35 @@ $(document).ready(function () {
 
     window.onload = function () {
         const urlQuerries = new URLSearchParams(window.location.search);
-        const teacherId = urlQuerries.get('TeacherId');
+
         // GETTING BASIC TEACHER INFO   --------------------------------------------------
         if (urlQuerries.get('location') == 'dashboard') {
+            //annoucenemt section
             $.ajax({
                 method: 'GET',
-                url: `/teacherRoutes/dashboard-teacher/${teacherId}`
-            }).then(res => {
-                console.log(res);
-                $('#name').text(res[0].name);
-                if (res[0].Classes.length != 0) {
-                    for (let i = 0; i < res[0].Classes.length; i++) {
-                        let classes = res[0].Classes;
-                        $('.classCard').append(`                            
-                    <div class="card text-white bg-primary mb-3 text-center">
-                    <div class="card-header">${classes[i].subject + classes[i].section}</div>
-                    <div class="card-body">
-                        <h5 class="card-title">Basic Details regarding this course</h5>
-                        <p class="card-text text-dark">Lorem ipsum dolor sit amet consectetur
-                            adipisicing
-                            elit.
-                            Incidunt, dignissimos!</p>
-                        <a class="btn" value="${classes[i].id}" id="btnCourses" href="">Class
-                            Info</a>
-                    </div>
-                </div>`);
-                    }
+                url: '/adminAnnouncements',
+            }).then(result => {
+                console.log(result);
+                for (let i = 0; i < result.length; i++) {
+                    let timeAndDate = result[i].updatedAt.split('T');
+                    let date = new Date(timeAndDate[0]).toString();
+                    let day = date.substring(0, 15);
+
+                    $('#adminAnnouncements').append(`
+                <div class="card text-white mb-3 text-center">
+                    <div class="card-header">${result[i].title}</div>
+                        <div class="card-body">
+                            <h5 class="card-title"></h5>
+                            <p class="card-text text-dark schoolAnnouncements">${result[i].body}
+                            </p>
+                            <h6>Posted: ${day}</h6>
+                        </div>
+                </div>
+                `);
                 }
             });
-            // ----------------------------------------------------------------------
+            getCourses();
+            //-----------------------------------------------------------------------
         }
     }
 
@@ -75,7 +75,7 @@ $(document).ready(function () {
     //logout ------------------------------------------------------------------------
     $('#logOut').on('click', function (e) {
         e.preventDefault();
-        console.log('clicked');
+        window.location.href = '/';
     });
     //-------------------------------------------------------------------------------
 
@@ -85,6 +85,34 @@ $(document).ready(function () {
             url: '/teacherRoutes',
         }).then(result => {
             cb(result);
+        });
+    }
+
+    function getCourses() {
+        const urlQuerries = new URLSearchParams(window.location.search);
+        const teacherId = urlQuerries.get('TeacherId');
+        //teacher classes
+        $.ajax({
+            method: 'GET',
+            url: `/teacherRoutes/dashboard-teacher/${teacherId}`
+        }).then(res => {
+            console.log(res);
+            $('#name').text(res[0].name);
+            if (res[0].Classes.length != 0) {
+                for (let i = 0; i < res[0].Classes.length; i++) {
+                    let classes = res[0].Classes;
+                    $('.classCard').append(`                            
+                    <div class="card text-white bg-primary mb-3 text-center">
+                    <div class="card-header">${classes[i].subject} ${classes[i].section}</div>
+                    <div class="card-body">
+                        <h5 class="card-title">Meet Time: ${classes[i].meetTime}</h5>
+                        <p class="card-text text-dark">Location: ${classes[i].location}</p>
+                        <a class="btn" value="${classes[i].id}" id="btnCourses" href="">Class
+                            Info</a>
+                    </div>
+                </div>`);
+                }
+            }
         });
     }
 
