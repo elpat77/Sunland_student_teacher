@@ -56,4 +56,34 @@ router.put('/changeSubject/:id', (req, res) => {
         });
 });
 
+router.put('/changeSection/:id', (req, res) => {
+    db.Classes.update({
+        section: req.body.section
+    }, {
+        where: { id: req.params.id }
+    }).then(result => {
+        res.json(result);
+    });
+});
+
+router.put('/changeLocation/:id', (req, res) => {
+    db.Classes.update({
+        location: req.body.location
+    }, {
+        where: { id: req.params.id }
+    }).then(result => {
+        res.json(result);
+    });
+});
+
+router.put('/changeTime/:id', (req, res) => {
+    db.Classes.update({
+        meetTime: req.body.meetTime
+    }, {
+        where: { id: req.params.id }
+    }).then(result => {
+        res.json(result);
+    });
+});
+
 module.exports = router;
