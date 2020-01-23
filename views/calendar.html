@@ -89,6 +89,7 @@
                     center: 'addEventButton',
                 },
                 editable: true,
+                selectable: true,
                 droppable: true, // this allows things to be dropped onto the calendar
                 drop: function (arg) {
                     // is the "remove after drop" checkbox checked?
@@ -97,10 +98,43 @@
                         arg.draggedEl.parentNode.removeChild(arg.draggedEl);
                     }
                 },
+
                 eventClick: function (arg) {
                     if (confirm('delete event?')) {
                         arg.event.remove()
                     }
+                },
+
+                eventClick: function (arg, jsEvent) {
+                    var event = arg.event;
+                    console.log("Event", event);
+                    var eventTitle = arg.event.title;
+                    console.log("Event Title", eventTitle);
+                    var eventStart = arg.event.start;
+                    console.log("Event Start", eventStart);
+                    var eventEnd = arg.event.end;
+                    console.log("Event Start", eventEnd);
+
+                    // var newTitle = prompt('Event Title:', arg.event.title, {
+                    //     buttons: {
+                    //         Ok: true,
+                    //         Cancel: false
+                    //     }
+                    // });
+                    // if (newTitle) {
+                    //     arg.event.title = newTitle;
+                    //     ('#calendar').fullCalendar('updateEvent', arg);
+                    // }
+                },
+
+                dateClick: function (info) {
+                    var eventDate = info.dateStr;
+                    alert('Clicked on: ' + info.dateStr);
+                    console.log("Event Date", eventDate);
+                    // alert('Coordinates: ' + info.jsEvent.pageX + ',' + info.jsEvent.pageY);
+                    // alert('Current view: ' + info.view.type);
+                    // change the day's background color just for fun
+                    // info.dayEl.style.backgroundColor = 'red';
                 },
 
                 // eventClick: function (calEvent, jsEvent) {
