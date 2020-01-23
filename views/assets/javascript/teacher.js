@@ -9,7 +9,6 @@ $(document).ready(function () {
             console.log(result);
             let success = false;
             let id = 0;
-
             for (let i = 0; i < result.length; i++) {
                 if (result[i].email === em && result[i].password === pw) {
                     success = true;
@@ -26,7 +25,6 @@ $(document).ready(function () {
                 $('.invalid').append(`<div id="invalidEmail" class="col-xs-12 alert alert-warning alert-dismissible " role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>`)
             }
         });
-
     });
     //--------------------------------------------------------------------------------
 
@@ -45,7 +43,6 @@ $(document).ready(function () {
                     let timeAndDate = result[i].updatedAt.split('T');
                     let date = new Date(timeAndDate[0]).toString();
                     let day = date.substring(0, 15);
-
                     $('#adminAnnouncements').append(`
                 <div class="card text-white mb-3 text-center">
                     <div class="card-header">${result[i].title}</div>
@@ -115,6 +112,5 @@ $(document).ready(function () {
             }
         });
     }
-
 
 });
