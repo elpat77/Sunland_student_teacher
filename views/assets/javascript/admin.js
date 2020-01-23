@@ -348,7 +348,7 @@ $(document).ready(function () {
     });
     //--------------------------------------------------------------------------------
 
-    //Edit Classes -------------------------------------------------------------------
+    //Edit Classes search Teacher Email-------------------------------------------------------------------
     $('#searchIDBtn').on('click', function (e) {
         e.preventDefault();
         let teacherEmail = $('#searchByTeacherEmail').val();
@@ -369,20 +369,23 @@ $(document).ready(function () {
         });
     });
     //--------------------------------------------------------------------------------
+
+    //Edit Classes Search by Class Id ------------------------------------------------
     $('#searchClassBtn').on('click', function (e) {
         e.preventDefault();
         let classId = $('#searchByClass').val();
+        $('.classInfoShow').empty();
         searchClassesById(classId, result => {
             console.log(result);
             if (result.length != 0) {
-                $('#classInfoShow').append(`
+                $('.classInfoShow').append(`
                     <div>
                         <h5>Class Info: </h5>
-                        <h6>subject: ${result.subject}</h6>
-                        <h6>section: ${result.section}</h6>
-                        <h6>teacher: ${result.teacher}</h6>
-                        <h6>location: ${result.location}</h6>
-                        <h6>meet time: ${result.meetTime}</h6>
+                        <h6 id="updatedSubject">subject: ${result.subject}</h6>
+                        <h6 id="updatedSection">section: ${result.section}</h6>
+                        <h6 id="updatedTeacher">teacher: ${result.teacher}</h6>
+                        <h6 id="updatedLocation">location: ${result.location}</h6>
+                        <h6 id="updatedMeetTime">meet time: ${result.meetTime}</h6>
                     </div>
                 `);
             } else {
@@ -390,6 +393,55 @@ $(document).ready(function () {
             }
         });
     });
+    //-------------------------------------------------------------------------------
+
+    //Update Class Subject ----------------------------------------------------------
+    $('#updateSubjectBtn').on('click', function (e) {
+        e.preventDefault();
+        let classId = $('#searchByClass').val();
+        let newSubject = $('#updateSubject').val();
+
+        if (classId === '') {
+            alert('you must enter a class id');
+        }
+        updateClassSubject(classId, newSubject, result => {
+            console.log(result);
+            alert('Subject Changed');
+            $('#updateSubject').val('');
+            $('#updatedSubject').text(`subject: ${newSubject}`);
+        });
+
+    });
+    //-------------------------------------------------------------------------------
+
+    //Update Class Section ----------------------------------------------------------
+    $('#updateSectionBtn').on('click', function (e) {
+        e.preventDefault();
+        let classId = $('#searchByClass').val();
+        let newSection = $('#updateSection').val();
+
+        if (classId === '') {
+            alert('you must enter a class id');
+        }
+        updateClassSection(classId, newSection, result => {
+            console.log(result);
+            alert('Section Changed');
+            $('#updateSection').val('');
+            $('#updatedSection').text(`section: ${newSection}`);
+        });
+
+    });
+    //-------------------------------------------------------------------------------
+
+    function updateClassSubject(classId, newSubject, cb) {
+        $.ajax({
+            method: 'PUT',
+            url: `/classesRoutes/changeSubject/${classId}`,
+            data: { subject: newSubject }
+        }).then(result => {
+            cb(result);
+        });
+    }
 
     function searchClassesById(classId, cb) {
         $.ajax({
