@@ -16,6 +16,8 @@ router.post('/:grade/:Classid', (req, res) => {
         description: req.body.description,
         turnedIn: req.body.turnedIn,
         grade: req.body.grade,
+        totalPoints: req.body.totalPoints,
+        scored: req.body.scored,
         ClassId: req.params.Classid,
         GradeId: req.params.grade
     }).then(result => {

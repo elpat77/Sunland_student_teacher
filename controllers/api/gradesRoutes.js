@@ -12,6 +12,7 @@ router.get('/', (req, res) => {
 
 router.post('/:id', (req, res) => {
     db.Grades.create({
+        studentId: req.body.studentId,
         finalGrade: req.body.finalGrade,
         quizzesPercent: req.body.qp,
         assignmentsPercent: req.body.ap,

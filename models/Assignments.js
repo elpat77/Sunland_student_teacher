@@ -24,6 +24,8 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.BOOLEAN,
             defaultValue: false
         },
+        totalPoints: DataTypes.INTEGER,
+        scored: DataTypes.INTEGER,
         grade: DataTypes.STRING
     });
 
