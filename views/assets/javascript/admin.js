@@ -468,6 +468,29 @@ $(document).ready(function () {
     });
     //-------------------------------------------------------------------------------
 
+    //Make Announcements ------------------------------------------------------------
+    $('#submitNewAnnouncement').on('click', function (e) {
+        e.preventDefault();
+        let title = $('#newAnnouncemetTitle').val();
+        let text = $('#newAnnouncementContent').val();
+        $.ajax({
+            method: 'POST',
+            url: '/adminAnnouncements',
+            data: {
+                title: title,
+                data: text
+            }
+        }).then(result => {
+            console.log(result);
+        });
+    });
+    //-------------------------------------------------------------------------------
+
+    $('#logOut').on('click', function (e) {
+        e.preventDefault();
+        window.location.href = '/'
+    });
+
     function updateClassSubject(classId, newSubject, cb) {
         $.ajax({
             method: 'PUT',

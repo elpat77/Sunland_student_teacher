@@ -49,6 +49,9 @@ app.use('/testsRoutes', testsRoutes);
 const emails = require('./controllers/api/emails');
 app.use('/emails', emails);
 
+const adminAnnouncement = require('./controllers/api/adminAnnouncement');
+app.use('/adminAnnouncements', adminAnnouncement);
+
 const htmlRoutes = require('./controllers/client/htmlRoutes');
 app.use('/', htmlRoutes);
 
