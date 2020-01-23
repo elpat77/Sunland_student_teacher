@@ -4,7 +4,7 @@ const db = require('../../models');
 
 router.get('/', (req, res) => {
     db.Classes.findAll({
-        include: [db.Announcements, db.Students]
+        include: [db.Announcements, db.StudentClasses]
     }).then(dbClasses => {
         res.json(dbClasses);
     });

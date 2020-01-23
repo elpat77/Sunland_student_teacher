@@ -28,6 +28,8 @@ router.post('/', (req, res) => {
         email: req.body.email,
         password: req.body.password,
         picture: req.body.picture
+    }, {
+        include: [db.Classes]
     }).then(result => {
         res.json(result);
     });
@@ -64,6 +66,16 @@ router.put('/updateTeacherEmail/:id', (req, res) => {
 router.put('/changePassword/:id', (req, res) => {
     db.Teacher.update({
         password: req.body.password
+    }, {
+        where: { id: req.params.id }
+    }).then(result => {
+        res.json(result);
+    });
+});
+
+router.put('/changeName/:id', (req, res) => {
+    db.Teacher.update({
+        name: req.body.name
     }, {
         where: { id: req.params.id }
     }).then(result => {
