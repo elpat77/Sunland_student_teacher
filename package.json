@@ -1,11 +1,12 @@
 {
   "name": "Sunland",
   "version": "1.0.0",
-  "description": "",
+  "description": "# Group Members - Jennifer Ni  - Patricio Aguilar",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",
@@ -14,6 +15,7 @@
     "@fullcalendar/core": "^4.3.1",
     "@fullcalendar/daygrid": "^4.3.0",
     "ajax": "0.0.4",
+    "bcrypt": "^3.0.7",
     "bootstrap-icons": "^1.0.0-alpha2",
     "bootswatch": "^4.4.1",
     "bower": "^1.8.8",
@@ -34,5 +36,13 @@
   },
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.12.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elpat77/Sunland_student_teacher.git"
+  },
+  "bugs": {
+    "url": "https://github.com/elpat77/Sunland_student_teacher/issues"
+  },
+  "homepage": "https://github.com/elpat77/Sunland_student_teacher#readme"
 }
