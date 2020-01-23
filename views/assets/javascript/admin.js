@@ -381,11 +381,11 @@ $(document).ready(function () {
                 $('.classInfoShow').append(`
                     <div>
                         <h5>Class Info: </h5>
-                        <h6 id="updatedSubject">subject: ${result.subject}</h6>
-                        <h6 id="updatedSection">section: ${result.section}</h6>
-                        <h6 id="updatedTeacher">teacher: ${result.teacher}</h6>
-                        <h6 id="updatedLocation">location: ${result.location}</h6>
-                        <h6 id="updatedMeetTime">meet time: ${result.meetTime}</h6>
+                        <h6 id="updatedSubject">Subject: ${result.subject}</h6>
+                        <h6 id="updatedSection">Section: ${result.section}</h6>
+                        <h6 id="updatedTeacher">Teacher: ${result.teacher}</h6>
+                        <h6 id="updatedLocation">Location: ${result.location}</h6>
+                        <h6 id="updatedMeetTime">Meet Time: ${result.meetTime}</h6>
                     </div>
                 `);
             } else {
@@ -408,7 +408,7 @@ $(document).ready(function () {
             console.log(result);
             alert('Subject Changed');
             $('#updateSubject').val('');
-            $('#updatedSubject').text(`subject: ${newSubject}`);
+            $('#updatedSubject').text(`Subject: ${newSubject}`);
         });
 
     });
@@ -427,9 +427,44 @@ $(document).ready(function () {
             console.log(result);
             alert('Section Changed');
             $('#updateSection').val('');
-            $('#updatedSection').text(`section: ${newSection}`);
+            $('#updatedSection').text(`Section: ${newSection}`);
         });
+    });
+    //-------------------------------------------------------------------------------
 
+    //Update Class Location ----------------------------------------------------------
+    $('#updateLocationBtn').on('click', function (e) {
+        e.preventDefault();
+        let classId = $('#searchByClass').val();
+        let newLocation = $('#updateLocation').val();
+
+        if (classId === '') {
+            alert('you must enter a class id');
+        }
+        updateClassLocation(classId, newLocation, result => {
+            console.log(result);
+            alert('Location Changed');
+            $('#updateLocation').val('');
+            $('#updatedLocation').text(`Location: ${newLocation}`);
+        });
+    });
+    //-------------------------------------------------------------------------------
+
+    //Update Class Time ---------------------------------------------------------
+    $('#updateClassTimeBtn').on('click', function (e) {
+        e.preventDefault();
+        let classId = $('#searchByClass').val();
+        let newClassTime = $('#updateClassTime').val();
+
+        if (classId === '') {
+            alert('you must enter a class id');
+        }
+        updateClassTime(classId, newClassTime, result => {
+            console.log(result);
+            alert('Time Changed');
+            $('#updateClassTime').val('');
+            $('#updatedMeetTime').text(`Meet Time: ${newClassTime}`);
+        });
     });
     //-------------------------------------------------------------------------------
 
@@ -438,6 +473,36 @@ $(document).ready(function () {
             method: 'PUT',
             url: `/classesRoutes/changeSubject/${classId}`,
             data: { subject: newSubject }
+        }).then(result => {
+            cb(result);
+        });
+    }
+
+    function updateClassSection(classId, newSection, cb) {
+        $.ajax({
+            method: 'PUT',
+            url: `/classesRoutes/changeSection/${classId}`,
+            data: { section: newSection }
+        }).then(result => {
+            cb(result);
+        });
+    }
+
+    function updateClassLocation(classId, newLocation, cb) {
+        $.ajax({
+            method: 'PUT',
+            url: `/classesRoutes/changeLocation/${classId}`,
+            data: { location: newLocation }
+        }).then(result => {
+            cb(result);
+        });
+    }
+
+    function updateClassTime(classId, newClassTime, cb) {
+        $.ajax({
+            method: 'PUT',
+            url: `/classesRoutes/changeTime/${classId}`,
+            data: { meetTime: newClassTime }
         }).then(result => {
             cb(result);
         });
