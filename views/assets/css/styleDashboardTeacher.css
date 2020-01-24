@@ -141,8 +141,8 @@ a[data-toggle="collapse"] {
 }
 
 .dropdown-toggle::after {
-    display: block;
-    position: absolute;
+    /* display: block; */
+    /* position: absolute; */
     top: 50%;
     right: 20px;
     transform: translateY(-50%);
@@ -166,7 +166,7 @@ ul.CTAs a {
     margin-bottom: 5px;
 }
 
-#logOut, #changeTeachPwdBtn, #btnCourses, #btnBackTeacherDash, #uploadFileSubmit, #uploadTutorialURL, #uploadSyllabusSubmit, #announcementSubmit{
+#logOut, #testSubmit, #assignmentSubmit, #changeTeachPwdBtn, #btnCourses, #btnBackTeacherDash, #uploadFileSubmit, #uploadTutorialURL, #uploadSyllabusSubmit, #announcementSubmit{
     background:rgb(99, 209, 172);
     color: #fff;
     padding: .5rem 1rem;
@@ -178,7 +178,7 @@ ul.CTAs a {
     color: #085D61 !important;
 } 
 
-#btnBackTeacherDash:hover, #changeTeachPwdBtn:hover, #btnCourses:hover, #uploadFileSubmit:hover, #uploadTutorialURL:hover, #uploadSyllabusSubmit:hover, #announcementSubmit:hover{
+#btnBackTeacherDash:hover, #testSubmit:hover, #assignmentSubmit:hover, #changeTeachPwdBtn:hover, #btnCourses:hover, #uploadFileSubmit:hover, #uploadTutorialURL:hover, #uploadSyllabusSubmit:hover, #announcementSubmit:hover{
     background:#FF726E!important;
     color: #fff !important;
   }
