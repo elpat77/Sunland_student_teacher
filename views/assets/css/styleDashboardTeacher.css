@@ -166,19 +166,19 @@ ul.CTAs a {
     margin-bottom: 5px;
 }
 
-#logOut, #testSubmit, #assignmentSubmit, #changeTeachPwdBtn, #btnCourses, #btnBackTeacherDash, #uploadFileSubmit, #uploadTutorialURL, #uploadSyllabusSubmit, #announcementSubmit{
+#logOut, #backCI, #gradedAssignmentSubmit, #gradedTestSubmit, #gradedQuizzSubmit,  #testSubmit, #assignmentSubmit, #changeTeachPwdBtn, #btnCourses, #btnBackTeacherDash, #uploadFileSubmit, #uploadTutorialURL, #uploadSyllabusSubmit, #announcementSubmit{
     background:rgb(99, 209, 172);
     color: #fff;
     padding: .5rem 1rem;
     font-size: 1.25rem;
 }
 
-#logOut:hover{
+#logOut:hover, #backCI:hover{
     background: #fff!important;
     color: #085D61 !important;
 } 
 
-#btnBackTeacherDash:hover, #testSubmit:hover, #assignmentSubmit:hover, #changeTeachPwdBtn:hover, #btnCourses:hover, #uploadFileSubmit:hover, #uploadTutorialURL:hover, #uploadSyllabusSubmit:hover, #announcementSubmit:hover{
+#btnBackTeacherDash:hover, #gradedAssignmentSubmit:hover, #gradedTestSubmit:hover, #gradedQuizzSubmit:hover, #testSubmit:hover, #assignmentSubmit:hover, #changeTeachPwdBtn:hover, #btnCourses:hover, #uploadFileSubmit:hover, #uploadTutorialURL:hover, #uploadSyllabusSubmit:hover, #announcementSubmit:hover{
     background:#FF726E!important;
     color: #fff !important;
   }

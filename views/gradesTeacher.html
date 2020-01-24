@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Sunland Teacher Dashboard</title>
+    <title>Sunland Teacher Grades Dashboard</title>
 
     <!----------------Boot strap CSS----------------------->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -43,26 +43,24 @@
             <div>
                 <ul class="nav flex-column nav-pills list-unstyled components" id="v-pills-tab" role="tablist">
                     <div class="componentHeader">
-                        <h3>Class Information</h3>
+                        <h3>Grades</h3>
                     </div>
-                    <li><a class="nav-link show active" id="v-pills-studentList-tab" data-toggle="pill"
-                            href="#v-pills-studentList" role="tab">Student List</a></li>
-                    <li><a class="nav-link" id="v-pills-fileUploads-tab" data-toggle="pill" href="#v-pills-fileUploads"
-                            role="tab">Tutorials or File Uploads</a></li>
-                    <li><a class="nav-link" id="v-pills-fileUploads-tab" data-toggle="pill"
-                            href="#v-pills-classAssignments" role="tab">Class Assignments</a></li>
-                    <li><a class="nav-link" id="v-pills-classAnnouncements-tab" data-toggle="pill"
-                            href="#v-pills-classAnouncements" role="tab">Class Announcements</a></li>
+                    <li><a class="nav-link show active" id="v-pills-gradesAssignments-tab" data-toggle="pill"
+                            href="#v-pills-gradesAssignments" role="tab">Assignments</a></li>
+                    <li><a class="nav-link" id="v-pills-gradesTests-tab" data-toggle="pill" href="#v-pills-gradesTests"
+                            role="tab">Tests</a></li>
+                    <li><a class="nav-link" id="v-pills-gradesQuizzes-tab" data-toggle="pill"
+                            href="#v-pills-gradesQuizzes" role="tab">Quizzes</a></li>
                 </ul>
             </div>
 
 
             <ul class="list-unstyled CTAs">
-                <div class="col-sm-12 text-center">
-
-                    <a class="btn btnBackTeacherDash" id="btnBackTeacherDash" href="">Back
-                        to
-                        my dashboard</a>
+                <div class="text-center">
+                    <a href="../views/classInfoTeacher.html">
+                        <button class="btn px-5" type="submit" id="backCI">Back to Class Info
+                        </button>
+                    </a>
                 </div>
                 <div class="text-center">
                     <a href="../views/index.html">
@@ -102,108 +100,50 @@
             </nav>
 
             <div class="tab-content" id="v-pills-tabContent">
-                <div class="tab-pane fade show active" id="v-pills-studentList" role="tabpanel">
+
+                <div class="tab-pane fade show active" id="v-pills-gradesAssignments" role="tabpanel">
                     <div class="container">
                         <div class="row justify-content-md-center">
-                            <div class="card mb-3 text-center" style="width: 50rem;">
-                                <div class="card-header">Student List</div>
+                            <div class="card mb-4 text-center" style="width: 50rem;">
+                                <div class=" card-header studentNameHeader">Student Name</div>
                                 <div class="card-body">
-                                    <h5 class="card-title text-white">The following students are enrolled in this class:
-                                    </h5>
-                                </div>
-                                <ul class="list-group list-group-flush studentsEnrolled">
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="tab-pane fade" id="v-pills-classAnouncements" role="tabpanel">
-                    <div class="container">
-                        <div class="row justify-content-md-center">
-                            <div class="card mb-3 text-center" style="width: 50rem;">
-                                <div class=" card-header">Announcements</div>
-                                <div class="card-body">
-                                    <h5 class="card-title text-white">Any special class Announcements?</h5>
-                                    <div class="card-text text-dark">
-                                        <label for="newAnnouncemetTitle">What is the announcement title?</label>
-                                        <input type="text" class="form-control mb-3" id="newAnnouncemetTitle" required>
-                                        <div class="invalid-feedback" id="newAnnouncemetTitleVal">
-                                            Please enter an announcement title
-                                        </div>
-                                        <label for="newAnnouncemetContent">What is the announcement
-                                            content?</label>
-                                        <textarea class="form-control" rows="7" id="newAnnouncementContent"
-                                            required></textarea>
-                                        <div class="invalid-feedback" id="newAnnouncementContentVal">
-                                            Please enter an announcement content
-                                        </div>
-                                        <div class="mt-3">
-                                            <button type="submit" class="btn" id="announcementSubmit">Submit</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="tab-pane fade" id="v-pills-classAssignments" role="tabpanel">
-                    <div class="container">
-                        <div class="row justify-content-md-center">
-                            <div class="card mb-3 text-center" style="width: 50rem;">
-                                <div class=" card-header">New Assignment</div>
-                                <div class="card-body">
-                                    <h5 class="card-title text-white">Create a new Assignment for this class</h5>
-                                    <div class="card-text text-dark">
-
-                                        <label for="assignmentTitle text-center">What is the assignment
-                                            title?</label>
-                                        <input type="text" class="form-control mb-3" id="assignmentTitle" required>
-                                        <div class="invalid-feedback" id="assignmentTitleVal">
-                                            Please enter an announcement title
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="col-md-5 mb-3">
-
-                                                <label for="assignmentDate">Due Date</label>
-                                                <input type="date" class="form-control text-muted" id="assignmentDate"
-                                                    placeholder="MM/DD/YYY">
-                                                <div class="invalid-feedback" id="assignmentDateVal">
-                                                    Please select a date
+                                    <h5 class="card-title text-white">Please grade the assignment</h5>
+                                    <div class="container">
+                                        <div class="row justify-content-md-center">
+                                            <div class="col-md-4 card-text mt-3 mb-3">
+                                                <div class="dropdown">
+                                                    <button class="btn btn-secondary dropdown-toggle" type="button"
+                                                        id="testType" data-toggle="dropdown">
+                                                        Was the assignment turned in?
+                                                    </button>
+                                                    <div class="dropdown-menu">
+                                                        <a class="dropdown-item" id="dropdownYes" href="#">Yes</a>
+                                                        <a class="dropdown-item" id="dropdownNo" href="#">No</a>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-4 mb-3">
-                                                <label for="assignmentTime">Due Time</label>
-                                                <input type="time" class="form-control text-muted" id="assignmentTime">
-                                                <div class="invalid-feedback" id="assignmentTimeVal">
-                                                    Please select a time
+                                        </div>
+                                        <div class="row justify-content-md-center">
+                                            <div class="col-md-3 mb-3">
+                                                <label for="gradedAssignmentPoints">Assignment Value</label>
+                                                <input type="number" class="form-control text-muted"
+                                                    id="gradedAssignmentPoints" min="0" max="100">
+                                                <div class="invalid-feedback" id="gradedAssignmentPointsVal">
+                                                    Please enter a assignment value
                                                 </div>
                                             </div>
                                             <div class="col-md-3 mb-3">
-                                                <label for="assignmentPoints">Assignment Value</label>
+                                                <label for="gradedAssignmentScore">Assignment Score</label>
                                                 <input type="number" class="form-control text-muted"
-                                                    id="assignmentPoints" min="0" max="100">
-                                                <div class="invalid-feedback" id="assignmentpointsVal">
-                                                    Please select a time
+                                                    id="gradedAssignmentScore" min="0" max="100">
+                                                <div class="invalid-feedback" id="gradedAssignmentScoreVal">
+                                                    Please enter a assignment score
                                                 </div>
                                             </div>
                                         </div>
-
-                                        <label for="assignmentContent">Any assignment notes to add?</label>
-                                        <textarea class="form-control" rows="7" id="assignmentContent"
-                                            required></textarea>
-                                        <div class="invalid-feedback" id="assignmentContentVal">
-                                            Please enter assignment details
-                                        </div>
-                                        <div class="alert alert-danger text-center mt-3"
-                                            id="invalidAssignmentSubmission" style="display:none;">
-                                            <strong>Error!</strong> Please complete all fields
-                                        </div>
                                         <div class="mt-3">
-                                            <button type="submit" class="btn" id="assignmentSubmit">Submit</button>
+                                            <button type="submit" class="btn"
+                                                id="gradedAssignmentSubmit">Submit</button>
                                         </div>
                                     </div>
                                 </div>
@@ -212,76 +152,102 @@
                     </div>
                 </div>
 
-                <div class="tab-pane fade" id="v-pills-fileUploads" role="tabpanel">
-                    <div class="card-columns">
-                        <div class="container">
-
-                            <div class="card text-white text-center" style="width: 25rem;">
-                                <div class="card-header">Tutorials</div>
+                <div class="tab-pane fade" id="v-pills-gradesTests" role="tabpanel">
+                    <div class="container">
+                        <div class="row justify-content-md-center">
+                            <div class="card mb-4 text-center" style="width: 50rem;">
+                                <div class=" card-header studentNameHeader">Student Name</div>
                                 <div class="card-body">
-                                    <h5 class="card-title">Any video tutorials to share with the class?</h5>
-                                    <div class="card-text text-dark">
-                                        <label for="basic-url">Tutorial url:</label>
-                                        <div class="input-group mb-3">
-                                            <input type="text" class="form-control" id="basic-url"
-                                                placeholder="https://example.com/users/" required>
-                                            <div class="invalid-feedback" id="myFileNameVal"> Please provide a URL
-                                                link
+                                    <h5 class="card-title text-white">Please grade the test</h5>
+                                    <div class="container">
+                                        <div class="row justify-content-md-center">
+                                            <div class="col-md-4 card-text mt-3 mb-3">
+                                                <div class="dropdown">
+                                                    <button class="btn btn-secondary dropdown-toggle" type="button"
+                                                        id="testType" data-toggle="dropdown">
+                                                        Was the test turned in?
+                                                    </button>
+                                                    <div class="dropdown-menu">
+                                                        <a class="dropdown-item" id="dropdownYes" href="#">Yes</a>
+                                                        <a class="dropdown-item" id="dropdownNo" href="#">No</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row justify-content-md-center">
+                                            <div class="col-md-3 mb-3">
+                                                <label for="gradedTestPoints">Test Value</label>
+                                                <input type="number" class="form-control text-muted"
+                                                    id="gradedTestPoints" min="0" max="100">
+                                                <div class="invalid-feedback" id="gradedTestPointsVal">
+                                                    Please enter a test value
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 mb-3">
+                                                <label for="gradedTestScore">Test Score</label>
+                                                <input type="number" class="form-control text-muted"
+                                                    id="gradedTestScore" min="0" max="100">
+                                                <div class="invalid-feedback" id="gradedTestScoreVal">
+                                                    Please enter a test score
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="mt-3">
-                                            <button type="submit" class="btn" id="uploadTutorialURL">Submit</button>
+                                            <button type="submit" class="btn" id="gradedTestSubmit">Submit</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
 
-                            <div class="card text-white text-center" style="width: 25rem;">
-                                <div class="card-header">File Uploads</div>
+                <div class="tab-pane fade" id="v-pills-gradesQuizzes" role="tabpanel">
+                    <div class="container">
+                        <div class="row justify-content-md-center">
+                            <div class="card mb-4 text-center" style="width: 50rem;">
+                                <div class=" card-header studentNameHeader">Student Name</div>
                                 <div class="card-body">
-                                    <h5 class="card-title">Any files to share with your students?</h5>
-                                    <div class="card-text text-dark">
-                                        <label for="myFileName ">Name of the File:</label>
-                                        <input type="text" class="form-control" id="myFileName" required>
-                                        <div class="invalid-feedback" id="myFileNameVal">
-                                            Please enter a name for your file
+                                    <h5 class="card-title text-white">Please grade the quizz</h5>
+                                    <div class="container">
+                                        <div class="row justify-content-md-center">
+                                            <div class="col-md-4 card-text mt-3 mb-3">
+                                                <div class="dropdown">
+                                                    <button class="btn btn-secondary dropdown-toggle" type="button"
+                                                        id="quizzType" data-toggle="dropdown">
+                                                        Was the quizz turned in?
+                                                    </button>
+                                                    <div class="dropdown-menu">
+                                                        <a class="dropdown-item" id="dropdownYes" href="#">Yes</a>
+                                                        <a class="dropdown-item" id="dropdownNo" href="#">No</a>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="mt-3">
-                                            <input type="file" id="myFile" name="fileName" required>
-                                            <div class="invalid-feedback" id="myFileVal">
-                                                Please attach a file
+                                        <div class="row justify-content-md-center">
+                                            <div class="col-md-3 mb-3">
+                                                <label for="gradedQuizzPoints">Quizz Value</label>
+                                                <input type="number" class="form-control text-muted"
+                                                    id="gradedQuizzPoints" min="0" max="100">
+                                                <div class="invalid-feedback" id="gradedQuizzPointsVal">
+                                                    Please enter a quizz value
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 mb-3">
+                                                <label for="gradedQuizzScore">Quizz Score</label>
+                                                <input type="number" class="form-control text-muted"
+                                                    id="gradedQuizzScore" min="0" max="100">
+                                                <div class="invalid-feedback" id="gradedQuizzScoreVal">
+                                                    Please enter a quizz score
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="mt-3">
-                                            <button type="submit" class="btn" id="uploadFileSubmit">Submit</button>
+                                            <button type="submit" class="btn" id="gradedQuizzSubmit">Submit</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="card text-white text-center" style="width: 25rem;">
-                                <div class="card-header">Syllabus Upload</div>
-                                <div class="card-body">
-                                    <h5 class="card-title">Share the syllabus with your students!</h5>
-                                    <div class="card-text text-dark">
-                                        <label for="mySyllabusName">Name of the Syllabus:</label>
-                                        <input type="text" class="form-control" id="mySyllabusName" required>
-                                        <div class="invalid-feedback" id="mySyllabusNameVal">
-                                            Please enter a name for your syllabus
-                                        </div>
-                                        <div class="mt-3">
-                                            <input type="file" id="mySyllabus" name="SyllabusName" required>
-                                            <div class="invalid-feedback" id="myFileVal">
-                                                Please attach a file
-                                            </div>
-                                        </div>
-                                        <div class="mt-3">
-                                            <button type="submit" class="btn" id="uploadSyllabusSubmit">Submit</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
                         </div>
                     </div>
                 </div>
