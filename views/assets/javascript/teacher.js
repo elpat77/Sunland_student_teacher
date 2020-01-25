@@ -40,12 +40,11 @@ $(document).ready(function () {
                 method: 'GET',
                 url: '/adminAnnouncements',
             }).then(result => {
-                console.log(result);
                 for (let i = 0; i < result.length; i++) {
                     let timeAndDate = result[i].updatedAt.split('T');
                     let date = new Date(timeAndDate[0]).toString();
                     let day = date.substring(0, 15);
-                    $('#adminAnnouncements').append(`
+                    $('#adminAnnouncements').prepend(`
                 <div class="card text-white mb-3 text-center">
                     <div class="card-header">${result[i].title}</div>
                         <div class="card-body">
@@ -57,8 +56,8 @@ $(document).ready(function () {
                 </div>
                 `);
                 }
+                getCourses();
             });
-            getCourses();
             //-----------------------------------------------------------------------
         }
     }
@@ -122,19 +121,24 @@ $(document).ready(function () {
         }).then(res => {
             console.log(res);
             $('#name').text(res[0].name);
+
+
             if (res[0].Classes.length != 0) {
+                console.log('passed conditional');
+
                 for (let i = 0; i < res[0].Classes.length; i++) {
+
                     let classes = res[0].Classes;
+                    console.log(classes[i])
                     $('.classCard').append(`                            
-                    <div class="card text-white bg-primary mb-3 text-center">
-                    <div class="card-header">${classes[i].subject} ${classes[i].section}</div>
-                    <div class="card-body">
-                        <h5 class="card-title">Meet Time: ${classes[i].meetTime}</h5>
-                        <p class="card-text text-dark">Location: ${classes[i].location}</p>
-                        <a class="btn" value="${classes[i].id}" id="btnCourses" href="">Class
-                            Info</a>
-                    </div>
-                </div>`);
+                        <div class="card text-white bg-primary mb-3 text-center">
+                            <div class="card-header">${classes[i].subject} ${classes[i].section}</div>
+                            <div class="card-body">
+                              <h5 class="card-title">Meet Time: ${classes[i].meetTime}</h5>
+                              <p class="card-text text-dark">Location: ${classes[i].location}</p>
+                              <a class="btn" value="${classes[i].id}" id="btnCourses" href="">Class Info</a>
+                            </div>
+                        </div>`);
                 }
             }
         });

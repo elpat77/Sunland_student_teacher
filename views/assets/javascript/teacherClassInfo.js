@@ -72,8 +72,7 @@ $(document).ready(function () {
             url: `/gradesRoutes/byClassId/${classId}`
         }).then(result => {
             console.log(result);
-
-            if (result === null) {
+            if (result.length === 0) {
                 alert('You must set up class grades first!');
             } else {
 
@@ -82,6 +81,8 @@ $(document).ready(function () {
 
     });
     //--------------------------------------------------------------------------------
+
+    $().on();
 
     //Validation ---------------------------------------------------------------------
     $('#assignmentTitle').on('click', function () {
