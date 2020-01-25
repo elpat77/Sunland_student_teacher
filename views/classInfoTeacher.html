@@ -246,16 +246,13 @@
                                                 </div>
                                             </div> -->
                                             <div class="col-md-4 mb-3">
-                                                <label for="testType">Test Type</label>
-                                                <div class="dropdown">
-                                                    <button class="btn btn-secondary dropdown-toggle" type="button"
-                                                        id="testType" data-toggle="dropdown">
-                                                        Select a test type
-                                                    </button>
-                                                    <div class="dropdown-menu">
-                                                        <a class="dropdown-item" id="dropdownQuiz" href="#">Quiz</a>
-                                                        <a class="dropdown-item" id="dropdownExam" href="#">Exam</a>
-                                                    </div>
+                                                <div class="form-group">
+                                                    <label for="selectedTestTypeVal">Test Type </label>
+                                                    <select class="selectpicker form-control" id="selectedTestTypeVal">
+                                                        <option value="" selected disabled>Select a Type</option>
+                                                        <option id="dropdownQuiz">Quiz</option>
+                                                        <option id="dropdownExam">Exam</option>
+                                                    </select>
                                                 </div>
                                             </div>
 
@@ -296,7 +293,7 @@
                                 <div class="card-body">
                                     <h5 class="card-title text-white">Setup grading system in this class</h5>
                                     <div class="card-text text-dark">
-                                        <div class="row">
+                                        <div class="row justify-content-md-center">
                                             <div class="col-md-3 mb-3">
                                                 <label for="assignmentPercent">Assignments Value</label>
                                                 <input type="number" class="form-control text-muted"
