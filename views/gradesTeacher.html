@@ -51,6 +51,8 @@
                             role="tab">Tests</a></li>
                     <li><a class="nav-link" id="v-pills-gradesQuizzes-tab" data-toggle="pill"
                             href="#v-pills-gradesQuizzes" role="tab">Quizzes</a></li>
+                    <li><a class="nav-link" id="v-pills-gradesOverview-tab" data-toggle="pill"
+                            href="#v-pills-gradesOverview" role="tab">Overview</a></li>
                 </ul>
             </div>
 
@@ -110,34 +112,37 @@
                                     <h5 class="card-title text-white">Please grade the assignment</h5>
                                     <div class="container">
                                         <div class="row justify-content-md-center">
-                                            <div class="col-md-4 card-text mt-3 mb-3">
-                                                <div class="dropdown">
-                                                    <button class="btn btn-secondary dropdown-toggle" type="button"
-                                                        id="testType" data-toggle="dropdown">
-                                                        Was the assignment turned in?
-                                                    </button>
-                                                    <div class="dropdown-menu">
-                                                        <a class="dropdown-item" id="dropdownYes" href="#">Yes</a>
-                                                        <a class="dropdown-item" id="dropdownNo" href="#">No</a>
-                                                    </div>
+                                            <div class="col-md-3 mt-3 mb-3">
+                                                <div class="form-group">
+                                                    <label for="selectedAssignmental">Select and assignment</label>
+                                                    <select class="selectpicker form-control"
+                                                        id="selectedAssignmentVal">
+                                                        <option value="" selected disabled>Choose One</option>
+                                                        <option>Assignment 1</option>
+                                                        <option>Assignment 2</option>
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row justify-content-md-center">
                                             <div class="col-md-3 mb-3">
-                                                <label for="gradedAssignmentPoints">Assignment Value</label>
-                                                <input type="number" class="form-control text-muted"
-                                                    id="gradedAssignmentPoints" min="0" max="100">
-                                                <div class="invalid-feedback" id="gradedAssignmentPointsVal">
-                                                    Please enter a assignment value
+                                                <div class="form-group">
+                                                    <label for="turnedInVal">Assignment turned in? </label>
+                                                    <select class="selectpicker form-control" id="turnedInVal">
+                                                        <option value="" selected disabled>Choose One</option>
+                                                        <option id="yes">Yes</option>
+                                                        <option id="no">No</option>
+                                                    </select>
                                                 </div>
                                             </div>
+                                        </div>
+                                        <div class="row justify-content-md-center">
                                             <div class="col-md-3 mb-3">
                                                 <label for="gradedAssignmentScore">Assignment Score</label>
                                                 <input type="number" class="form-control text-muted"
                                                     id="gradedAssignmentScore" min="0" max="100">
                                                 <div class="invalid-feedback" id="gradedAssignmentScoreVal">
-                                                    Please enter a assignment score
+                                                    Please enter an assignment score
                                                 </div>
                                             </div>
                                         </div>
@@ -161,28 +166,30 @@
                                     <h5 class="card-title text-white">Please grade the test</h5>
                                     <div class="container">
                                         <div class="row justify-content-md-center">
-                                            <div class="col-md-4 card-text mt-3 mb-3">
-                                                <div class="dropdown">
-                                                    <button class="btn btn-secondary dropdown-toggle" type="button"
-                                                        id="testType" data-toggle="dropdown">
-                                                        Was the test turned in?
-                                                    </button>
-                                                    <div class="dropdown-menu">
-                                                        <a class="dropdown-item" id="dropdownYes" href="#">Yes</a>
-                                                        <a class="dropdown-item" id="dropdownNo" href="#">No</a>
-                                                    </div>
+                                            <div class="col-md-3 mt-3 mb-3">
+                                                <div class="form-group">
+                                                    <label for="selectedTest">Select an test</label>
+                                                    <select class="selectpicker form-control" id="selectedTestVal">
+                                                        <option value="" selected disabled>Choose One</option>
+                                                        <option>Test 1</option>
+                                                        <option>Test 2</option>
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row justify-content-md-center">
                                             <div class="col-md-3 mb-3">
-                                                <label for="gradedTestPoints">Test Value</label>
-                                                <input type="number" class="form-control text-muted"
-                                                    id="gradedTestPoints" min="0" max="100">
-                                                <div class="invalid-feedback" id="gradedTestPointsVal">
-                                                    Please enter a test value
+                                                <div class="form-group">
+                                                    <label for="turnedInVal">Test turned in? </label>
+                                                    <select class="selectpicker form-control" id="turnedInVal">
+                                                        <option value="" selected disabled>Choose One</option>
+                                                        <option id="yes">Yes</option>
+                                                        <option id="no">No</option>
+                                                    </select>
                                                 </div>
                                             </div>
+                                        </div>
+                                        <div class="row justify-content-md-center">
                                             <div class="col-md-3 mb-3">
                                                 <label for="gradedTestScore">Test Score</label>
                                                 <input type="number" class="form-control text-muted"
@@ -211,28 +218,30 @@
                                     <h5 class="card-title text-white">Please grade the quizz</h5>
                                     <div class="container">
                                         <div class="row justify-content-md-center">
-                                            <div class="col-md-4 card-text mt-3 mb-3">
-                                                <div class="dropdown">
-                                                    <button class="btn btn-secondary dropdown-toggle" type="button"
-                                                        id="quizzType" data-toggle="dropdown">
-                                                        Was the quizz turned in?
-                                                    </button>
-                                                    <div class="dropdown-menu">
-                                                        <a class="dropdown-item" id="dropdownYes" href="#">Yes</a>
-                                                        <a class="dropdown-item" id="dropdownNo" href="#">No</a>
-                                                    </div>
+                                            <div class="col-md-3 mt-3 mb-3">
+                                                <div class="form-group">
+                                                    <label for="selectedQuizz">Select an test</label>
+                                                    <select class="selectpicker form-control" id="selectedQuizzVal">
+                                                        <option value="" selected disabled>Choose One</option>
+                                                        <option>Quiz 1</option>
+                                                        <option>Quiz 2</option>
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row justify-content-md-center">
                                             <div class="col-md-3 mb-3">
-                                                <label for="gradedQuizzPoints">Quizz Value</label>
-                                                <input type="number" class="form-control text-muted"
-                                                    id="gradedQuizzPoints" min="0" max="100">
-                                                <div class="invalid-feedback" id="gradedQuizzPointsVal">
-                                                    Please enter a quizz value
+                                                <div class="form-group">
+                                                    <label for="turnedInVal">Quizz turned in? </label>
+                                                    <select class="selectpicker form-control" id="turnedInVal">
+                                                        <option value="" selected disabled>Choose One</option>
+                                                        <option id="yes">Yes</option>
+                                                        <option id="no">No</option>
+                                                    </select>
                                                 </div>
                                             </div>
+                                        </div>
+                                        <div class="row justify-content-md-center">
                                             <div class="col-md-3 mb-3">
                                                 <label for="gradedQuizzScore">Quizz Score</label>
                                                 <input type="number" class="form-control text-muted"
@@ -251,8 +260,68 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="tab-pane fade" id="v-pills-gradesOverview" role="tabpanel">
+                    <div class="container">
+                        <div class="row justify-content-md-center">
+                            <div class="card mb-4 text-center" style="width: 50rem;">
+                                <div class="card-header">Assignments</div>
+                                <div class="card-body">
+                                    <p class="card-text text-dark overviewAssignName">Name:
+                                    </p>
+                                    <p class="card-text text-dark overviewAssignPoints">Points:
+                                    </p>
+                                    <p class="card-text text-dark overviewAssignGrades">Grade:
+                                    </p>
+                                    <div class="mt-3">
+                                        <button type="submit" class="btn" id="changeOverviewAssignment">Change</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row justify-content-md-center">
+                            <div class="card mb-4 text-center" style="width: 50rem;">
+                                <div class="card-header">Quizzes</div>
+                                <div class="card-body">
+                                    <p class="card-text text-dark overviewQuizzesName">Name:
+                                    </p>
+                                    <p class="card-text text-dark overviewQuizzesPoints">Points:
+                                    </p>
+                                    <p class="card-text text-dark overviewQuizzesGrades">Grade:
+                                    </p>
+                                    <div class="mt-3">
+                                        <button type="submit" class="btn" id="changeOverviewQuizzes">Change</button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row justify-content-md-center">
+                            <div class="card mb-4 text-center" style="width: 50rem;">
+                                <div class="card-header">Tests</div>
+                                <div class="card-body">
+                                    <p class="card-text text-dark overviewTestsName">Name:
+                                    </p>
+                                    <p class="card-text text-dark overviewTestsPoints">Points:
+                                    </p>
+                                    <p class="card-text text-dark overviewTestsGrades">Grade:
+                                    </p>
+                                    <div class="mt-3">
+                                        <button type="submit" class="btn" id="changeOverviewTests">Change</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
             </div>
         </div>
+    </div>
+    </div>
+    </div>
+    </div>
 
     </div>
 

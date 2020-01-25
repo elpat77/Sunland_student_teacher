@@ -166,7 +166,7 @@ ul.CTAs a {
     margin-bottom: 5px;
 }
 
-#logOut, #backCI, #gradedAssignmentSubmit, #gradedTestSubmit, #gradedQuizzSubmit,  #testSubmit, #assignmentSubmit, #changeTeachPwdBtn, #btnCourses, #btnBackTeacherDash, #uploadFileSubmit, #uploadTutorialURL, #uploadSyllabusSubmit, #announcementSubmit, #gradeSubmit{
+#logOut, #changeOverviewQuizzes, #changeOverviewTests, #changeOverviewAssignment, #backCI, #gradedAssignmentSubmit, #gradedTestSubmit, #gradedQuizzSubmit,  #testSubmit, #assignmentSubmit, #changeTeachPwdBtn, #btnCourses, #btnBackTeacherDash, #uploadFileSubmit, #uploadTutorialURL, #uploadSyllabusSubmit, #announcementSubmit, #gradeSubmit{
     background:rgb(99, 209, 172);
     color: #fff;
     padding: .5rem 1rem;
@@ -178,7 +178,7 @@ ul.CTAs a {
     color: #085D61 !important;
 } 
 
-#btnBackTeacherDash:hover, #gradedAssignmentSubmit:hover, #gradedTestSubmit:hover, #gradedQuizzSubmit:hover, #testSubmit:hover, #assignmentSubmit:hover, #changeTeachPwdBtn:hover, #btnCourses:hover, #uploadFileSubmit:hover, #uploadTutorialURL:hover, #uploadSyllabusSubmit:hover, #announcementSubmit:hover{
+#btnBackTeacherDash:hover, #changeOverviewQuizzes:hover, #changeOverviewTests:hover, #changeOverviewAssignment:hover, #gradedAssignmentSubmit:hover, #gradedTestSubmit:hover, #gradedQuizzSubmit:hover, #testSubmit:hover, #assignmentSubmit:hover, #changeTeachPwdBtn:hover, #btnCourses:hover, #uploadFileSubmit:hover, #uploadTutorialURL:hover, #uploadSyllabusSubmit:hover, #announcementSubmit:hover{
     background:#FF726E!important;
     color: #fff !important;
   }
