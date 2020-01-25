@@ -46,7 +46,7 @@ router.get('/searchEmail/:id', (req, res) => {
         where: {
             email: req.params.id
         },
-        // include: [db.Classes]
+        include: [db.ClassInfo, db.Grades]
     }).then(result => {
         res.json(result);
     });
