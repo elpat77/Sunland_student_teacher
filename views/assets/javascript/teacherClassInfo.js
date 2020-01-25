@@ -47,7 +47,55 @@ $(document).ready(function () {
     //--------------------------------------------------------------------------------
 
     //Create new class assignment ----------------------------------------------------
+    $('#assignmentSubmit').on('click', function () {
+        let classId = urlQuerries.get('ClassId');
+        let title = $('#assignmentTitle').val();
+        let dueDate = $('#assignmentDate').val();
+        let time = $('#assignmentTime').val();
+        let value = $('#assignmentPoints').val();
+        let dis = $('#assignmentContent').val();
 
+        if (title === '') {
+            $('#assignmentTitleVal').show();
+        }
+        if (dueDate === '') {
+            $('#assignmentDateVal').show();
+        }
+        if (time === '') {
+            $('#assignmentTimeVal').show();
+        }
+        if (value === '') {
+            $('#assignmentPointsVal').show();
+        }
+        $.ajax({
+            method: 'GET',
+            url: `/gradesRoutes/byClassId/${classId}`
+        }).then(result => {
+            console.log(result);
+
+            if (result === null) {
+                alert('You must set up class grades first!');
+            } else {
+
+            }
+        });
+
+    });
+    //--------------------------------------------------------------------------------
+
+    //Validation ---------------------------------------------------------------------
+    $('#assignmentTitle').on('click', function () {
+        $('#assignmentTitleVal').hide();
+    });
+    $('#assignmentDate').on('click', function () {
+        $('#assignmentDateVal').hide();
+    });
+    $('#assignmentTime').on('click', function () {
+        $('#assignmentTimeVal').hide();
+    });
+    $('#assignmentPoints').on('click', function () {
+        $('#assignmentPointsVal').hide();
+    });
     //--------------------------------------------------------------------------------
 
     //logout--------------------------------------------------------------------------

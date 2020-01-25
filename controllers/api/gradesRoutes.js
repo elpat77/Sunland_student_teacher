@@ -10,9 +10,17 @@ router.get('/', (req, res) => {
     });
 });
 
+router.get('/byClassId/:id', (req, res) => {
+    db.Grades.findAll({
+        where: { idClass: req.params.id }
+    }).then(result => {
+        res.json(result);
+    });
+});
+
 router.post('/:id', (req, res) => {
     db.Grades.create({
-        studentId: req.body.studentId,
+        idClass: req.body.idClass,
         finalGrade: req.body.finalGrade,
         quizzesPercent: req.body.qp,
         assignmentsPercent: req.body.ap,

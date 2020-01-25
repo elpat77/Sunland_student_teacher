@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
     const Grades = sequelize.define('Grades', {
-        studentId: DataTypes.INTEGER,
+        idClass: DataTypes.INTEGER,
         finalGrade: DataTypes.STRING,
         quizzesPercent: DataTypes.INTEGER,
         assignmentsPercent: DataTypes.INTEGER,
