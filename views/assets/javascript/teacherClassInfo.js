@@ -54,6 +54,7 @@ $(document).ready(function () {
     $('#logOut').on('click', function (e) {
         e.preventDefault();
         window.location.href = '/';
+
     });
     //--------------------------------------------------------------------------------
 
