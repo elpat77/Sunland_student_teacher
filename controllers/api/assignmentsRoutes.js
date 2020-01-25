@@ -8,7 +8,7 @@ router.get('/', (req, res) => {
     });
 });
 
-router.post('/:grade/:Classid', (req, res) => {
+router.post('/:grade/', (req, res) => {
     db.Assignments.create({
         dueDate: req.body.date,
         title: req.body.title,
@@ -18,7 +18,6 @@ router.post('/:grade/:Classid', (req, res) => {
         grade: req.body.grade,
         totalPoints: req.body.totalPoints,
         scored: req.body.scored,
-        ClassId: req.params.Classid,
         GradeId: req.params.grade
     }).then(result => {
         res.json(result);
