@@ -11,7 +11,14 @@ $(document).ready(function () {
             url: `/teacherRoutes/searchById/${teacherId}`
         }).then(result => {
             $('#name').text(result.name);
-            getStudentsInClass(classId, resultStudents => {
+            getStudentsInClass(classId, students => {
+                for (let i = 0; i < students.length; i++) {
+                    $('.studentsEnrolled').append(`
+                    <li class="list-group-item">
+                        <a href="#" class="card-link" id="student1">${students[i].studentName}</a>
+                    </li>
+                    `);
+                }
             });
         });
     }
@@ -82,7 +89,31 @@ $(document).ready(function () {
     });
     //--------------------------------------------------------------------------------
 
-    $().on();
+    $('#gradeSubmit').on('click', function () {
+        let classId = urlQuerries.get('ClassId');
+        let assignment = $('#assignmentPercent').val();
+        let quiz = $('#quizzesPercent').val();
+        let tests = $('#testPercent').val();
+
+        getStudentsInClass(classId, students => {
+            for (let i = 0; i < students.length; i++) {
+                $.ajax({
+                    method: 'POST',
+                    url: `/gradesRoutes/${students[i].studentId}`,
+                    data: {
+                        idClass: classId,
+                        finalGrade: '-',
+                        qp: quiz,
+                        ap: assignment,
+                        testPercent: tests
+                    }
+                }).then(result => {
+                    console.log(result);
+
+                });
+            }
+        });
+    });
 
     //Validation ---------------------------------------------------------------------
     $('#assignmentTitle').on('click', function () {
@@ -113,13 +144,12 @@ $(document).ready(function () {
             url: `classesRoutes/searchClassById/${classId}`
         }).then(result => {
             let students = result.StudentClasses;
-            for (let i = 0; i < students.length; i++) {
-                $('.studentsEnrolled').append(`
-                <li class="list-group-item">
-                    <a href="#" class="card-link" id="student1">${students[i].studentName}</a>
-                </li>
-                `);
-            }
+            cb(students)
         });
     }
+
+    function getClassById() {
+
+    }
+
 });

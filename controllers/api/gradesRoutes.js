@@ -18,6 +18,14 @@ router.get('/byClassId/:id', (req, res) => {
     });
 });
 
+router.delete('/deleteGrades/:id', (req, res) => {
+    db.Grades.destroy({
+        where: { idClass: req.params.id }
+    }).then(result => {
+        res.json(result);
+    });
+});
+
 router.post('/:id', (req, res) => {
     db.Grades.create({
         idClass: req.body.idClass,
