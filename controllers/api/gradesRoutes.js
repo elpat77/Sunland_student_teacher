@@ -18,6 +18,18 @@ router.get('/byClassId/:id', (req, res) => {
     });
 });
 
+router.get('/:id/:studentId', (req, res) => {
+    db.Grades.findOne({
+        where: {
+            idClass: req.params.id,
+            StudentId: req.params.studentId
+        },
+        include: [db.Assignments, db.Tests, db.Quizzes]
+    }).then(result => {
+        res.json(result);
+    });
+});
+
 router.delete('/deleteGrades/:id', (req, res) => {
     db.Grades.destroy({
         where: { idClass: req.params.id }

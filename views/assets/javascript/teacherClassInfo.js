@@ -15,7 +15,7 @@ $(document).ready(function () {
                 for (let i = 0; i < students.length; i++) {
                     $('.studentsEnrolled').append(`
                     <li class="list-group-item">
-                        <a href="#" class="card-link" id="student1">${students[i].studentName}</a>
+                        <a href="/gradesTeacher?StudentId=${students[i].studentId}&ClassId=${classId}&TeacherId=${teacherId}" class="card-link studentNames" id="student1">${students[i].studentName}</a>
                     </li>
                     `);
                 }
@@ -128,9 +128,9 @@ $(document).ready(function () {
                     }
                 }).then(result => {
                     console.log(result);
-                    alert('grades setup completed');
                 });
             }
+            alert('grades setup completed');
         });
     });
     //--------------------------------------------------------------------------------

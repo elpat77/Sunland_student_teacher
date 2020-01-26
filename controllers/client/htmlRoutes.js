@@ -24,8 +24,13 @@ router.get('/teacherlogin', (req, res) => {
 router.get('/dashboard-teacher', (req, res) => {
     res.sendFile(path.join(__dirname, '../../views/dashboardTeacher.html'));
 });
+
 router.get('/classInfoTeacher', (req, res) => {
     res.sendFile(path.join(__dirname, '../../views/classInfoTeacher.html'));
+});
+
+router.get('/gradesTeacher', (req, res) => {
+    res.sendFile(path.join(__dirname, '../../views/gradesTeacher.html'));
 });
 
 //admin
