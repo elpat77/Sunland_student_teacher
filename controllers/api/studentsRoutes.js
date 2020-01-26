@@ -10,12 +10,21 @@ router.get('/', (req, res) => {
     });
 });
 
-router.post('/', (req, res) => {
-    db.Students.create({
-        name: req.body.name,
-        email: req.body.email,
-        picture: req.body.pic,
-        password: req.body.password
+router.get('/searchEmail/:id', (req, res) => {
+    db.Students.findOne({
+        where: {
+            email: req.params.id
+        },
+        include: [db.ClassInfo, db.Grades]
+    }).then(result => {
+        res.json(result);
+    });
+});
+
+router.get('/:id', (req, res) => {
+    db.Students.findOne({
+        where: { id: req.params.id },
+        include: [db.Grades]
     }).then(result => {
         res.json(result);
     });
@@ -41,12 +50,12 @@ router.post('/', (req, res) => {
     });
 });
 
-router.get('/searchEmail/:id', (req, res) => {
-    db.Students.findOne({
-        where: {
-            email: req.params.id
-        },
-        include: [db.ClassInfo, db.Grades]
+router.post('/', (req, res) => {
+    db.Students.create({
+        name: req.body.name,
+        email: req.body.email,
+        picture: req.body.pic,
+        password: req.body.password
     }).then(result => {
         res.json(result);
     });
