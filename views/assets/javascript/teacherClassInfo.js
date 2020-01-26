@@ -148,10 +148,61 @@ $(document).ready(function () {
     $('#assignmentPoints').on('click', function () {
         $('#assignmentPointsVal').hide();
     });
+    $('#testTitle').on('click', function () {
+        $('#testTitleVal').hide();
+    });
+    $('#testPoints').on('click', function () {
+        $('#testpointsVal').hide();
+    });
+    $('#selectedTestTypeVal').on('click', function () {
+        $('#selectedTestTypeValVal').hide();
+    });
     //--------------------------------------------------------------------------------
 
     //Create new Test or Quiz --------------------------------------------------------
+    $('#testSubmit').on('click', function () {
+        let classId = urlQuerries.get('ClassId');
+        let title = $('#testTitle').val();
+        let type = $('#selectedTestTypeVal').val();
+        let value = $('#testPoints').val();
+        let des = $('#testContent').val();
+        let typeUrl;
 
+        if (title === '') {
+            $('#testTitleVal').show();
+        }
+        if (type === null) {
+            $('#selectedTestTypeValVal').show();
+        }
+        if (value === '') {
+            $('#testpointsVal').show();
+        }
+        if (type === 'quiz') {
+            typeUrl = 'quizzesRoutes';
+        } else {
+            typeUrl = 'testsRoutes';
+        }
+        getGrades(classId, resultGrades => {
+            console.log(resultGrades);
+            for (let i = 0; i < resultGrades.length; i++) {
+                let gradeId = resultGrades[i].id;
+                $.ajax({
+                    method: 'POST',
+                    url: `/${typeUrl}/${gradeId}`,
+                    data: {
+                        name: title,
+                        totalPoints: value,
+                        scored: 0,
+                        grade: '-'
+                    }
+                }).then(result => {
+                    console.log(result);
+                    alert('Test Created!');
+                });
+            }
+        });
+
+    });
     //--------------------------------------------------------------------------------
 
     //logout--------------------------------------------------------------------------
