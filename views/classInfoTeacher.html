@@ -250,9 +250,12 @@
                                                     <label for="selectedTestTypeVal">Test Type </label>
                                                     <select class="selectpicker form-control" id="selectedTestTypeVal">
                                                         <option value="" selected disabled>Select a Type</option>
-                                                        <option id="dropdownQuiz">Quiz</option>
-                                                        <option id="dropdownExam">Exam</option>
+                                                        <option id="dropdownQuiz" value="quiz">Quiz</option>
+                                                        <option id="dropdownExam" value="test">Exam</option>
                                                     </select>
+                                                </div>
+                                                <div class="invalid-feedback" id="selectedTestTypeValVal">
+                                                    Please select a test type
                                                 </div>
                                             </div>
 
@@ -261,16 +264,16 @@
                                                 <input type="number" class="form-control text-muted" id="testPoints"
                                                     min="0" max="100">
                                                 <div class="invalid-feedback" id="testpointsVal">
-                                                    Please select a time
+                                                    Please enter a value
                                                 </div>
                                             </div>
 
                                         </div>
-                                        <label for="testContent">Any test notes to add?</label>
+                                        <!-- <label for="testContent">Any test notes to add?</label>
                                         <textarea class="form-control" rows="7" id="testContent" required></textarea>
                                         <div class="invalid-feedback" id="testContentVal">
                                             Please enter test details
-                                        </div>
+                                        </div> -->
                                         <div class="alert alert-danger text-center mt-3" id="invalidtestSubmission"
                                             style="display:none;">
                                             <strong>Error!</strong> Please complete all fields
