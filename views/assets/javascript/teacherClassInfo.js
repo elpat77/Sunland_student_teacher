@@ -74,21 +74,40 @@ $(document).ready(function () {
         if (value === '') {
             $('#assignmentPointsVal').show();
         }
-        $.ajax({
-            method: 'GET',
-            url: `/gradesRoutes/byClassId/${classId}`
-        }).then(result => {
-            console.log(result);
-            if (result.length === 0) {
+        getGrades(classId, studentGrades => {
+            if (studentGrades.length === 0) {
                 alert('You must set up class grades first!');
             } else {
-
+                for (let i = 0; i < studentGrades.length; i++) {
+                    $.ajax({
+                        method: 'POST',
+                        url: `/assignmentsRoutes/${studentGrades[i].id}`,
+                        data: {
+                            dueDate: dueDate,
+                            title: title,
+                            timeDue: time,
+                            description: dis,
+                            turnedIn: false,
+                            grade: '-',
+                            totalPoints: value,
+                            scored: 0
+                        }
+                    }).then(result => {
+                        $('#assignmentTitle').val('');
+                        $('#assignmentDate').val('');
+                        $('#assignmentTime').val('');
+                        $('#assignmentPoints').val('');
+                        $('#assignmentContent').val('');
+                        alert('Assignment Created');
+                    });
+                }
             }
         });
 
     });
     //--------------------------------------------------------------------------------
 
+    //Setup grades for each student in class -----------------------------------------
     $('#gradeSubmit').on('click', function () {
         let classId = urlQuerries.get('ClassId');
         let assignment = $('#assignmentPercent').val();
@@ -109,11 +128,12 @@ $(document).ready(function () {
                     }
                 }).then(result => {
                     console.log(result);
-
+                    alert('grades setup completed');
                 });
             }
         });
     });
+    //--------------------------------------------------------------------------------
 
     //Validation ---------------------------------------------------------------------
     $('#assignmentTitle').on('click', function () {
@@ -130,11 +150,14 @@ $(document).ready(function () {
     });
     //--------------------------------------------------------------------------------
 
+    //Create new Test or Quiz --------------------------------------------------------
+
+    //--------------------------------------------------------------------------------
+
     //logout--------------------------------------------------------------------------
     $('#logOut').on('click', function (e) {
         e.preventDefault();
         window.location.href = '/';
-
     });
     //--------------------------------------------------------------------------------
 
@@ -148,8 +171,13 @@ $(document).ready(function () {
         });
     }
 
-    function getClassById() {
-
+    function getGrades(classId, cb) {
+        $.ajax({
+            method: 'GET',
+            url: `/gradesRoutes/byClassId/${classId}`
+        }).then(result => {
+            cb(result);
+        });
     }
 
 });
