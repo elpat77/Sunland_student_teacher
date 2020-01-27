@@ -14,6 +14,7 @@ router.post('/:id', (req, res) => {
         totalPoints: req.body.totalPoints,
         scored: req.body.scored,
         grade: req.body.grade,
+        date: req.body.date,
         GradeId: req.params.id
     }).then(result => {
         res.json(result);

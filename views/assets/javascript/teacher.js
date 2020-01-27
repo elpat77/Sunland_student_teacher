@@ -41,7 +41,7 @@ $(document).ready(function () {
                 url: '/adminAnnouncements',
             }).then(result => {
                 for (let i = 0; i < result.length; i++) {
-                    let timeAndDate = result[i].updatedAt.split('T');
+                    let timeAndDate = result[i].createdAt.split('T');
                     let date = new Date(timeAndDate[0]).toString();
                     let day = date.substring(0, 15);
                     $('#adminAnnouncements').prepend(`

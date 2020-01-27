@@ -74,35 +74,37 @@ $(document).ready(function () {
         if (value === '') {
             $('#assignmentPointsVal').show();
         }
-        getGrades(classId, studentGrades => {
-            if (studentGrades.length === 0) {
-                alert('You must set up class grades first!');
-            } else {
-                for (let i = 0; i < studentGrades.length; i++) {
-                    $.ajax({
-                        method: 'POST',
-                        url: `/assignmentsRoutes/${studentGrades[i].id}`,
-                        data: {
-                            dueDate: dueDate,
-                            title: title,
-                            timeDue: time,
-                            description: dis,
-                            turnedIn: false,
-                            grade: '-',
-                            totalPoints: value,
-                            scored: 0
-                        }
-                    }).then(result => {
-                        $('#assignmentTitle').val('');
-                        $('#assignmentDate').val('');
-                        $('#assignmentTime').val('');
-                        $('#assignmentPoints').val('');
-                        $('#assignmentContent').val('');
-                        alert('Assignment Created');
-                    });
+        if (title != '' && dueDate != '' && time != '' && value != '') {
+            getGrades(classId, studentGrades => {
+                if (studentGrades.length === 0) {
+                    alert('You must set up class grades first!');
+                } else {
+                    for (let i = 0; i < studentGrades.length; i++) {
+                        $.ajax({
+                            method: 'POST',
+                            url: `/assignmentsRoutes/${studentGrades[i].id}`,
+                            data: {
+                                dueDate: dueDate,
+                                title: title,
+                                timeDue: time,
+                                description: dis,
+                                turnedIn: false,
+                                grade: '-',
+                                totalPoints: value,
+                                scored: 0
+                            }
+                        }).then(result => {
+                            $('#assignmentTitle').val('');
+                            $('#assignmentDate').val('');
+                            $('#assignmentTime').val('');
+                            $('#assignmentPoints').val('');
+                            $('#assignmentContent').val('');
+                            alert('Assignment Created');
+                        });
+                    }
                 }
-            }
-        });
+            });
+        }
 
     });
     //--------------------------------------------------------------------------------

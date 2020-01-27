@@ -3,7 +3,8 @@ module.exports = (sequelize, DataTypes) => {
         name: DataTypes.STRING,
         totalPoints: DataTypes.INTEGER,
         scored: DataTypes.INTEGER,
-        grade: DataTypes.STRING
+        grade: DataTypes.STRING,
+        date: DataTypes.STRING
     });
 
     Quizzes.associate = models => {
