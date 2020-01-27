@@ -13,71 +13,8 @@ $(document).ready(function () {
                 $('#student').text(`Viewing Grades for ${student.name}`);
                 getGrades(classId, studentId, grades => {
                     console.log(grades);
-                    let assignments = grades.Assignments;
-                    let tests = grades.Tests;
-                    let quiz = grades.Quizzes;
-
-                    for (let i = 0; i < assignments.length; i++) {
-                        let date = new Date(assignments[i].dueDate).toString();
-                        let due = date.substring(0, 15);
-
-                        $('#selectedAssignmentVal').append(`
-                            <option>${assignments[i].title}</option>
-                            `);
-                        $('#assignmentGrades').prepend(`
-                        <div class="card mb-4 text-center" style="width: 50rem;">                                
-                            <div class="card-header">${assignments[i].title}</div>
-                            <div class="card-body">
-                                <p class="card-text text-dark overviewAssignPoints">Points: ${assignments[i].scored}/${assignments[i].totalPoints}
-                                </p>
-                                <p class="card-text text-dark overviewAssignGrades">Grade: ${assignments[i].grade}
-                                </p>
-                                <p class="card-text text-dark overviewAssignGrades">Due Date: ${due}
-                                </p>
-                                <div class="mt-3">
-                                    <button type="submit" class="btn" id="changeOverviewAssignment">Change</button>
-                                </div>
-                            </div>
-                        </div>`);
-                    }
-                    for (let i = 0; i < tests.length; i++) {
-                        $('#selectedTestVal').append(`
-                        <option>${tests[i].name}</option>
-                        `);
-                        $('#testGrades').append(`
-                        <div class="card mb-4 text-center" style="width: 50rem;">
-                            <div class="card-header">${tests[i].name}</div>
-                            <div class="card-body">
-                                <p class="card-text text-dark overviewTestsPoints">Points: ${tests[i].scored}/${tests[i].totalPoints}
-                                </p>
-                                <p class="card-text text-dark overviewTestsGrades">Grade: ${tests[i].grade}
-                                </p>
-                                <div class="mt-3">
-                                    <button type="submit" class="btn" id="changeOverviewTests">Change</button>
-                                </div>
-                            </div>
-                        </div> `);
-                    }
-                    for (let i = 0; i < quiz.length; i++) {
-                        $('#selectedQuizzVal').append(`
-                        <option>${quiz[i].name}</option>
-                        `);
-                        $('#quizzesGrades').append(`     
-                        <div class="card mb-4 text-center" style="width: 50rem;">
-                            <div class="card-header">${quiz[i].name}</div>
-                            <div class="card-body">
-                                <p class="card-text text-dark overviewTestsPoints">Points: ${quiz[i].scored}/${quiz[i].totalPoints}
-                                </p>
-                                <p class="card-text text-dark overviewTestsGrades">Grade: ${quiz[i].grade}
-                                </p>
-                                <div class="mt-3">
-                                    <button type="submit" class="btn" id="changeOverviewTests">Change</button>
-                                </div>
-                            </div>
-                        </div> `);
-                    }
+                    overViewOfGrades(grades)
                 });
-
             });
         });
     }
@@ -87,8 +24,11 @@ $(document).ready(function () {
         e.preventDefault();
         let classId = urlQuerries.get('ClassId');
         window.location.href = `/classInfoTeacher?TeacherId=${teacherId}&ClassId=${classId}`;
-
     });
+    //------------------------------------------------------------------------------------------
+
+    //Grade assignment -------------------------------------------------------------------------
+    //$('#').on();
     //------------------------------------------------------------------------------------------
 
     function getGrades(classId, studentId, cb) {
@@ -98,10 +38,6 @@ $(document).ready(function () {
         }).then(result => {
             cb(result);
         });
-    }
-
-    function getAssignments() {
-
     }
 
     function getTeacherById(id, cb) {
@@ -120,5 +56,80 @@ $(document).ready(function () {
         }).then(result => {
             cb(result);
         });
+    }
+
+    function overViewOfGrades(grades) {
+        let assignments = grades.Assignments;
+        let tests = grades.Tests;
+        let quiz = grades.Quizzes;
+
+        for (let i = 0; i < assignments.length; i++) {
+            let date = new Date(assignments[i].dueDate).toString();
+            let due = date.substring(0, 15);
+            let turnedIn;
+            $('#selectedAssignmentVal').append(`
+                <option value="${assignments[i].id}">${assignments[i].title}</option>
+                `);
+            assignments[i].turnedIn ? turnedIn = 'Yes' : turnedIn = 'No';
+            $('#assignmentGrades').prepend(`
+            <div class="card mb-4 text-center" style="width: 50rem;">                                
+                <div class="card-header">${assignments[i].title}</div>
+                <div class="card-body">
+                    <p class="card-text text-dark overviewAssignPoints">Points: ${assignments[i].scored}/${assignments[i].totalPoints} Grade: ${assignments[i].grade}
+                    </p>
+                    <p class="card-text text-dark overviewAssignGrades">Submitted: ${turnedIn}
+                    </p>
+                    <p class="card-text text-dark overviewAssignGrades">Due Date: ${due}
+                    </p>
+                    <div class="mt-3">
+                        <button type="submit" class="btn" id="changeOverviewAssignment">Change</button>
+                    </div>
+                </div>
+            </div>`);
+        }
+        for (let i = 0; i < tests.length; i++) {
+            let date = new Date(tests[i].date).toString();
+            let show = date.substring(0, 15);
+            $('#selectedTestVal').append(`
+            <option>${tests[i].name}</option>
+            `);
+            $('#testGrades').append(`
+            <div class="card mb-4 text-center" style="width: 50rem;">
+                <div class="card-header">${tests[i].name}</div>
+                <div class="card-body">
+                    <p class="card-text text-dark overviewTestsPoints">Points: ${tests[i].scored}/${tests[i].totalPoints}
+                    </p>
+                    <p class="card-text text-dark overviewTestsGrades">Grade: ${tests[i].grade}
+                    </p>
+                    <p class="card-text text-dark overviewTestsGrades">Date of Test: ${show}
+                    </p>
+                    <div class="mt-3">
+                        <button type="submit" class="btn" id="changeOverviewTests">Change</button>
+                    </div>
+                </div>
+            </div> `);
+        }
+        for (let i = 0; i < quiz.length; i++) {
+            let date = new Date(tests[i].date).toString();
+            let show = date.substring(0, 15);
+            $('#selectedQuizzVal').append(`
+            <option>${quiz[i].name}</option>
+            `);
+            $('#quizzesGrades').append(`     
+            <div class="card mb-4 text-center" style="width: 50rem;">
+                <div class="card-header">${quiz[i].name}</div>
+                <div class="card-body">
+                    <p class="card-text text-dark overviewTestsPoints">Points: ${quiz[i].scored}/${quiz[i].totalPoints}
+                    </p>
+                    <p class="card-text text-dark overviewTestsGrades">Grade: ${quiz[i].grade}
+                    </p>
+                    <p class="card-text text-dark overviewTestsGrades">Date of Quiz: ${show}
+                    </p>
+                    <div class="mt-3">
+                        <button type="submit" class="btn" id="changeOverviewTests">Change</button>
+                    </div>
+                </div>
+            </div> `);
+        }
     }
 });
