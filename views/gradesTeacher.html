@@ -226,7 +226,7 @@
                                         <div class="row justify-content-md-center">
                                             <div class="col-md-3 mb-3">
                                                 <div class="form-group">
-                                                    <label for="turnedInVal">Quizz turned in? </label>
+                                                    <label for="turnedInVal">Quiz turned in? </label>
                                                     <select class="selectpicker form-control" id="turnedInVal">
                                                         <option value="" selected disabled>Choose One</option>
                                                         <option id="yes">Yes</option>
@@ -237,7 +237,7 @@
                                         </div>
                                         <div class="row justify-content-md-center">
                                             <div class="col-md-3 mb-3">
-                                                <label for="gradedQuizzScore">Quizz Score</label>
+                                                <label for="gradedQuizzScore">Quiz Score</label>
                                                 <input type="number" class="form-control text-muted"
                                                     id="gradedQuizzScore" min="0" max="100">
                                                 <div class="invalid-feedback" id="gradedQuizzScoreVal">
@@ -246,7 +246,7 @@
                                             </div>
                                         </div>
                                         <div class="mt-3">
-                                            <button type="submit" class="btn" id="gradedQuizzSubmit">Submit</button>
+                                            <button type="submit" class="btn" id="gradedQuizSubmit">Submit</button>
                                         </div>
                                     </div>
                                 </div>
@@ -257,17 +257,11 @@
 
                 <div class="tab-pane fade" id="v-pills-gradesOverview" role="tabpanel">
                     <div class="container">
-                        <div class="row justify-content-md-center">
-                            <div class="card mb-4 text-center" id="assignmentGrades" style="width: 50rem;">
-                            </div>
+                        <div class="row justify-content-md-center" id="assignmentGrades">
                         </div>
-                        <div class="row justify-content-md-center">
-                            <div class="card mb-4 text-center" id="quizzesGrades" style="width: 50rem;">
-                            </div>
+                        <div class="row justify-content-md-center" id="quizzesGrades">
                         </div>
-                        <div class="row justify-content-md-center">
-                            <div class="card mb-4 text-center" id="testGrades" style="width: 50rem;">
-                            </div>
+                        <div class="row justify-content-md-center" id="testGrades">
                         </div>
 
                     </div>

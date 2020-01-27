@@ -67,6 +67,8 @@ $(document).ready(function () {
         let value = $('#assignmentPoints').val();
         let dis = $('#assignmentContent').val();
 
+        console.log(dueDate);
+
         if (title === '') {
             $('#assignmentTitleVal').show();
         }
@@ -89,9 +91,9 @@ $(document).ready(function () {
                             method: 'POST',
                             url: `/assignmentsRoutes/${studentGrades[i].id}`,
                             data: {
-                                dueDate: dueDate,
+                                date: dueDate,
                                 title: title,
-                                timeDue: time,
+                                time: time,
                                 description: dis,
                                 turnedIn: false,
                                 grade: '-',
