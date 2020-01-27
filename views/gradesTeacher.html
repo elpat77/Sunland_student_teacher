@@ -109,7 +109,7 @@
                             <div class="card mb-4 text-center" style="width: 50rem;">
                                 <div class=" card-header studentNameHeader">Student Name</div>
                                 <div class="card-body">
-                                    <h5 class="card-title text-white">Please grade the assignment</h5>
+                                    <h5 class="card-title text-white">Update assignment Grade</h5>
                                     <div class="container">
                                         <div class="row justify-content-md-center">
                                             <div class="col-md-3 mt-3 mb-3">
@@ -117,9 +117,14 @@
                                                     <label for="selectedAssignmental">Select and assignment</label>
                                                     <select class="selectpicker form-control"
                                                         id="selectedAssignmentVal">
-                                                        <option value="" selected disabled>Choose One</option>
+                                                        <option value="" selected disabled>Choose One
+                                                        </option>
                                                     </select>
+                                                    <div class="invalid-feedback" id="selectedAssignmentValVal">
+                                                        Please choose one
+                                                    </div>
                                                 </div>
+
                                             </div>
                                         </div>
                                         <div class="row justify-content-md-center">
@@ -131,6 +136,9 @@
                                                         <option id="yes">Yes</option>
                                                         <option id="no">No</option>
                                                     </select>
+                                                    <div class="invalid-feedback" id="turnedInValVal">
+                                                        Please choose one
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>

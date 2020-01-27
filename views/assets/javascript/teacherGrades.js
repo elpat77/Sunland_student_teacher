@@ -12,7 +12,6 @@ $(document).ready(function () {
                 $('.studentNameHeader').text(student.name);
                 $('#student').text(`Viewing Grades for ${student.name}`);
                 getGrades(classId, studentId, grades => {
-                    console.log(grades);
                     overViewOfGrades(grades)
                 });
             });
@@ -28,8 +27,76 @@ $(document).ready(function () {
     //------------------------------------------------------------------------------------------
 
     //Grade assignment -------------------------------------------------------------------------
-    //$('#').on();
+    $('#gradedAssignmentSubmit').on('click', function (e) {
+        e.preventDefault();
+        let classId = urlQuerries.get('ClassId');
+        let studentId = urlQuerries.get('StudentId');
+        let assignment = $('#selectedAssignmentVal').val();
+        let turnedIn = $('#turnedInVal').val();
+        let score = $('#gradedAssignmentScore').val();
+        console.log(turnedIn);
+
+        if (assignment === null) {
+            $('#selectedAssignmentValVal').show();
+        }
+        if (turnedIn === null) {
+            $('#turnedInValVal').show()
+        }
+        if (score === '') {
+            $('#gradedAssignmentScoreVal').show();
+        }
+
+        if (assignment != null && turnedIn != null && score != '') {
+            getAssignment(assignment, result => {
+                let points = (score / result.totalPoints) * 100;
+                let grade = setGrade(points);
+                let yesNo;
+                if (turnedIn === 'Yes') {
+                    yesNo = true;
+                } else {
+                    yesNo = false;
+                }
+                console.log(points);
+
+                updateGrades(assignment, yesNo, score, grade, result => {
+                    console.log(result);
+
+                    getGrades(classId, studentId, allResults => {
+                        overViewOfGrades(allResults);
+                    });
+                });
+            });
+        }
+    });
     //------------------------------------------------------------------------------------------
+
+    //Validation -------------------------------------------------------------------------------
+    $('#selectedAssignmentVal').on('click', function () {
+        $('#selectedAssignmentValVal').hide();
+    });
+    $('#turnedInVal').on('click', function () {
+        $('#turnedInValVal').hide();
+    });
+    $('#gradedAssignmentScore').on('click', function () {
+        $('#gradedAssignmentScoreVal').hide();
+    });
+    //------------------------------------------------------------------------------------------
+
+    function setGrade(points) {
+        let grade;
+        if (points >= 90) {
+            grade = 'A';
+        } else if (points < 90 && points >= 80) {
+            grade = 'B';
+        } else if (points < 80 && points >= 70) {
+            grade = 'C';
+        } else if (points < 70 && points >= 60) {
+            grade = 'D';
+        } else {
+            grade = 'F';
+        }
+        return grade;
+    }
 
     function getGrades(classId, studentId, cb) {
         $.ajax({
@@ -58,10 +125,36 @@ $(document).ready(function () {
         });
     }
 
+    function getAssignment(id, cb) {
+        $.ajax({
+            method: 'GET',
+            url: `/assignmentsRoutes/${id}`
+        }).then(result => {
+            cb(result);
+        });
+    }
+
+    function updateGrades(id, turnedIn, score, grade, cb) {
+        $.ajax({
+            method: 'PUT',
+            url: `/assignmentsRoutes/updateGrades/${id}`,
+            data: {
+                turnedIn: turnedIn,
+                score: score,
+                grade: grade
+            }
+        }).then(result => {
+            cb(result);
+        });
+    }
+
     function overViewOfGrades(grades) {
         let assignments = grades.Assignments;
         let tests = grades.Tests;
         let quiz = grades.Quizzes;
+        $('#assignmentGrades').empty();
+        $('#testGrades').empty();
+        $('#quizzesGrades').empty();
 
         for (let i = 0; i < assignments.length; i++) {
             let date = new Date(assignments[i].dueDate).toString();
