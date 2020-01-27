@@ -1,91 +1,87 @@
 $(document).ready(function () {
-    document.addEventListener('DOMContentLoaded', function () {
-        var Calendar = FullCalendar.Calendar;
-        var Draggable = FullCalendarInteraction.Draggable
 
-        /* initialize the external events
-        -----------------------------------------------------------------*/
 
-        var containerEl = document.getElementById('external-events-list');
-        var eventEls = Array.prototype.slice.call(
-            containerEl.querySelectorAll('.fc-event')
-        );
-        eventEls.forEach(function (eventEl) {
-            new Draggable(eventEl, {
-                eventData: {
-                    title: eventEl.innerText.trim(),
-                },
-            });
+    /* initialize the external events
+    -----------------------------------------------------------------*/
+
+    $('#external-events .fc-event').each(function () {
+
+        // store data so the calendar knows to render an event upon drop
+        $(this).data('event', {
+            title: $.trim($(this).text()), // use the element's text as the event title
+            stick: true, // maintain when user navigates (see docs on the renderEvent method)
+            id: $(this).attr('id'),
+            color: $(this).data('color')
         });
 
-        /* initialize the calendar
-        -----------------------------------------------------------------*/
+        console.log('min', $(this))
 
-        var calendarEl = document.getElementById('calendar');
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-            plugins: ['bootstrap', 'interaction', 'dayGrid', 'timeGrid', 'list'],
-            themeSystem: 'bootstrap',
-            header: {
-                left: 'prev,next today',
-                center: 'title',
-                right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek',
-
-            },
-            footer: {
-                center: 'addEventButton',
-            },
-            editable: true,
-            droppable: true, // this allows things to be dropped onto the calendar
-            drop: function (arg) {
-                // is the "remove after drop" checkbox checked?
-                if (document.getElementById('drop-remove').checked) {
-                    // if so, remove the element from the "Draggable Events" list
-                    arg.draggedEl.parentNode.removeChild(arg.draggedEl);
-                }
-            },
-            eventClick: function (arg) {
-                if (confirm('delete event?')) {
-                    arg.event.remove()
-                }
-            },
-
-            // eventClick: function (calEvent, jsEvent) {
-            //     var title = prompt('Event Title:', calEvent.title, {
-            //         buttons: {
-            //             Ok: true,
-            //             Cancel: false
-            //         }
-            //     });
-
-            //     if (title) {
-            //         calEvent.title = title;
-            //         ('#calendar').fullCalendar('updateEvent', calEvent);
-            //     }
-            // },
-
-            customButtons: {
-                addEventButton: {
-                    text: 'Add New Event',
-                    click: function () {
-                        var dateStr = prompt('Enter a date in YYYY-MM-DD format');
-                        var date = new Date(dateStr + 'T00:00:00'); // will be in local time
-
-                        if (!isNaN(date.valueOf())) { // valid?
-                            calendar.addEvent({
-                                title: "new event",
-                                start: date,
-                                allDay: true,
-                                editable: true
-                            });
-                            alert('Event added. Now, update your database...');
-                        } else {
-                            alert('Invalid date.');
-                        }
-                    }
-                }
-            }
+        // make the event draggable using jQuery UI
+        $(this).draggable({
+            zIndex: 999,
+            revert: true,      // will cause the event to go back to its
+            revertDuration: 0  //  original position after the drag
         });
-        calendar.render();
 
     });
+
+
+    /* initialize the calendar
+    -----------------------------------------------------------------*/
+
+    $('#calendar').fullCalendar({
+        header: {
+            left: 'today',
+            center: 'title',
+            right: 'agendaWeek'
+        },
+        allDaySlot: false,
+        slotEventOverlap: false,
+        eventOverlap: function (stillEvent, movingEvent) {
+            return stillEvent.allDay && movingEvent.allDay;
+        },
+        columnFormat: {
+            week: 'dddd'
+        },
+        titleFormat: 'dddd',
+        eventDrop: function (event, delta, revertFunc) {
+            //inner column movement drop so get start and call the ajax function......
+            console.log(event.start.format());
+            console.log(event.id);
+
+            //alert(event.title + " was dropped on " + event.start.format());
+
+        },
+        eventResize: function (event, delta, revertFunc) {
+            console.log(event.id);
+            console.log("Start time: " + event.start.format() + "end time: " + event.end.format());
+
+        },
+        timeFormat: 'H(:mm)',
+
+        editable: true,
+        defaultView: 'agendaWeek',
+        droppable: true, // this allows things to be dropped onto the calendar
+        drop: function (date) {
+
+            //Call when you drop any red/green/blue class to the week table.....first time runs only.....
+            console.log("dropped");
+            console.log(arguments);
+            console.log(date.format());
+            console.log(this.id);
+
+
+            // is the "remove after drop" checkbox checked?
+            /*if ($('#drop-remove').is(':checked')) {
+                // if so, remove the element from the "Draggable Events" list
+                $(this).remove();
+            }*/
+        },
+        eventRender: function (event, element) {
+
+        }
+
+    });
+
+
 });
