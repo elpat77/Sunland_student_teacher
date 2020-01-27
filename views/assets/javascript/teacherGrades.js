@@ -21,17 +21,19 @@ $(document).ready(function () {
                         $('#selectedAssignmentVal').append(`
                             <option>${assignments[i].title}</option>
                             `);
-                        $('#assignmentGrades').append(`                                
-                        <div class="card-header">${assignments[i].title}</div>
-                        <div class="card-body">
-                            <p class="card-text text-dark overviewAssignPoints">Points: ${assignments[i].scored}/${assignments[i].totalPoints}
-                            </p>
-                            <p class="card-text text-dark overviewAssignGrades">Grade: ${assignments[i].grade}
-                            </p>
-                            <p class="card-text text-dark overviewAssignGrades">Due Date: ${assignments[i].dueDate}
-                            </p>
-                            <div class="mt-3">
-                                <button type="submit" class="btn" id="changeOverviewAssignment">Change</button>
+                        $('#assignmentGrades').prepend(`
+                        <div class="card mb-4 text-center" style="width: 50rem;">                                
+                            <div class="card-header">${assignments[i].title}</div>
+                            <div class="card-body">
+                                <p class="card-text text-dark overviewAssignPoints">Points: ${assignments[i].scored}/${assignments[i].totalPoints}
+                                </p>
+                                <p class="card-text text-dark overviewAssignGrades">Grade: ${assignments[i].grade}
+                                </p>
+                                <p class="card-text text-dark overviewAssignGrades">Due Date: ${assignments[i].dueDate}
+                                </p>
+                                <div class="mt-3">
+                                    <button type="submit" class="btn" id="changeOverviewAssignment">Change</button>
+                                </div>
                             </div>
                         </div>`);
                     }
@@ -39,36 +41,37 @@ $(document).ready(function () {
                         $('#selectedTestVal').append(`
                         <option>${tests[i].name}</option>
                         `);
-                        $('#testGrades').append(`                                
-                        <div class="card-header">${tests[i].name}</div>
-                        <div class="card-body">
-                            <p class="card-text text-dark overviewTestsPoints">Points: ${tests[i].scored}/${tests[i].totalPoints}
-                            </p>
-                            <p class="card-text text-dark overviewTestsGrades">Grade: ${tests[i].grade}
-                            </p>
-                            <div class="mt-3">
-                                <button type="submit" class="btn" id="changeOverviewTests">Change</button>
+                        $('#testGrades').append(`
+                        <div class="card mb-4 text-center" style="width: 50rem;">
+                            <div class="card-header">${tests[i].name}</div>
+                            <div class="card-body">
+                                <p class="card-text text-dark overviewTestsPoints">Points: ${tests[i].scored}/${tests[i].totalPoints}
+                                </p>
+                                <p class="card-text text-dark overviewTestsGrades">Grade: ${tests[i].grade}
+                                </p>
+                                <div class="mt-3">
+                                    <button type="submit" class="btn" id="changeOverviewTests">Change</button>
+                                </div>
                             </div>
-                        </div>`);
+                        </div> `);
                     }
                     for (let i = 0; i < quiz.length; i++) {
                         $('#selectedQuizzVal').append(`
                         <option>${quiz[i].name}</option>
                         `);
-                        $('#quizzesGrades').append(`                                
-                        <div class="card-header"><${quiz[i].name}/div>
-                        <div class="card-body">
-                            <p class="card-text text-dark overviewQuizzesPoints">Points: ${quiz[i].scored}/${quiz[i].totalPoints}
-                            </p>
-                            <p class="card-text text-dark overviewQuizzesGrades">Grade: ${quiz[i].grade}
-                            </p>
-                            <p class="card-text text-dark overviewQuizzesGrades">Date Assigned:
-                            </p>
-                            <div class="mt-3">
-                                <button type="submit" class="btn" id="changeOverviewQuizzes">Change</button>
+                        $('#quizzesGrades').append(`     
+                        <div class="card mb-4 text-center" style="width: 50rem;">
+                            <div class="card-header">${quiz[i].name}</div>
+                            <div class="card-body">
+                                <p class="card-text text-dark overviewTestsPoints">Points: ${quiz[i].scored}/${quiz[i].totalPoints}
+                                </p>
+                                <p class="card-text text-dark overviewTestsGrades">Grade: ${quiz[i].grade}
+                                </p>
+                                <div class="mt-3">
+                                    <button type="submit" class="btn" id="changeOverviewTests">Change</button>
+                                </div>
                             </div>
-
-                        </div>`);
+                        </div> `);
                     }
                 });
 

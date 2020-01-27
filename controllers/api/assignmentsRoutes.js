@@ -24,4 +24,27 @@ router.post('/:grade/', (req, res) => {
     });
 });
 
+router.put('/updateTime/:id', (req, res) => {
+    db.Assignments.update({
+        timeDue: req.body.timeDue
+    },
+        {
+            where: { GradeId: req.params.id }
+        }
+    ).then(result => {
+        res.json(result);
+    });
+});
+
+router.put('/updateDueDate/:id', (req, res) => {
+    db.Assignments.update({
+        dueDate: req.body.dueDate
+    },
+        {
+            where: { GradeId: req.params.id }
+        }).then(result => {
+            res.json(result);
+        });
+});
+
 module.exports = router;
