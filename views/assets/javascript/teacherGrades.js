@@ -34,8 +34,6 @@ $(document).ready(function () {
         let assignment = $('#selectedAssignmentVal').val();
         let turnedIn = $('#turnedInVal').val();
         let score = $('#gradedAssignmentScore').val();
-        console.log(turnedIn);
-
         if (assignment === null) {
             $('#selectedAssignmentValVal').show();
         }
@@ -50,23 +48,56 @@ $(document).ready(function () {
             getAssignment(assignment, result => {
                 let points = (score / result.totalPoints) * 100;
                 let grade = setGrade(points);
+                let name = result.title;
                 let yesNo;
                 if (turnedIn === 'Yes') {
                     yesNo = true;
                 } else {
                     yesNo = false;
                 }
-                console.log(points);
-
-                updateGrades(assignment, yesNo, score, grade, result => {
-                    console.log(result);
-
+                updateAssignmentGrades(assignment, yesNo, score, grade, result => {
                     getGrades(classId, studentId, allResults => {
                         overViewOfGrades(allResults);
                     });
+                    $('#selectedAssignmentVal').val('');
+                    $('#turnedInVal').val('');
+                    $('#gradedAssignmentScore').val('');
+                    alert(`${name} Graded!`);
                 });
             });
         }
+    });
+    //------------------------------------------------------------------------------------------
+
+    //Grade Tests ------------------------------------------------------------------------------
+    $('#gradedTestSubmit').on('click', function (e) {
+        e.preventDefault();
+        let classId = urlQuerries.get('ClassId');
+        let studentId = urlQuerries.get('StudentId');
+        let test = $('#selectedTestVal').val();
+        let score = $('#gradedTestScore').val();
+        if (test === null) {
+            $('#selectedTestValVal').show();
+        }
+        if (score === '') {
+            $('#gradedTestScoreVal').show();
+        }
+        if (test != null && score != '') {
+            getTestById(test, testResult => {
+                let points = (score / testResult.totalPoints) * 100;
+                let grade = setGrade(points);
+
+                updateTestGrade(test, score, grade, result => {
+                    console.log(result);
+                    getGrades(classId, studentId, allResults => {
+                        overViewOfGrades(allResults);
+                    });
+                    $('#selectedTestVal').val('');
+                    $('#gradedTestScore').val('');
+                });
+            });
+        }
+
     });
     //------------------------------------------------------------------------------------------
 
@@ -79,6 +110,12 @@ $(document).ready(function () {
     });
     $('#gradedAssignmentScore').on('click', function () {
         $('#gradedAssignmentScoreVal').hide();
+    });
+    $('#selectedTestVal').on('click', function () {
+        $('#selectedTestValVal').hide();
+    });
+    $('#gradedTestScore').on('click', function () {
+        $('#gradedTestScoreVal').hide();
     });
     //------------------------------------------------------------------------------------------
 
@@ -134,7 +171,30 @@ $(document).ready(function () {
         });
     }
 
-    function updateGrades(id, turnedIn, score, grade, cb) {
+    function getTestById(id, cb) {
+        $.ajax({
+            method: 'GET',
+            url: `/testsRoutes/${id}`
+        }).then(result => {
+            cb(result);
+        });
+    }
+
+    function updateTestGrade(id, score, grade, cb) {
+        $.ajax({
+            method: 'PUT',
+            url: `/testsRoutes/updateGrade/${id}`,
+            data: {
+                scored: score,
+                grade: grade
+            }
+        }).then(result => {
+            cb(result);
+        });
+    }
+
+
+    function updateAssignmentGrades(id, turnedIn, score, grade, cb) {
         $.ajax({
             method: 'PUT',
             url: `/assignmentsRoutes/updateGrades/${id}`,
@@ -180,11 +240,12 @@ $(document).ready(function () {
                 </div>
             </div>`);
         }
+
         for (let i = 0; i < tests.length; i++) {
             let date = new Date(tests[i].date).toString();
             let show = date.substring(0, 15);
             $('#selectedTestVal').append(`
-            <option>${tests[i].name}</option>
+            <option value="${tests[i].id}">${tests[i].name}</option>
             `);
             $('#testGrades').append(`
             <div class="card mb-4 text-center" style="width: 50rem;">
