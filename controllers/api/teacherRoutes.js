@@ -13,7 +13,8 @@ router.get('/', (req, res) => {
 
 router.get('/searchById/:id', (req, res) => {
     db.Teacher.findOne({
-        where: { id: req.params.id }
+        where: { id: req.params.id },
+        include: [db.Classes]
     }).then(result => {
         res.json(result);
     });

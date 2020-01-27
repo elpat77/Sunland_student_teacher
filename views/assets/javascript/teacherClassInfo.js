@@ -11,6 +11,11 @@ $(document).ready(function () {
             url: `/teacherRoutes/searchById/${teacherId}`
         }).then(result => {
             $('#name').text(result.name);
+            for (let j = 0; j < result.Classes.length; j++) {
+                if (result.Classes[j].id == classId) {
+                    $('#whichClass').text(`Viewing info for class: ${result.Classes[j].subject} ${result.Classes[j].section}`);
+                }
+            }
             getStudentsInClass(classId, students => {
                 for (let i = 0; i < students.length; i++) {
                     $('.studentsEnrolled').append(`
@@ -94,14 +99,14 @@ $(document).ready(function () {
                                 scored: 0
                             }
                         }).then(result => {
-                            $('#assignmentTitle').val('');
-                            $('#assignmentDate').val('');
-                            $('#assignmentTime').val('');
-                            $('#assignmentPoints').val('');
-                            $('#assignmentContent').val('');
-                            alert('Assignment Created');
                         });
                     }
+                    $('#assignmentTitle').val('');
+                    $('#assignmentDate').val('');
+                    $('#assignmentTime').val('');
+                    $('#assignmentPoints').val('');
+                    $('#assignmentContent').val('');
+                    alert('Assignment Created');
                 }
             });
         }
@@ -133,6 +138,9 @@ $(document).ready(function () {
                 });
             }
             alert('grades setup completed');
+            $('#assignmentPercent').val('');
+            $('#quizzesPercent').val('');
+            $('#testPercent').val('');
         });
     });
     //--------------------------------------------------------------------------------
@@ -159,6 +167,9 @@ $(document).ready(function () {
     $('#selectedTestTypeVal').on('click', function () {
         $('#selectedTestTypeValVal').hide();
     });
+    $('#testDate').on('click', function () {
+        $('#testDateVal').hide();
+    });
     //--------------------------------------------------------------------------------
 
     //Create new Test or Quiz --------------------------------------------------------
@@ -168,6 +179,7 @@ $(document).ready(function () {
         let type = $('#selectedTestTypeVal').val();
         let value = $('#testPoints').val();
         let des = $('#testContent').val();
+        let date = $('#testDate').val();
         let typeUrl;
 
         if (title === '') {
@@ -179,31 +191,36 @@ $(document).ready(function () {
         if (value === '') {
             $('#testpointsVal').show();
         }
+        if (date === '') {
+            $('#testDateVal').show();
+        }
         if (type === 'quiz') {
             typeUrl = 'quizzesRoutes';
         } else {
             typeUrl = 'testsRoutes';
         }
-        getGrades(classId, resultGrades => {
-            console.log(resultGrades);
-            for (let i = 0; i < resultGrades.length; i++) {
-                let gradeId = resultGrades[i].id;
-                $.ajax({
-                    method: 'POST',
-                    url: `/${typeUrl}/${gradeId}`,
-                    data: {
-                        name: title,
-                        totalPoints: value,
-                        scored: 0,
-                        grade: '-'
-                    }
-                }).then(result => {
-                    console.log(result);
+        if (title != '' && type != null && value != '') {
+            getGrades(classId, resultGrades => {
+                console.log(resultGrades);
+                for (let i = 0; i < resultGrades.length; i++) {
+                    let gradeId = resultGrades[i].id;
+                    $.ajax({
+                        method: 'POST',
+                        url: `/${typeUrl}/${gradeId}`,
+                        data: {
+                            name: title,
+                            totalPoints: value,
+                            scored: 0,
+                            grade: '-',
+                            date: date,
+                        }
+                    }).then(result => {
+                        console.log(result);
+                    });
                     alert('Test Created!');
-                });
-            }
-        });
-
+                }
+            });
+        }
     });
     //--------------------------------------------------------------------------------
 
