@@ -18,6 +18,9 @@ $(document).ready(function () {
                     let quiz = grades.Quizzes;
 
                     for (let i = 0; i < assignments.length; i++) {
+                        let date = new Date(assignments[i].dueDate).toString();
+                        let due = date.substring(0, 15);
+
                         $('#selectedAssignmentVal').append(`
                             <option>${assignments[i].title}</option>
                             `);
@@ -29,7 +32,7 @@ $(document).ready(function () {
                                 </p>
                                 <p class="card-text text-dark overviewAssignGrades">Grade: ${assignments[i].grade}
                                 </p>
-                                <p class="card-text text-dark overviewAssignGrades">Due Date: ${assignments[i].dueDate}
+                                <p class="card-text text-dark overviewAssignGrades">Due Date: ${due}
                                 </p>
                                 <div class="mt-3">
                                     <button type="submit" class="btn" id="changeOverviewAssignment">Change</button>
@@ -78,6 +81,15 @@ $(document).ready(function () {
             });
         });
     }
+
+    //back to class button ---------------------------------------------------------------------
+    $('#backCI').on('click', function (e) {
+        e.preventDefault();
+        let classId = urlQuerries.get('ClassId');
+        window.location.href = `/classInfoTeacher?TeacherId=${teacherId}&ClassId=${classId}`;
+
+    });
+    //------------------------------------------------------------------------------------------
 
     function getGrades(classId, studentId, cb) {
         $.ajax({
