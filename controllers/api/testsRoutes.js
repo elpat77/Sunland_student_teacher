@@ -8,6 +8,14 @@ router.get('/', (req, res) => {
     });
 });
 
+router.get('/:id', (req, res) => {
+    db.Tests.findOne({
+        where: { id: req.params.id }
+    }).then(result => {
+        res.json(result);
+    });
+});
+
 router.post('/:id', (req, res) => {
     db.Tests.create({
         name: req.body.name,
@@ -16,6 +24,17 @@ router.post('/:id', (req, res) => {
         grade: req.body.grade,
         date: req.body.date,
         GradeId: req.params.id
+    }).then(result => {
+        res.json(result);
+    });
+});
+
+router.put('/updateGrade/:id', (req, res) => {
+    db.Tests.update({
+        grade: req.body.grade,
+        scored: req.body.scored
+    }, {
+        where: { id: req.params.id }
     }).then(result => {
         res.json(result);
     });
