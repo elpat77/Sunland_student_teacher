@@ -8,6 +8,14 @@ router.get('/', (req, res) => {
     });
 });
 
+router.get('/:id', (req, res) => {
+    db.Assignments.findOne({
+        where: { id: req.params.id }
+    }).then(result => {
+        res.json(result);
+    });
+});
+
 router.post('/:grade/', (req, res) => {
     db.Assignments.create({
         dueDate: req.body.date,
@@ -19,6 +27,38 @@ router.post('/:grade/', (req, res) => {
         totalPoints: req.body.totalPoints,
         scored: req.body.scored,
         GradeId: req.params.grade
+    }).then(result => {
+        res.json(result);
+    });
+});
+
+router.put('/updateGrades/:id', (req, res) => {
+    db.Assignments.update({
+        turnedIn: req.body.turnedIn,
+        scored: req.body.score,
+        grade: req.body.grade
+    }, {
+        where: { id: req.params.id }
+    }).then(result => {
+        res.json(result);
+    });
+});
+
+router.put('/updateTurnedIn/:id', (req, res) => {
+    db.Assignments.update({
+        turnedIn: req.body.turnedIn
+    }, {
+        where: { id: req.params.id }
+    }).then(result => {
+        res.json(result);
+    });
+});
+
+router.put('/updateScore/:id', (req, res) => {
+    db.Assignments.update({
+        score: req.body.score
+    }, {
+        where: { id: req.params.id }
     }).then(result => {
         res.json(result);
     });
