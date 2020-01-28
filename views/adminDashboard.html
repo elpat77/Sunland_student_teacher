@@ -132,11 +132,18 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-row">
+                                    <div class="alert alert-success text-center mt-3" id="teacherAccountCreated"
+                                        style="display:none;">
+                                        <strong>Success!</strong> You just created a new teacher account.
                                     </div>
-                                    <div class="form-group">
+                                    <div class="alert alert-danger text-center mt-3" id="teacherEmailUsed"
+                                        style="display:none;">
+                                        <strong>Account not created!</strong> There is an account already associated
+                                        with this email.
                                     </div>
-                                    <button class="btn" id="submitNewTeacherAccount" type="submit">Submit</button>
+                                    <div class="row justify-content-center mt-3">
+                                        <button class="btn" id="submitNewTeacherAccount" type="submit">Submit</button>
+                                    </div>
                                 </form>
                             </div>
                         </div>
@@ -194,21 +201,18 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-row">
-
+                                    <div class="alert alert-success text-center mt-3" id="studentAccountCreated"
+                                        style="display:none;">
+                                        <strong>Success!</strong> You just created a new student account.
                                     </div>
-                                    <div class="form-group">
-                                        <!-- <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
-                                            <label class="form-check-label" for="invalidCheck">
-                                                I agree to the terms and conditions.
-                                            </label>
-                                            <div class="invalid-feedback">
-                                                You must agree before submitting.
-                                            </div>
-                                        </div> -->
+                                    <div class="alert alert-danger text-center mt-3" id="studentEmailUsed"
+                                        style="display:none;">
+                                        <strong>Account not created!</strong> There is an account already associated
+                                        with this email.
                                     </div>
-                                    <button class="btn" id="submitNewStudentAccount" type="submit">Submit</button>
+                                    <div class="row justify-content-center mt-3">
+                                        <button class="btn" id="submitNewStudentAccount" type="submit">Submit</button>
+                                    </div>
                                 </form>
                             </div>
                         </div>
@@ -232,8 +236,8 @@
                             <h5 class="card-header">What would you like to announce?</h5>
                             <div class="card-body">
                                 <form class="needs-validation" novalidate>
-                                    <div class="form-row">
-                                        <div class="col-md-9 mb-3">
+                                    <div class="form-row justify-content-center">
+                                        <div class="col-md-9 mb-2 text-center">
                                             <label for="newAnnouncemetTitle">What is the announcement title?</label>
                                             <input type="text" class="form-control mb-3" id="newAnnouncemetTitle"
                                                 required>
@@ -252,7 +256,16 @@
                                     ​
                                     <div class="form-group">
                                     </div>
-                                    <button class="btn" id="submitNewAnnouncement" type="submit">Submit</button>
+
+                                    <div class=" alert alert-success text-center mt-1" id="announcementCreated"
+                                        style="display:none;">
+                                        <strong>Success!</strong> Your announcement has been created and sent!
+                                    </div>
+                                    <div class="row justify-content-center">
+                                        <button class="btn" id="submitNewAnnouncement" type="submit">Submit</button>
+                                    </div>
+
+
                                 </form>
                             </div>
                         </div>
@@ -267,36 +280,49 @@
                             <div class="card-header">
                                 <form class="needs-validation" novalidate>
                                     <div class="form-group row">
-                                        <label for="searchByID" class="col-sm-5 col-form-label text-center">Search
+                                        <label for="searchByID" class="col-sm-4 col-form-label text-right">Search
                                             for
                                             Teacher by Email:</label>
-                                        <div class="col-sm-6">
+                                        <div class="col-sm-5">
                                             <input type="text" class="form-control" id="searchByTeacherEmail">
                                         </div>
-                                        <div class="text-center col-sm-4">
+                                        <div class="col-sm-3">
                                             <button type="submit" class="btn" id="searchIDBtn">Search</button>
                                         </div>
-
                                     </div>
-                                    <div class="form-group row"></div>
-                                    <div class="teacherInfo text-center text-white"></div>
+
                                     <div class="form-group row">
-                                        <label for="searchByClass" class="col-sm-5 col-form-label text-center">Search by
+                                        <div class="teacherInfo text-center text-white"></div>
+                                    </div>
+
+                                    <div class="form-group row ">
+                                        <label for="searchByClass" class="col-sm-4 col-form-label text-right">Search by
                                             Class
                                             ID:</label>
-                                        <div class="col-sm-6">
+                                        <div class="col-sm-5">
                                             <input type="text" class="form-control" id="searchByClass">
                                         </div>
+                                        <div class="col-sm-3">
+                                            <button class="btn" id="searchClassBtn" type="submit">Search</button>
+                                        </div>
                                     </div>
-                                    <div class="classInfoShow text-center text-white"></div>
-                                    <div class="text-center col-sm-4">
-                                        <button type="submit" class="btn" id="searchClassBtn">Search</button>
-                                    </div>
-                                </form>
 
+                                    <div class="form-group row">
+                                        <div class="classInfoShow text-center text-white"></div>
+                                    </div>
+                                    <div class="alert alert-danger text-center mt-2" id="noTeacherEmail"
+                                        style="display:none;">
+                                        <strong>Error!</strong> Sorry, there is no class with that ID, try again.
+                                    </div>
+                                    <div class=" alert alert-danger text-center mt-2" id="noClassID"
+                                        style="display:none;">
+                                        <strong>Error!</strong> Sorry, there are no teachers with that email, try again.
+                                    </div>
+
+                                </form>
                             </div>
 
-                            <div class="card-body">
+                            <div class=" card-body">
                                 <div class="card-text text-dark">
                                     <form class="needs-validation" novalidate>
                                         <div class="form-group row">
@@ -310,8 +336,16 @@
                                                     Subject</button>
                                             </div>
                                         </div>
+                                        <div class="alert alert-danger text-center mt-1" id="alertSubjectErr"
+                                            style="display:none;">
+                                            <strong>Error!</strong> Please enter a new Class Subject.
+                                        </div>
+                                        <div class=" alert alert-success text-center mt-1" id="alertSubjectChange"
+                                            style="display:none;">
+                                            <strong>Success!</strong> You just updated the Class Subject.
+                                        </div>
                                     </form>
-                                    <form class="needs-validation" novalidate>
+                                    <form class=" needs-validation" novalidate>
                                         <div class="form-group row">
                                             <label for="updateSection" class="col-sm-4 col-form-label text-center">Enter
                                                 new section:</label>
@@ -323,8 +357,16 @@
                                                     Section</button>
                                             </div>
                                         </div>
+                                        <div class="alert alert-danger text-center mt-1" id="alertSectionErr"
+                                            style="display:none;">
+                                            <strong>Error!</strong> Please enter a new Class Section.
+                                        </div>
+                                        <div class=" alert alert-success text-center mt-1" id="alertSectionChange"
+                                            style="display:none;">
+                                            <strong>Success!</strong> You just updated the Class Section.
+                                        </div>
                                     </form>
-                                    <form class="needs-validation" novalidate>
+                                    <form class=" needs-validation" novalidate>
                                         <div class="form-group row">
                                             <label for="updateLocation"
                                                 class="col-sm-4 col-form-label text-center">Enter new
@@ -338,11 +380,20 @@
                                                 </button>
                                             </div>
                                         </div>
+                                        <div class="alert alert-danger text-center mt-1" id="alertLocationErr"
+                                            style="display:none;">
+                                            <strong>Error!</strong> Please enter a new Class Location.
+                                        </div>
+                                        <div class=" alert alert-success text-center mt-1" id="alertLocationChange"
+                                            style="display:none;">
+                                            <strong>Success!</strong> You just updated the Class Location.
+                                        </div>
                                     </form>
-                                    <form class="needs-validation" novalidate>
+                                    <form class=" needs-validation" novalidate>
                                         <div class="form-group row">
                                             <label for="updateClassTime"
-                                                class="col-sm-4 col-form-label text-center">Enter new time:</label>
+                                                class="col-sm-4 col-form-label text-center">Enter new
+                                                time:</label>
                                             <div class="col-sm-4">
                                                 <input type="text" class="form-control" id="updateClassTime">
                                             </div>
@@ -352,6 +403,15 @@
                                                 </button>
                                             </div>
                                         </div>
+                                        <div class="alert alert-danger text-center mt-1" id="alertTimeErr"
+                                            style="display:none;">
+                                            <strong>Error!</strong> Please enter a new Class Time.
+                                        </div>
+                                        <div class=" alert alert-success text-center mt-1" id="alertTimeChange"
+                                            style="display:none;">
+                                            <strong>Success!</strong> You just updated the Class Time.
+                                        </div>
+
                                     </form>
                                 </div>
                             </div>
@@ -362,8 +422,9 @@
         </div>
     </div>
     <!-- JQuery -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src=" https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous">
+        </script>
     <!--Javascript-->
     <script src="./assets/javascript/admin.js"></script>
 
