@@ -1,0 +1,14 @@
+{
+    "development": {
+        "username": "root",
+        "password": "password",
+        "database": "school_db",
+        "host": "localhost",
+        "dialect": "mysql",
+        "operatorAliases": 0
+    },
+    "production": {
+        "use_env_variable": "JAWSDB_URL",
+        "dialect": "mysql"
+    }
+}
