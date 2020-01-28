@@ -157,7 +157,8 @@
                             <h4>Draggable Events</h4>
 
                             <div id='external-events-list'>
-                                <div class='fc-event p-2 mb-2 text-center homeworkEvent bg-primary'>Homework Due
+                                <div class='fc-event p-2 mb-2 text-center homeworkEvent'
+                                    style='background-color:#FF9B99' data-color='#FF9B99'>Homework Due
                                 </div>
                                 <div class='fc-event p-2 mb-2 text-center tripEvent bg-secondary'>Field Trip</div>
                                 <div class='fc-event p-2 mb-2 text-center finalEvent bg-success'>Final Exam</div>
@@ -174,6 +175,7 @@
                         <div id='calendar'></div>
 
                         <div style='clear:both'></div>
+
                     </div>
 
                 </div>
@@ -226,7 +228,6 @@
     </script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            $('#calendar').show();
             var Calendar = FullCalendar.Calendar;
             var Draggable = FullCalendarInteraction.Draggable
 
@@ -243,6 +244,7 @@
                         title: eventEl.innerText.trim(),
                     },
 
+
                 });
             });
 
@@ -250,7 +252,6 @@
             -----------------------------------------------------------------*/
 
             var calendarEl = document.getElementById('calendar');
-
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 plugins: ['bootstrap', 'interaction', 'dayGrid', 'timeGrid', 'list'],
                 themeSystem: 'bootstrap',
@@ -262,19 +263,23 @@
                 },
                 events: [
                     {
-                        title: 'New Event',
+                        title: 'This is a fixed event',
                         start: '2020-01-29T10:30:00',
                         end: '2020-01-29T11:30:00',
+                        color: '#FF9B99',
                         extendedProps: {
                             department: 'BioChemistry'
                         },
                         description: 'Lecture'
                     }],
+
                 footer: {
                     center: 'addEventButton',
                 },
                 editable: true,
+                selectable: true,
                 droppable: true, // this allows things to be dropped onto the calendar
+
                 drop: function (arg) {
                     // is the "remove after drop" checkbox checked?
                     if (document.getElementById('drop-remove').checked) {
@@ -282,25 +287,12 @@
                         arg.draggedEl.parentNode.removeChild(arg.draggedEl);
                     }
                 },
+
                 eventClick: function (arg) {
-                    if (confirm('delete event?')) {
+                    if (confirm('Would you like to delete this event?')) {
                         arg.event.remove()
                     }
                 },
-
-                // eventClick: function (calEvent, jsEvent) {
-                //     var title = prompt('Event Title:', calEvent.title, {
-                //         buttons: {
-                //             Ok: true,
-                //             Cancel: false
-                //         }
-                //     });
-
-                //     if (title) {
-                //         calEvent.title = title;
-                //         ('#calendar').fullCalendar('updateEvent', calEvent);
-                //     }
-                // },
 
                 customButtons: {
                     addEventButton: {
@@ -308,26 +300,52 @@
                         click: function () {
                             var dateStr = prompt('Enter a date in YYYY-MM-DD format');
                             var date = new Date(dateStr + 'T00:00:00'); // will be in local time
+                            var eventTitle = prompt('Enter a name for your event');
+                            // console.log("event", eventStr);
+                            // console.log("date", date);
 
                             if (!isNaN(date.valueOf())) { // valid?
                                 calendar.addEvent({
-                                    title: "new event",
+                                    title: eventTitle,
                                     start: date,
                                     allDay: true,
                                     editable: true
                                 });
                                 alert('Event added. Now, update your database...');
                             } else {
-                                alert('Invalid date.');
+                                alert('Event not added, please try again.');
                             }
                         }
                     }
                 }
 
+                // eventClick: function (arg, jsEvent) {
+                //     var event = arg.event;
+                //     console.log("Event", event);
+                //     var eventTitle = arg.event.title;
+                //     console.log("Event Title", eventTitle);
+                //     var eventStart = arg.event.start;
+                //     console.log("Event Start", eventStart);
+                //     var eventEnd = arg.event.end;
+                //     console.log("Event Start", eventEnd);
+                // },
+
+
+                // dateClick: function (info) {
+                //     var eventDate = info.dateStr;
+                //     alert('Clicked on: ' + info.dateStr);
+                //     console.log("Event Date", eventDate);
+                //     // alert('Coordinates: ' + info.jsEvent.pageX + ',' + info.jsEvent.pageY);
+                //     // alert('Current view: ' + info.view.type);
+                //     // change the day's background color just for fun
+                //     // info.dayEl.style.backgroundColor = 'red';
+                // },
+
             });
             calendar.render();
 
         });
+
     </script>
 
 </body>
