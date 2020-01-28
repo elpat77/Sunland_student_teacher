@@ -92,7 +92,12 @@ $(document).ready(function () {
                 let teacherId = resultTeacher.id;
                 addClassesToTeacher(teacherId, classSubject, section, teacherName, classLocation, classTime, resultClass => {
                     console.log(resultClass);
-                    alert('Class added!');
+
+                    $('#addingTeacherClass').fadeIn(1000);
+                    setTimeout(function () {
+                        $('#addingTeacherClass').fadeOut(1000);
+                    }, 5000);
+                    // alert('Class added!');
                     $(`#classSubjectTeacher${teacherEmailId}`).val('');
                     $(`#sectionTeacher${teacherEmailId}`).val('');
                     $(`#classLocationTeacher${teacherEmailId}`).val('');
@@ -100,7 +105,11 @@ $(document).ready(function () {
                     $(`#classTeacher${teacherEmailId}`).val('');
                 });
             } else {
-                alert('That teacher must create an account');
+                $('#errorTeacherClass').fadeIn(1000);
+                setTimeout(function () {
+                    $('#errorTeacherClass').fadeOut(1000);
+                }, 5000);
+                // alert('That teacher must create an account');
             }
         });
     });
@@ -119,7 +128,11 @@ $(document).ready(function () {
 
         getClassId(classSubject, teacherName, result => {
             if (result.length === 0) {
-                alert('Sorry, no class found');
+                $('#classNotFound').fadeIn(1000);
+                setTimeout(function () {
+                    $('#classNotFound').fadeOut(1000);
+                }, 5000);
+                // alert('Sorry, no class found');
             } if (result.length > 1) {
                 let success = false;
                 let id = 2000;
@@ -134,7 +147,11 @@ $(document).ready(function () {
                 if (success) {
                     addStudentClassesToClass(studentEmail, id, addedStudent => {
                         addClassInfoToStudent(id, studentId, classSubject, section, teacherName, classInfoResult => {
-                            alert('Class Added for Student');
+                            $('#addingStudentClass').fadeIn(1000);
+                            setTimeout(function () {
+                                $('#addingStudentClass').fadeOut(1000);
+                            }, 5000);
+                            // alert('Class Added for Student');
                         });
                     });
                 } else {
@@ -145,7 +162,11 @@ $(document).ready(function () {
                 console.log(id);
                 addStudentClassesToClass(studentEmail, id, addStudent => {
                     addClassInfoToStudent(id, studentId, classSubject, section, teacherName, classInfoResult => {
-                        alert('Class Added for Student');
+                        $('#addingStudentClass').fadeIn(1000);
+                        setTimeout(function () {
+                            $('#addingStudentClass').fadeOut(1000);
+                        }, 5000);
+                        // alert('Class Added for Student');
                     });
                 });
             }
@@ -249,14 +270,20 @@ $(document).ready(function () {
                 if (!teachersSet.has(email)) {
                     createAccountTeacher(fullName, email, password, resultAccount => {
                         appendTeachers();
-                        alert('Teacher account created!');
+                        $('#teacherAccountCreated').fadeIn(1000);
+                        setTimeout(function () {
+                            $('#teacherAccountCreated').fadeOut(1000);
+                        }, 5000);
                         $('#teacherEmail').val('');
                         $('#teacherPassword').val('');
                         $('#teacherFirstName').val('');
                         $('#teacherLastName').val('');
                     });
                 } else {
-                    alert('This email has an account already');
+                    $('#teacherEmailUsed').fadeIn(1000);
+                    setTimeout(function () {
+                        $('#teacherEmailUsed').fadeOut(1000);
+                    }, 5000);
                 }
             });
         }
@@ -317,7 +344,10 @@ $(document).ready(function () {
                         createStudentClasses(studentId, fullName, email, result => {
                             console.log(result);
 
-                            alert('Student Account Created!');
+                            $('#studentAccountCreated').fadeIn(1000);
+                            setTimeout(function () {
+                                $('#studentAccountCreated').fadeOut(1000);
+                            }, 5000);
                             $('#studentEmail').val('');
                             $('#studentPassword').val('');
                             $('#studentFirstName').val('');
@@ -325,7 +355,10 @@ $(document).ready(function () {
                         });
                     });
                 } else {
-                    alert('This email has an account already');
+                    $('#studentEmailUsed').fadeIn(1000);
+                    setTimeout(function () {
+                        $('#studentEmailUsed').fadeOut(1000);
+                    }, 5000);
                 }
             });
         }
@@ -353,7 +386,11 @@ $(document).ready(function () {
         let teacherId = $(this).attr('value');
         deleteTeacherById(teacherId, result => {
             appendTeachers();
-            alert('Teacher has been deleted');
+            $('#teacherDeleted').fadeIn(1000);
+            setTimeout(function () {
+                $('#teacherDeleted').fadeOut(1000);
+            }, 5000);
+            // alert('Teacher has been deleted');
         });
     });
     //--------------------------------------------------------------------------------
@@ -367,7 +404,11 @@ $(document).ready(function () {
                 method: 'DELETE',
                 url: `/StudentClasses/delete/${studentId}`
             }).then(result => {
-                alert('Student has been deleted');
+                $('#studentDeleted').fadeIn(1000);
+                setTimeout(function () {
+                    $('#studentDeleted').fadeOut(1000);
+                }, 5000);
+                // alert('Student has been deleted');
                 appendStudents();
             });
         });
@@ -415,7 +456,11 @@ $(document).ready(function () {
                     </div>
                 `);
             } else {
-                alert('Sorry, no class with that Id');
+                $('#noClassID').fadeIn(1000);
+                setTimeout(function () {
+                    $('#noClassID').fadeOut(1000);
+                }, 5000);
+                // alert('Sorry, no class with that Id');
             }
         });
     });
@@ -428,11 +473,19 @@ $(document).ready(function () {
         let newSubject = $('#updateSubject').val();
 
         if (classId === '') {
-            alert('you must enter a class id');
+            $('#alertSubjectErr').fadeIn(1000);
+            setTimeout(function () {
+                $('#alertSubjectErr').fadeOut(1000);
+            }, 5000);
+            // alert('you must enter a class id');
         }
         updateClassSubject(classId, newSubject, result => {
             console.log(result);
-            alert('Subject Changed');
+            $('#alertSubjectChange').fadeIn(1000);
+            setTimeout(function () {
+                $('#alertSubjectChange').fadeOut(1000);
+            }, 5000);
+            // alert('Subject Changed');
             $('#updateSubject').val('');
             $('#updatedSubject').text(`Subject: ${newSubject}`);
         });
@@ -447,11 +500,19 @@ $(document).ready(function () {
         let newSection = $('#updateSection').val();
 
         if (classId === '') {
-            alert('you must enter a class id');
+            $('#alertSectionErr').fadeIn(1000);
+            setTimeout(function () {
+                $('#alertSectionErr').fadeOut(1000);
+            }, 5000);
+            // alert('you must enter a class id');
         }
         updateClassSection(classId, newSection, result => {
             console.log(result);
-            alert('Section Changed');
+            $('#alertSectionChange').fadeIn(1000);
+            setTimeout(function () {
+                $('#alertSectionChange').fadeOut(1000);
+            }, 5000);
+            // alert('Section Changed');
             $('#updateSection').val('');
             $('#updatedSection').text(`Section: ${newSection}`);
         });
@@ -465,11 +526,19 @@ $(document).ready(function () {
         let newLocation = $('#updateLocation').val();
 
         if (classId === '') {
-            alert('you must enter a class id');
+            $('#alertLocationErr').fadeIn(1000);
+            setTimeout(function () {
+                $('#alertLocationErr').fadeOut(1000);
+            }, 5000);
+            // alert('you must enter a class id');
         }
         updateClassLocation(classId, newLocation, result => {
             console.log(result);
-            alert('Location Changed');
+            $('#alertLocationChange').fadeIn(1000);
+            setTimeout(function () {
+                $('#alertLocationChange').fadeOut(1000);
+            }, 5000);
+            // alert('Location Changed');
             $('#updateLocation').val('');
             $('#updatedLocation').text(`Location: ${newLocation}`);
         });
@@ -483,11 +552,19 @@ $(document).ready(function () {
         let newClassTime = $('#updateClassTime').val();
 
         if (classId === '') {
-            alert('you must enter a class id');
+            $('#alertTimeErr').fadeIn(1000);
+            setTimeout(function () {
+                $('#alertTimeErr').fadeOut(1000);
+            }, 5000);
+            // alert('you must enter a class id');
         }
         updateClassTime(classId, newClassTime, result => {
             console.log(result);
-            alert('Time Changed');
+            $('#alertTimeChange').fadeIn(1000);
+            setTimeout(function () {
+                $('#alertTimeChange').fadeOut(1000);
+            }, 5000);
+            // alert('Time Changed');
             $('#updateClassTime').val('');
             $('#updatedMeetTime').text(`Meet Time: ${newClassTime}`);
         });
@@ -510,7 +587,11 @@ $(document).ready(function () {
             console.log(result);
             $('#newAnnouncemetTitle').val('');
             $('#newAnnouncementContent').val('');
-            alert('Announcement Created');
+            $('#announcementCreated').fadeIn(1000);
+            setTimeout(function () {
+                $('#announcementCreated').fadeOut(1000);
+            }, 5000);
+            // alert('Announcement Created');
         });
     });
     //-------------------------------------------------------------------------------
@@ -619,10 +700,18 @@ $(document).ready(function () {
                     <label class="mb-1" for="exampleDropdownFormPassword1">Teacher Name</label>
                     <input type="text" class="form-control classTeacher" id="classTeacher${teacherResult[i].id}" placeholder="Teacher Name">
 
+                    <div class="alert alert-success text-center mt-3" id="addingTeacherClass" style="display:none;">
+                    <strong>Success!</strong> You just added a class to a Teacher!</div>
+
+                    <div class="alert alert-danger text-center mt-3" id="errorTeacherClass" style="display:none;">
+                    <strong>Error!</strong> That teacher must first create an account</div>
+            
                     <button class="btn btn-primary mt-1 addClassTeacher" data="${teacherResult[i].email}" value="${teacherResult[i].id}">Add Class for Teacher</button>
                 </div>
                 </form>
                 <div class="dropdown-divider"></div>
+                <div class="alert alert-success text-center mt-3" id="teacherDeleted" style="display:none;">
+                    <strong>Success!</strong> You just deleted a Teacher!</div>
                 <button class="btn btn-danger ml-2 deleteUserTeacher" value= "${teacherResult[i].id}">Delete User</button>
             </div>
             </div>
@@ -671,10 +760,19 @@ $(document).ready(function () {
 
                     <label class="mb-1" for="exampleDropdownFormPassword1">Teacher Name</label>
                     <input type="text" class="form-control classTeacher" id="classStudent${studentResult[i].id}" placeholder="Teacher Name">
+
+                    <div class="alert alert-success text-center mt-3" id="addingStudentClass" style="display:none;">
+                    <strong>Success!</strong> You just added a class to a Student!</div>
+
+                    <div class="alert alert-danger text-center mt-3" id="classNotFound" style="display:none;">
+                    <strong>Error!</strong> Sorry, that class was not found</div>
+
                     <button class="btn btn-primary mt-1 addClassStudent" data="${studentResult[i].email}" value="${studentResult[i].id}">Add Class for Student</button>
                 </div>
                 </form>
                 <div class="dropdown-divider"></div>
+                <div class="alert alert-success text-center mt-3" id="studentDeleted" style="display:none;">
+                    <strong>Success!</strong> You just deleted a Student!</div>
                 <button class="btn btn-danger ml-2 deleteUserStudent" value="${studentResult[i].id}">Delete User</button>
             </div>
             </div>
