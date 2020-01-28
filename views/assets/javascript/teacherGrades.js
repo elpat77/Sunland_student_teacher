@@ -121,14 +121,14 @@ $(document).ready(function () {
                 let points = (score / testResult.totalPoints) * 100;
                 let grade = setGrade(points);
 
-                // updateTestGrade(test, score, grade, result => {
-                //     console.log(result);
-                //     getGrades(classId, studentId, allResults => {
-                //         overViewOfGrades(allResults);
-                //     });
-                //     $('#selectedQuizzVal').val('');
-                //     $('#gradedQuizzScoreVal').val('');
-                // });
+                updateQuizGrade(quiz, score, grade, result => {
+                    console.log(result);
+                    getGrades(classId, studentId, allResults => {
+                        overViewOfGrades(allResults);
+                    });
+                    $('#selectedQuizzVal').val('');
+                    $('#gradedQuizzScoreVal').val('');
+                });
             });
         }
 
@@ -150,6 +150,13 @@ $(document).ready(function () {
     });
     $('#gradedTestScore').on('click', function () {
         $('#gradedTestScoreVal').hide();
+    });
+    //------------------------------------------------------------------------------------------
+
+    //logout -----------------------------------------------------------------------------------
+    $('#logOut').on('click', function (e) {
+        e.preventDefault();
+        window.location.href = '/';
     });
     //------------------------------------------------------------------------------------------
 
