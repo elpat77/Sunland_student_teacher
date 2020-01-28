@@ -316,16 +316,16 @@ $(document).ready(function () {
         let fullName = firstName + ' ' + lastName;
 
         if (email === '') {
-            $('#emailVal').show();
+            $('#emailValStudent').show();
         }
         if (password === '') {
-            $('#passwordVal').show();
+            $('#passwordValStudent').show();
         }
         if (firstName === '') {
-            $('#firstNameVal').show();
+            $('#firstNameValStudent').show();
         }
         if (lastName === '') {
-            $('#lastNameVal').show();
+            $('#lastNameValStudent').show();
         }
 
         if (email != '' && password != '' && firstName != '' && lastName != '') {
@@ -367,16 +367,16 @@ $(document).ready(function () {
 
     //Validation Students-------------------------------------------------------------
     $('#studentEmail').on('click', function () {
-        $('#emailVal').hide();
+        $('#emailValStudent').hide();
     });
     $('#studentPassword').on('click', function () {
-        $('#passwordVal').hide();
+        $('#passwordValStudent').hide();
     });
     $('#studentFirstName').on('click', function () {
-        $('#firstNameVal').hide();
+        $('#firstNameValStudent').hide();
     });
     $('#studentLastName').on('click', function () {
-        $('#lastNameVal').hide();
+        $('#lastNameValStudent').hide();
     });
     //--------------------------------------------------------------------------------
 

@@ -101,6 +101,40 @@ $(document).ready(function () {
     });
     //------------------------------------------------------------------------------------------
 
+    //Grade Quiz ------------------------------------------------------------------------------
+    $('#gradedQuizzSubmit').on('click', function (e) {
+        e.preventDefault();
+        let classId = urlQuerries.get('ClassId');
+        let studentId = urlQuerries.get('StudentId');
+        let quiz = $('#selectedQuizzVal').val();
+        let score = $('#gradedQuizzScore').val();
+        if (quiz === null) {
+            $('#selectedQuizzValVal').show();
+        }
+        if (score === '') {
+            $('#gradedQuizzScoreVal').show();
+        }
+        if (quiz != null && score != '') {
+            getQuizById(quiz, testResult => {
+                console.log(testResult);
+
+                let points = (score / testResult.totalPoints) * 100;
+                let grade = setGrade(points);
+
+                // updateTestGrade(test, score, grade, result => {
+                //     console.log(result);
+                //     getGrades(classId, studentId, allResults => {
+                //         overViewOfGrades(allResults);
+                //     });
+                //     $('#selectedQuizzVal').val('');
+                //     $('#gradedQuizzScoreVal').val('');
+                // });
+            });
+        }
+
+    });
+    //------------------------------------------------------------------------------------------
+
     //Validation -------------------------------------------------------------------------------
     $('#selectedAssignmentVal').on('click', function () {
         $('#selectedAssignmentValVal').hide();
@@ -133,6 +167,28 @@ $(document).ready(function () {
             grade = 'F';
         }
         return grade;
+    }
+
+    function updateQuizGrade(id, score, grade, cb) {
+        $.ajax({
+            method: 'PUT',
+            url: `/quizzesRoutes/updateGrade/${id}`,
+            data: {
+                scored: score,
+                grade: grade
+            }
+        }).then(result => {
+            cb(result);
+        });
+    }
+
+    function getQuizById(id, cb) {
+        $.ajax({
+            method: 'GET',
+            url: `/quizzesRoutes/${id}`
+        }).then(result => {
+            cb(result);
+        });
     }
 
     function getGrades(classId, studentId, cb) {
@@ -267,7 +323,7 @@ $(document).ready(function () {
             let date = new Date(tests[i].date).toString();
             let show = date.substring(0, 15);
             $('#selectedQuizzVal').append(`
-            <option>${quiz[i].name}</option>
+            <option value="${quiz[i].id}">${quiz[i].name}</option>
             `);
             $('#quizzesGrades').append(`     
             <div class="card mb-4 text-center" style="width: 50rem;">
