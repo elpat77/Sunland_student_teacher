@@ -8,6 +8,14 @@ router.get('/', (req, res) => {
     });
 });
 
+router.get('/:id', (req, res) => {
+    db.Quizzes.findOne({
+        where: { id: req.params.id }
+    }).then(result => {
+        res.json(result);
+    });
+});
+
 router.post('/:id', (req, res) => {
     db.Quizzes.create({
         name: req.body.name,
@@ -16,6 +24,17 @@ router.post('/:id', (req, res) => {
         grade: req.body.grade,
         date: req.body.date,
         GradeId: req.params.id
+    }).then(result => {
+        res.json(result);
+    });
+});
+
+router.put('/updateGrade/:id', (req, res) => {
+    db.Quizzes.update({
+        scored: req.body.scored,
+        grade: req.body.grade
+    }, {
+        where: { id: req.params.id }
     }).then(result => {
         res.json(result);
     });
