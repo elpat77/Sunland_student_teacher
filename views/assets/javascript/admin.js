@@ -248,16 +248,16 @@ $(document).ready(function () {
         let fullName = firstName + ' ' + lastName;
 
         if (email === '') {
-            $('#emailVal').show();
+            $('#emailVal').show().delay(3200).fadeOut(300);
         }
         if (password === '') {
-            $('#passwordVal').show();
+            $('#passwordVal').show().delay(3200).fadeOut(300);
         }
         if (firstName === '') {
-            $('#firstNameVal').show();
+            $('#firstNameVal').show().delay(3200).fadeOut(300);
         }
         if (lastName === '') {
-            $('#lastNameVal').show();
+            $('#lastNameVal').show().delay(3200).fadeOut(300);
         }
 
         if (email != '' && password != '' && firstName != '' && lastName != '') {
@@ -316,16 +316,16 @@ $(document).ready(function () {
         let fullName = firstName + ' ' + lastName;
 
         if (email === '') {
-            $('#emailValStudent').show();
+            $('#emailValStudent').show().delay(3200).fadeOut(300);
         }
         if (password === '') {
-            $('#passwordValStudent').show();
+            $('#passwordValStudent').show().delay(3200).fadeOut(300);
         }
         if (firstName === '') {
-            $('#firstNameValStudent').show();
+            $('#firstNameValStudent').show().delay(3200).fadeOut(300);
         }
         if (lastName === '') {
-            $('#lastNameValStudent').show();
+            $('#lastNameValStudent').show().delay(3200).fadeOut(300);
         }
 
         if (email != '' && password != '' && firstName != '' && lastName != '') {
@@ -576,23 +576,40 @@ $(document).ready(function () {
         e.preventDefault();
         let title = $('#newAnnouncemetTitle').val();
         let text = $('#newAnnouncementContent').val();
-        $.ajax({
-            method: 'POST',
-            url: '/adminAnnouncements',
-            data: {
-                title: title,
-                body: text
-            }
-        }).then(result => {
-            console.log(result);
-            $('#newAnnouncemetTitle').val('');
-            $('#newAnnouncementContent').val('');
-            $('#announcementCreated').fadeIn(1000);
+
+        if (title === '') {
+            $('#newAnnouncemetTitleVal').show().delay(3200).fadeOut(300);
+        }
+        if (text === '') {
+            $('#newAnnouncementContentVal').show().delay(3200).fadeOut(300);
+        }
+
+        if (title != '' && text != '') {
+            $.ajax({
+                method: 'POST',
+                url: '/adminAnnouncements',
+                data: {
+                    title: title,
+                    body: text
+                }
+            }).then(result => {
+                console.log(result);
+                $('#newAnnouncemetTitle').val('');
+                $('#newAnnouncementContent').val('');
+                $('#announcementCreated').fadeIn(1000);
+                setTimeout(function () {
+                    $('#announcementCreated').fadeOut(1000);
+                }, 5000);
+
+                // alert('Announcement Created');
+            });
+        } else {
+            $('#errorAnnouncement').fadeIn(1000);
             setTimeout(function () {
-                $('#announcementCreated').fadeOut(1000);
+                $('#errorAnnouncement').fadeOut(1000);
             }, 5000);
-            // alert('Announcement Created');
-        });
+
+        }
     });
     //-------------------------------------------------------------------------------
 
