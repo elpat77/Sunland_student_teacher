@@ -219,14 +219,6 @@
 
     <!-- script for collapsing menu -->
     <script type="text/javascript">
-        $(document).ready(function () {
-            $('#sidebarCollapse').on('click', function () {
-                $('#sidebar').toggleClass('active');
-                $(this).toggleClass('active');
-            });
-        });
-    </script>
-    <script>
         document.addEventListener('DOMContentLoaded', function () {
             var Calendar = FullCalendar.Calendar;
             var Draggable = FullCalendarInteraction.Draggable
@@ -301,8 +293,8 @@
                             var dateStr = prompt('Enter a date in YYYY-MM-DD format');
                             var date = new Date(dateStr + 'T00:00:00'); // will be in local time
                             var eventTitle = prompt('Enter a name for your event');
-                            // console.log("event", eventStr);
-                            // console.log("date", date);
+                            console.log("event", eventTitle);
+                            console.log("date", date);
 
                             if (!isNaN(date.valueOf())) { // valid?
                                 calendar.addEvent({
