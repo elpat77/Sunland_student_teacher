@@ -73,7 +73,6 @@
                             Out</button>
                     </a>
                 </div>
-
             </ul>
         </nav>
 
@@ -218,6 +217,17 @@
     <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-auth.js"></script>
 
     <!-- script for collapsing menu -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+                $(this).toggleClass('active');
+            });
+        });
+    </script>
+
+
+    <!-- script for calendar -->
     <script type="text/javascript">
         document.addEventListener('DOMContentLoaded', function () {
             var Calendar = FullCalendar.Calendar;
