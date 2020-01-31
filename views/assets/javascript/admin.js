@@ -430,15 +430,18 @@ $(document).ready(function () {
         searchTeacherByEmail(teacherEmail, result => {
             console.log(result);
             $('.teacherInfo').append(`
-                <div>Teacher Info:</div>
-                <h6>Classes and Id: </h6>
+                <div>Classes associated with ${teacherEmail}</div>
             `);
+            $('#searchByTeacherEmail').val('');
             let classes = result.Classes;
             for (let i = 0; i < result.Classes.length; i++) {
                 $('.teacherInfo').append(`
-                <div>
-                <h6><li>${classes[i].subject} ${classes[i].section}: ${classes[i].id}</li></h6>
+                <div class = "container mt-3">
+                <h5>CLASS INFO</h5>
+                <h6 id="resultClassSubject">Subject: ${classes[i].subject}</h6>
+                <h6 id="resultClasID">Class ID: ${classes[i].id}</h6>
                 </div>
+                
             `);
             }
         });
@@ -458,10 +461,11 @@ $(document).ready(function () {
         $('.classInfoShow').empty();
         searchClassesById(classId, result => {
             console.log(result);
+            $('#searchByClass').val('');
             if (result.length != 0) {
                 $('.classInfoShow').append(`
                     <div>
-                        <h5>Class Info: </h5>
+                        <h5>CLASS INFO</h5>
                         <h6 id="updatedSubject">Subject: ${result.subject}</h6>
                         <h6 id="updatedSection">Section: ${result.section}</h6>
                         <h6 id="updatedTeacher">Teacher: ${result.teacher}</h6>
@@ -626,12 +630,6 @@ $(document).ready(function () {
         }
     });
     //-------------------------------------------------------------------------------
-
-    function ClearFields() {
-
-        document.getElementById("textfield1").value = "";
-        document.getElementById("textfield2").value = "";
-    };
 
     $('#logOut').on('click', function (e) {
         e.preventDefault();
