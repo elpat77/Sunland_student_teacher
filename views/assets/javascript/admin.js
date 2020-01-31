@@ -627,6 +627,12 @@ $(document).ready(function () {
     });
     //-------------------------------------------------------------------------------
 
+    function ClearFields() {
+
+        document.getElementById("textfield1").value = "";
+        document.getElementById("textfield2").value = "";
+    };
+
     $('#logOut').on('click', function (e) {
         e.preventDefault();
         window.location.href = '/'
