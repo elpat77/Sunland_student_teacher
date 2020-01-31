@@ -165,7 +165,7 @@ ul.CTAs a {
     margin-bottom: 5px;
 }
 
-#logOut, #searchClassBtn, #dropdownMenu2, #submitNewTeacherAccount, #submitNewStudentAccount, #searchIDBtn, #updateSubjectBtn, #updateSectionBtn, #updateLocationBtn, #updateClassTimeBtn, #updateClassTeacherBtn,  #changeClass, #changeAnnouncement, #submitNewTeacher, #submitNewStudent, #submitNewAnnouncement, #submitNewClass{
+#logOut, #clearForm, #searchClassBtn, #dropdownMenu2, #submitNewTeacherAccount, #submitNewStudentAccount, #searchIDBtn, #updateSubjectBtn, #updateSectionBtn, #updateLocationBtn, #updateClassTimeBtn, #updateClassTeacherBtn,  #changeClass, #changeAnnouncement, #submitNewTeacher, #submitNewStudent, #submitNewAnnouncement, #submitNewClass{
     background:rgb(99, 209, 172);
     color: #fff;
     margin-bottom: 1rem;
@@ -173,7 +173,7 @@ ul.CTAs a {
     font-size: 1.25rem;
 }
 
-#logOut:hover{
+#logOut:hover, #clearForm:hover{
     background: #fff!important;
     color: #085D61 !important;
 } 
