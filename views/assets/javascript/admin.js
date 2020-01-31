@@ -419,6 +419,14 @@ $(document).ready(function () {
     $('#searchIDBtn').on('click', function (e) {
         e.preventDefault();
         let teacherEmail = $('#searchByTeacherEmail').val();
+        if (teacherEmail === '') {
+            $('#noTeacherEmail').fadeIn(1000);
+            setTimeout(function () {
+                $('#noTeacherEmail').fadeOut(1000);
+            }, 5000);
+        }
+
+
         searchTeacherByEmail(teacherEmail, result => {
             console.log(result);
             $('.teacherInfo').append(`
@@ -441,6 +449,12 @@ $(document).ready(function () {
     $('#searchClassBtn').on('click', function (e) {
         e.preventDefault();
         let classId = $('#searchByClass').val();
+        if (classId === '') {
+            $('#noClassID').fadeIn(1000);
+            setTimeout(function () {
+                $('#noClassID').fadeOut(1000);
+            }, 5000);
+        }
         $('.classInfoShow').empty();
         searchClassesById(classId, result => {
             console.log(result);
@@ -612,6 +626,12 @@ $(document).ready(function () {
         }
     });
     //-------------------------------------------------------------------------------
+
+    function ClearFields() {
+
+        document.getElementById("textfield1").value = "";
+        document.getElementById("textfield2").value = "";
+    };
 
     $('#logOut').on('click', function (e) {
         e.preventDefault();

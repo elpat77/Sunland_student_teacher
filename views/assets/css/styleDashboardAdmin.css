@@ -293,3 +293,7 @@ ul.CTAs a {
 #changeTeacher{
     float: left;
 }
+
+.teacherInfo, .classInfoShow {
+    color:#D2F492;
+}
