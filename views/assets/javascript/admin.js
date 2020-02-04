@@ -448,6 +448,12 @@ $(document).ready(function () {
     });
     //--------------------------------------------------------------------------------
 
+    //TRY
+    $('.try').on('click', function () {
+        $('.classInfoShow').empty();
+        $('#searchByClass').val('');
+    });
+
     //Edit Classes Search by Class Id ------------------------------------------------
     $('#searchClassBtn').on('click', function (e) {
         e.preventDefault();
@@ -461,7 +467,7 @@ $(document).ready(function () {
         $('.classInfoShow').empty();
         searchClassesById(classId, result => {
             console.log(result);
-            $('#searchByClass').val('');
+            //$('#searchByClass').val('');
             if (result.length != 0) {
                 $('.classInfoShow').append(`
                     <div>
