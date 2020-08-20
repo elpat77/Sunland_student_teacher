@@ -15,7 +15,7 @@
     "@fullcalendar/core": "^4.3.1",
     "@fullcalendar/daygrid": "^4.3.0",
     "ajax": "0.0.4",
-    "bcrypt": "^3.0.7",
+    "bcrypt": "^5.0.0",
     "bootstrap-icons": "^1.0.0-alpha2",
     "bootswatch": "^4.4.1",
     "bower": "^1.8.8",
